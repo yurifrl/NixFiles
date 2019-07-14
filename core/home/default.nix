@@ -29,31 +29,24 @@ with lib;
       };
       home = {
         file = {
-        # config
-        # ".spacemacs" = {
-        #   source = ./config/spacemacs;
-        # };
-        ".Xresources" = {
-          source = ./config/Xresources;
-        };
-        ".gitconfig" = {
-          source = ./config/gitconfig;
-        };
-        ".ignore" = {
-          source = ./config/ignore;
-        };
-        ".bin" = {
-          source = ./config/bin;
-        };
-        ".tmux.conf" = {
-          source = ./config/tmux.conf;
-        };
-        # ".xmodmap" = {
-        #   source = ./config/xmodmap;
-        # };
-        # ".xinitrc" = {
-        #   source = ./config/xinitrc;
-        # };
+          ".spacemacs" = {
+            source = ./config/spacemacs;
+          };
+          ".Xresources" = {
+            source = ./config/Xresources;
+          };
+          ".gitconfig" = {
+            source = ./config/gitconfig;
+          };
+          ".ignore" = {
+            source = ./config/ignore;
+          };
+          ".bin" = {
+            source = ./config/bin;
+          };
+          ".tmux.conf" = {
+            source = ./config/tmux.conf;
+          };
         # Folders
         ".tmux/plugins" = {
           source = fetchGit {
@@ -63,13 +56,13 @@ with lib;
           };
           recursive = true;
         };
-        # ".emacs.d" = {
-        #   source = fetchGit {
-        #     url = "https://github.com/syl20bnr/spacemacs";
-        #     ref = "v0.200.13";
-        #   };
-        #   recursive = true;
-        # };
+        ".emacs.d" = {
+          source = fetchGit {
+            url = "https://github.com/syl20bnr/spacemacs";
+            ref = "v0.200.13";
+          };
+          recursive = true;
+        };
         ".local/share/applications" = {
           source = ./config/applications;
           recursive = true;

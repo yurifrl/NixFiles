@@ -35,6 +35,7 @@ values."
                                        haskell
                                        shell-scripts
                                        ;; Langs
+                                       nixos
                                        javascript
                                        html
                                        emacs-lisp
