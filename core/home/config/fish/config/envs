@@ -47,7 +47,7 @@ set -gx GOOS linux
 set -gx CGO_ENABLED 0
 
 # Load Secrets
-set -gx KEYBASE_ENVS "/keybase/private/yurifrl/envs"
+set -gx KEYBASE_ENVS "$HOME/Keybase/private/yurifrl/envs"
 
 if test -e $KEYBASE_ENVS
    ev -q $KEYBASE_ENVS
