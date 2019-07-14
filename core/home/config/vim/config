@@ -44,7 +44,7 @@ set undoreload=10000
 " " https://www.reddit.com/r/vim/comments/fdwax/just_a_reminder_cursorline_and_relativenumber/
 " set number                                                                     " show line numbers
 " set cursorline                                                                 " highlight current line
-set shell=/bin/bash                                                              " Set shell to bash otherwise Vundle Explodes
+set shell=fish                                                                   " Set shell to bash otherwise Vundle Explodes
 
 " ================================== COLORS ====================================
 " I have to set this in order to make alt keys work

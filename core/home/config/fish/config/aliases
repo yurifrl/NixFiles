@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 alias sudo='sudo '
 alias x="exit"
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'

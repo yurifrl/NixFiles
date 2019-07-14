@@ -20,7 +20,7 @@ fundle init
 # set fish_greeting ""
 
 # Envs
-# set -gx DOT_FILES ~/DotFiles
+set -gx DOT_FILES ~/NixFiles
 
-source "./config/envs"
-source "./config/aliases"
+source "$HOME/.config/fish/config/envs"
+source "$HOME/.config/fish/config/aliases"

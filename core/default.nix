@@ -4,7 +4,11 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  homedir = builtins.getEnv "HOME";
+  unstable = import <nixos-unstable> {};
+  mySt = pkgs.callPackage ../pkgs/st {};
+in {
   imports = [
     ./home
   ];
@@ -13,11 +17,110 @@
     EDITOR = "vim";
     TERMINAL = "st";
     SHELL = "fish";
+    PATH = "${homedir}/.bin:$PATH";
   };
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    gitAndTools.diff-so-fancy
+    unstable.tmux
+    meld
+    vscode
+    go
+    mySt
+    git
+    wget
+    vim
+    emacs
+    kbfs
+    keybase-go
+    unstable.fish
+    docker
+    docker-compose
+    google-chrome-beta
+    ranger
+  ];
+
   networking.networkmanager.enable = true;
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
+  #
+  virtualisation.docker.enable = true;
+
+  # List services that you want to enable:
+  services = {
+    # redshift = {
+    #   enable = false;
+    #   latitude = "-23.502428";
+    #   longitude = "-46.626527";
+    #   temperature.day = 6500;
+    #   temperature.night = 2700;
+    # };
+
+    # ???????
+    acpid.enable = true;
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+
+    keybase = {
+      enable = true;
+    };
+    kbfs = {
+      enable = true;
+      mountPoint = "%h/Keybase";
+    };
+
+    xserver = {
+      enable = true;
+      autorun = true;
+      exportConfiguration = true;
+      libinput.enable = true;
+      windowManager = {
+        default = "i3";
+        i3 = {
+          enable = true;
+          extraPackages = with pkgs; [
+            dmenu
+            i3status
+            i3lock
+            i3blocks
+            acpi
+            xclip
+          ];
+        };
+      };
+      desktopManager = {
+        default = "none";
+        xterm.enable = false;
+      };
+    };
+  };
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.yuri = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -52,103 +155,4 @@
       # ubuntu_font_family
     ];
   };
-
-  nixpkgs.config = {
-    allowUnfree = true;
-
-    packageOverrides = pkgs: {
-      st = pkgs.callPackage ../pkgs/st {};
-    };
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    meld
-    vscode
-    go
-    st
-    git
-    wget
-    vim
-    emacs
-    kbfs
-    keybase-go
-    fish
-    docker
-    docker-compose
-    tmux
-    google-chrome-beta
-    ranger
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  # ???????
-  # services.acpid.enable = true;
-
-  # services.redshift = {
-  #   enable = false;
-  #   latitude = "-23.502428";
-  #   longitude = "-46.626527";
-  #   temperature.day = 6500;
-  #   temperature.night = 2700;
-  # };
-
-  # List services that you want to enable:
-  services = {
-
-  # Enable the OpenSSH daemon.
-  openssh.enable = true;
-
-
-  xserver = {
-    enable = true;
-    autorun = true;
-    exportConfiguration = true;
-    libinput.enable = true;
-    windowManager = {
-      default = "i3";
-      i3 = {
-        enable = true;
-        extraPackages = with pkgs; [
-          dmenu
-          i3status
-          i3lock
-          i3blocks
-          acpi
-          xclip
-        ];
-      };
-    };
-    desktopManager = {
-      default = "none";
-      xterm.enable = false;
-    };
-  };
-  keybase = {
-    enable = true;
-  };
-  kbfs = {
-    enable = true;
-    mountPoint = "%h/Keybase";
-  };
-};
-
-  #programs.st.enable = true;
-  virtualisation.docker.enable = true;
 }
