@@ -30,9 +30,9 @@ with lib;
       home = {
         file = {
         # config
-        ".spacemacs" = {
-          source = ./config/spacemacs;
-        };
+        # ".spacemacs" = {
+        #   source = ./config/spacemacs;
+        # };
         ".Xresources" = {
           source = ./config/Xresources;
         };
@@ -63,13 +63,13 @@ with lib;
           };
           recursive = true;
         };
-        ".emacs.d" = {
-          source = fetchGit {
-            url = "https://github.com/syl20bnr/spacemacs";
-            ref = "v0.200.13";
-          };
-          recursive = true;
-        };
+        # ".emacs.d" = {
+        #   source = fetchGit {
+        #     url = "https://github.com/syl20bnr/spacemacs";
+        #     ref = "v0.200.13";
+        #   };
+        #   recursive = true;
+        # };
         ".local/share/applications" = {
           source = ./config/applications;
           recursive = true;

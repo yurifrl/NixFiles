@@ -73,6 +73,7 @@ values."
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    undo-tree
                                     auto-yasnippet
                                     helm-c-yasnippet
                                     magit-gitflow

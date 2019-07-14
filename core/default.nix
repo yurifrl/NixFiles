@@ -8,6 +8,7 @@ let
   homedir = builtins.getEnv "HOME";
   unstable = import <nixos-unstable> {};
   mySt = pkgs.callPackage ../pkgs/st {};
+  kconf = pkgs.callPackage ../pkgs/kconf {};
 in {
   imports = [
     ./home
@@ -29,6 +30,8 @@ in {
   environment.systemPackages = with pkgs; [
     gitAndTools.diff-so-fancy
     unstable.tmux
+    kconf
+    pulsemixer
     meld
     vscode
     go

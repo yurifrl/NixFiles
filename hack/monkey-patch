@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+unlink "$HOME/.spacemacs"
+ln -s "$HOME/NixFiles/core/home/config/spacemacs" "$HOME/.spacemacs"
+
+unlink "$HOME/.docker"
+ln -s "$HOME/Keybase/private/yurifrl/home/docker" "$HOME/.docker"
+
+unlink "$HOME/.ssh"
+ln -s "$HOME/Keybase/private/yurifrl/home/ssh" "$HOME/.ssh"

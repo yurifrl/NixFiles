@@ -2,8 +2,8 @@
 Name=Code - OSS
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=code-oss --unity-launch %F
-Icon=code-oss
+Exec=code --unity-launch %F
+Icon=code
 Type=Application
 StartupNotify=false
 StartupWMClass=Code
@@ -14,5 +14,5 @@ Keywords=vscode;
 
 [Desktop Action new-empty-window]
 Name=New Empty Window
-Exec=code-oss --new-window %F
-Icon=code-oss
+Exec=code --new-window %F
+Icon=code
