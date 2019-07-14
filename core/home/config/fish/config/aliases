@@ -24,7 +24,7 @@ alias s="git rebase --skip"
 alias m="git mergetool"
 alias lg="lazygit"
 
-alias w="cd $HOME/Workspace/src/github.com/cloud104"
+alias w="cd $HOME/Workdir/src/github.com"
 # alias vim="echo 'no'"
 
 alias g="git"
