@@ -1,0 +1,29 @@
+" Functions
+nmap <M-left> :bprev<CR>                                                         " Buffer navigation
+nmap <M-right> :bnext<CR>                                                        " Buffer navigation
+
+" Configs
+set pastetoggle=<F3>
+
+" Commands
+command! Runme :exec "!%:p"
+command! RemoveTrailingWhiteSpaces :%s/\s\+$//e
+command! Doit :source $MYVIMRC                                                   " Source vimrc file
+
+" Leader maps <C-,>
+nmap <leader>sv :Doit<CR>                                                        " Source vimrc file
+nmap <leader>k :bprevious<CR>:bdelete #<CR>                                      " Close current buffer
+
+" ================================== PLUGINS ==================================
+
+" CommandT
+nmap <leader>f :CommandT<CR>
+
+" Ack
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
+
+" CtrlPag
+nnoremap <c-f> :CtrlPag<cr>
+nnoremap <leader>ca :CtrlPagLocate
+nnoremap <leader>cp :CtrlPagPrevious<cr>

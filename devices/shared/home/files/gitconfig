@@ -1,0 +1,30 @@
+[user]
+  name = yuri
+  email=yurifl03@gmail.com
+  signingkey = 84686530B2A88714
+[alias]
+  a=add
+  ac="!git chl && git add"
+  c=commit -m
+  s=!git status
+  l=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  ck=checkout
+  ci="!git a . ; git c 'feature: testing ci :rocket:' ; git push"
+  tag-v="!git tag $(cat VERSION); git push origin $(cat VERSION)"
+  chl-init="!git-chglog --init --silent"
+  chl=!chl
+  undo-last-commit="reset HEAD~"
+  add="!echo 'use lg'"
+  commit="!echo 'use lg'"
+[push]
+ default=simple
+[core]
+  excludesfile=~/.gitignore
+  filemode=false
+[mergetool]
+  keepBackup=false
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[credential]
+  helper=store

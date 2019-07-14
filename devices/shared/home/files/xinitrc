@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# https://unix.stackexchange.com/questions/281858/difference-between-xinitrc-xsession-and-xsessionrc
+
+export TERMINAL="st"
+export XINITRC="runned"
+
+# It fucks up if runned on i3
+setxkbmap -model thinkpad60 -layout br
+
+xmodmap $HOME/.xmodmap
+
+exec i3

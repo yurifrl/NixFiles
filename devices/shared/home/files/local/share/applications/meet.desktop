@@ -1,0 +1,8 @@
+[Desktop Entry]
+# The type as listed above
+Type=Application
+# The name of the application
+Name=Meet
+# The executable of the application, possibly with arguments.
+Exec=chrome --app=https://meet.google.com
+

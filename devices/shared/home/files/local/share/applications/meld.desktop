@@ -1,0 +1,7 @@
+[Desktop Entry]
+# The type as listed above
+Type=Application
+# The name of the application
+Name=Meld
+# The executable of the application, possibly with arguments.
+Exec=meld %U

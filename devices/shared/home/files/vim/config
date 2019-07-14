@@ -1,0 +1,100 @@
+set autoindent                                                                   " set auto indent
+set ts=2                                                                         " set indent to 2 spaces
+set expandtab                                                                    " use spaces, not tab characters
+set nocompatible                                                                 " don't need to be compatible with old vim
+set showmatch                                                                    " show bracket matches
+set ignorecase                                                                   " ignore case in search
+set hlsearch                                                                     " highlight all search matches
+set smartcase                                                                    " pay attention to case when caps are used
+set incsearch                                                                    " show search results as I type
+set mouse=a                                                                      " enable mouse support
+set ttimeoutlen=100                                                              " decrease timeout for faster insert with 'O'
+set vb                                                                           " enable visual bell (disable audio bell)
+set ruler                                                                        " show row and column in footer
+set scrolloff=2                                                                  " minimum lines above/below cursor
+set laststatus=2                                                                 " always show status bar
+set nofoldenable                                                                 " disable code folding
+set clipboard=unnamedplus                                                        " use the system clipboard
+set wildmenu                                                                     " enable bash style tab completion
+set backspace=2                                                                  " enabled backspace
+set smartindent                                                                  " - does the right thing (mostly) in programs
+" set nopaste                                                                    " Use 256 colours (Use this setting only if your terminal supports 256  colours)
+set nospell                                                                      " Keep this for mind sakes
+set noswapfile                                                                   " No swap files
+set shiftwidth=2                                                                 " Number of spaces for autoident
+set wildmode=list:longest,full                                                   " Not shure, something to do with completion
+set runtimepath^=~/.vim/bundle/ctrlp.vim                                         " Start Ctrl+P
+" This breaks netrw
+" set hidden                                                                     " When of a buffer is unloaded
+set splitright                                                                   " if execute a command to split a window it will split right
+set foldmethod=manual                                                            " Fold enabled
+set conceallevel=0                                                               " Don't hide comas
+set modifiable
+set autochdir                                                                    " Automatically change the current directory
+" ignore files
+set wildignore="*/tmp/*,*/git/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip,*/deps,*/_build,*/_site,*/.deploy,*/.sass-cache,*/.pygments-cache,*/_deploy,*/cover,*/coverage,*/build"
+set cc=81                                                                        " A bar on the eight caracter
+set tw=80                                                                        " Text Width
+" Persistent undo
+set undofile
+set undodir=/tmp/
+set undolevels=1000
+set undoreload=10000
+" " Makes vim slow
+" " https://www.reddit.com/r/vim/comments/fdwax/just_a_reminder_cursorline_and_relativenumber/
+" set number                                                                     " show line numbers
+" set cursorline                                                                 " highlight current line
+set shell=/bin/bash                                                              " Set shell to bash otherwise Vundle Explodes
+
+" ================================== COLORS ====================================
+" I have to set this in order to make alt keys work
+set term=xterm-256color
+
+" ================================== END COLORS =================================
+
+" ================================== SYNTAX =====================================
+
+" Gemfile.local
+au BufRead,BufNewFile Gemfile.* set syntax=ruby
+
+" Erlang
+autocmd BufRead,BufNewFile *.erl,*.es.*.hrl,*.yaws,*.xrl set expandtab
+au BufNewFile,BufRead *.erl,*.es,*.hrl,*.yaws,*.xrl setf erlang
+
+" Nginx
+au BufRead,BufNewFile *.nginx set ft=nginx
+au BufRead,BufNewFile */etc/nginx/* set ft=nginx
+au BufRead,BufNewFile */usr/local/nginx/conf/* set ft=nginx
+au BufRead,BufNewFile nginx.conf set ft=nginx
+
+" Vue
+" au BufRead,BufNewFile *.vue set filetype=html
+
+" Dockerfile
+au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+
+" ================================== END_SYNTAX ================================
+
+" ================================== BEHAVIORS ==================================
+" Lead key stuff
+let mapleader=","                                                                " Change Lead Key
+let g:auto_save=1                                                                " Auto Save
+
+" highlight trailing spaces in annoying red
+highlight ExtraWhitespace ctermbg=1 guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Remove trailing white spaces on save
+autocmd BufWritePre *.pl %s/\s\+$//e
+
+" highlight the status bar when in insert mode
+if version >= 700
+  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
+  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
+endif
+
+" ============================== END BEHAVIORS ==================================

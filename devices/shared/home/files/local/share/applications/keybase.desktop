@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Keybase
+Exec=keybase-gui
+Icon=keybase
+Terminal=false
+Type=Application
+Categories=Network;
+StartupNotify=false
