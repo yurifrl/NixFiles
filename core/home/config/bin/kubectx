@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "kubectl config set-context portal --namespace=portal --cluster=k8s-hmg.stg.cloud104.io --user=k8s-hmg.stg.cloud104.io"
+echo "kubectl config use-context portal"
+echo "kubectl config use-context k8s-hmg.stg.cloud104.io"
+echo "kubectl config current-context"

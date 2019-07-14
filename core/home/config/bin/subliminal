@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker run --rm -ti \
+  --name subliminal \
+  -w /files \
+  -v $(pwd):/files \
+  diaoulael/subliminal download -l pt-br "$@"

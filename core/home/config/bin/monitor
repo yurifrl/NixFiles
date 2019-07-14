@@ -1,0 +1,62 @@
+#!/usr/bin/env sh
+
+# xrandr --output HDMI-1 --mode 1024x768 --pos 128x0 --rotate normal \
+#   --output eDP-1 --primary --mode 1366x768 --pos 0x768 --rotate normal
+
+# xrandr \
+#   --output DP-1 --rate 60 --mode 1366x768 --fb 1920x1080 --panning 1920x1080* \
+#   --output DP-2 --mode 1920x1080 --same-as DP-1
+
+# OUTPUTS:
+#   HDMI-1
+#   HDMI-2
+#   eDP-1: --mode 1366x768 --pos 232x1080
+#   DP-2
+CMD=$1
+
+if [ $CMD = "reset" ] ;then
+  echo "Reseting output"
+
+  xrandr --output HDMI-2 --off \
+    --output HDMI-1 --off \
+    --output DP-1 --off \
+    --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal --output DP-2 --off
+
+  exit 0
+fi
+
+if [ $CMD = "mirror-vga" ] ;then
+  echo "Mirroing with VGA output"
+
+  #xrandr --output HDMI-2 --off \
+  #  --output HDMI-1 --off \
+  #  --output DP-1 --off \
+  #  --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
+  #  --output DP-2 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
+
+  xrandr --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
+    --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
+
+  exit 0
+fi
+
+if [ $CMD = "extend-vga-up" ] ;then
+  echo "Extending with VGA output"
+
+  xrandr --output HDMI-2 --off \
+    --output HDMI-1 --off \
+    --output DP-1 --off \
+    --output eDP-1 --primary --mode 1366x768 --pos 264x1080 --rotate normal \
+    --output DP-2 --mode 1920x1080 --pos 0x0 --rotate normal
+
+  exit 0
+fi
+
+echo "OPTIONS:"
+echo "
+reset
+mirror-vga
+extend-vga-up
+"
+
+exit 1

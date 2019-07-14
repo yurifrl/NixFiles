@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+KEYBASE="/run/user/2081455883/keybase/kbfs/private/yurifrl"
+
+cp -r "$KEYBASE/certs" "$HOME/.kube/certs"
+

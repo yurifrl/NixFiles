@@ -1,8 +1,0 @@
-[Desktop Entry]
-# The type as listed above
-Type=Application
-# The name of the application
-Name=Slack
-# The executable of the application, possibly with arguments.
-Exec=chrome --app=https://tkscorp.slack.com/messages/CFWHUFR9D/
-

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# gcr.io/cloud-builders/kubectl "$@"
+docker run --rm --net=host \
+  -t $([[ -t 0 ]] && echo "-i") \
+  -w /usr/local/src \
+  -v "$PWD:/usr/local/src" \
+  -v $HOME/.kube:/root/.kube \
+  --entrypoint=kubectl \
+  lachlanevenson/k8s-kubectl:v1.7.4 "$@"

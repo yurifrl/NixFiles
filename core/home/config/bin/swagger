@@ -1,0 +1,44 @@
+#!/bin/sh
+DAEMON=false
+API_URL="$1"
+
+if  [ "$1" = "-d" ]; then
+    DAEMON=true
+    API_URL="$2"
+fi
+
+echo "---> API_URL: $API_URL"
+
+run() {
+    docker run -d -w /usr/local/src \
+           -e "API_URL=$API_URL" \
+           -p 8080 \
+           swaggerapi/swagger-ui
+}
+
+CONTAINER_ID=$(run)
+HOST="$(docker port "$CONTAINER_ID" 8080/tcp)"
+
+echo "---> port: "
+echo "http://$HOST"
+
+if $DAEMON; then
+    echo "---> CONTAINER_ID"
+    echo "$CONTAINER_ID"
+
+    echo "---> kill switch"
+    echo "docker stop $CONTAINER_ID; and docker rm $CONTAINER_ID"
+else
+    ctrl_c() {
+        echo "---> stoping swagger"
+        docker stop "$CONTAINER_ID"
+        docker rm "$CONTAINER_ID"
+        exit 0
+    }
+
+    echo "---> Ctrl+C to quit"
+    trap ctrl_c INT
+    while true; do
+        sleep 1
+    done
+fi

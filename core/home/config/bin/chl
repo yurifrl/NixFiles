@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+git-chglog -o CHANGELOG.md --silent
+git add CHANGELOG.md
+MESSAGE="chore: Updates changelog"
+git commit --amend -m "$(git log -1 --pretty=%B)" -m "$MESSAGE"

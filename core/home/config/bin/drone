@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+docker run --rm --net=host -w /usr/local/src \
+  -t $(tty > /dev/null; echo "-i") \
+  -v "$PWD:/usr/local/src" \
+  -e DRONE_SERVER=$DRONE_SERVER \
+  -e DRONE_TOKEN=$DRONE_TOKEN \
+  drone/cli:0.8.6 "$@"

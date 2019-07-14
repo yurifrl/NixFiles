@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+
+CONFIG="$HOME/NixFiles/core/home/config"
+FILES="gitconfig spacemacs ignore tmux.conf bin"
+
+doit() {
+	echo "SRC=$1"
+	echo "DST=$2"
+	unlink "$2"
+	ln -s "$1" "$2"
+}
+clone() {
+	if [ ! -d "$1" ]; then
+		git clone "$2" "$1"
+	fi
+}
+
+mkdir -p "$HOME/.config/fish"
+mkdir -p "$HOME/.tmux"
+
+for f in $FILES; do
+	doit "$CONFIG/$f" "$HOME/.$f"
+done
+
+doit "$CONFIG/applications" "$HOME/.local/share/applications"
+
+doit "$CONFIG/i3" "$HOME/.config/i3"
+
+doit "$CONFIG/fish/config.fish" "$HOME/.config/fish/config.fish"
+
+doit "$CONFIG/fish/functions" "$HOME/.config/fish/functions"
+
+doit "$CONFIG/fish/config" "$HOME/.config/fish/config"
+
+KEYBASE="/run/user/2081455883/keybase/kbfs/private/yurifrl"
+
+doit "$KEYBASE/home/docker" "$HOME/.docker"
+
+doit "$KEYBASE/home/ssh" "$HOME/.ssh"
+
+doit "$KEYBASE/home/kube" "$HOME/.kube"
+
+clone "$HOME/.emacs.d" "https://github.com/syl20bnr/spacemacs" 
+
+clone "$HOME/.tmux/plugins" "https://github.com/tmux-plugins/tpm" 

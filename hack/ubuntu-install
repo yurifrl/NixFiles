@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+CONFIG="../devices/ubuntu"
+
+#
+nix-shell $CONFIG --indirect --add-root $HOME/.gcroots/dep --show-trace
+
+# install
+# nix-env -f '<nixpkgs>' -iA userPackages

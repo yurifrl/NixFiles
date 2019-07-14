@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+[[ ${DBUS_SESSION_BUS_ADDRESS} =~ 'unix:path'\
+  && -S ${DBUS_SESSION_BUS_ADDRESS#*=} ]]\
+  && DBUS=${DBUS_SESSION_BUS_ADDRESS#*=}
+
+docker run --rm --name spotify \
+  -e "USER_UID=${USER_UID}" \
+  -e "USER_GID=${USER_GID}" \
+  -e "DISPLAY=unix${DISPLAY}" \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+  -v "/run/user/${USER_UID}/pulse:/run/pulse:ro" \
+  -v "${HOME}/.spotify/config:/data/config" \
+  -v "${HOME}/.spotify/cache:/data/cache" \
+  ${DBUS:+-v "${DBUS}:/run/dbus"} \
+  ${DBUS:+-e "DBUS_SESSION_BUS_ADDRESS=/run/dbus"} \
+  --device /dev/dri \
+  spotify
