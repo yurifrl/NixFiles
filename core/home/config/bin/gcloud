@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+export IMAGE="google/cloud-sdk"
+export ENTRYPOINT="gcloud"
+
+docker-run "$@"

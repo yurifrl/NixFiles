@@ -9,21 +9,26 @@
     ./hardware-configuration.nix
     ../../core
   ];
-  networking.hostName = "inspiron";
+
+  networking.hostName = "dafiti";
+
+  # Supposedly better for the SSD.
+  fileSystems."/".options = [ "noatime" "nodiratime" "discard" ];
+
   boot = {
     # My Legacy Boot
     initrd.luks.devices = [{
       name = "boot";
       device = "/dev/sda2";
       preLVM = true;
+      allowDiscards = true;
     }];
+
     # Use the GRUB 2 boot loader.
     loader.grub.enable = true;
     loader.grub.version = 2;
-    # loader.grub.efiSupport = true;
-    # loader.grub.efiInstallAsRemovable = true;
-    # loader.efi.efiSysMountPoint = "/boot/efi";
-    # Define on which hard drive you want to install Grub.
-    loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+    loader.grub.device = "nodev";
+    loader.grub.efiSupport = true;
+    loader.efi.canTouchEfiVariables = true;
   };
 }

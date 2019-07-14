@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Create 4 windows, first is a terminal, focus is an run this"
+i3-msg 'split vertical, focus right, move left, layout stacking, focus right, split vertical, focus right, move left, layout stacking'

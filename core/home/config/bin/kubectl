@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+export IMAGE="gcr.io/cloud-builders/kubectl"
+export ENTRYPOINT="kubectl"
+
+docker-run "$@"

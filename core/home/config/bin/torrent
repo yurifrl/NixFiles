@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+docker run --rm \
+  --name=transmission \
+  -e PUID=1001 \
+  -e PGID=1001 \
+  -e TZ=Europe/London \
+  -p 9091:9091 \
+  -p 51413:51413 \
+  -p 51413:51413/udp \
+  -v "$HOME/.config/torrent:/config" \
+  -v "/torrents:/downloads" \
+  linuxserver/transmission

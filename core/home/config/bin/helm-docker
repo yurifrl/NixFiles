@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+export IMAGE="linkyard/docker-helm"
+
+docker-run "$@"

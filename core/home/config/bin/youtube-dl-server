@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+FOLDER="$HOME/Downloads/youtube-dl"
+
+docker run --rm --net=host \
+  -t $(tty > /dev/null; echo "-i") \
+  -v "$FOLDER:/youtube-dl" \
+  kmb32123/youtube-dl-server

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+FOLDER="$HOME/Downloads/youtube-dl"
+
+docker run --rm \
+  -t $(tty > /dev/null; echo "-i") \
+  -w /data \
+  -v "$FOLDER:/data" \
+  vimagick/youtube-dl "$@"

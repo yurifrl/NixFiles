@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# -i, --interactive                    Keep STDIN open even if not attached
+# -t, --tty                            Allocate a pseudo-TTY
+
+: "${IMAGE:?IMAGE Variable not set or empty}"
+: "${BASENAME:=$(basename "$PWD")}"
+: "${ENTRYPOINT:=""}"
+: "${PARAMS:=""}"
+: "${I:=true}"
+: "${T:=true}"
+
+[ "`tty`" = "not a tty" ] && I=false
+[[ -t 0 ]] && T=true
+
+DEFAULT_PARAMS="--rm \
+--net=host \
+$([ $T = true ] && echo '-t') \
+$([ $I = true ] && echo '-i') \
+-w /$BASENAME \
+-v $PWD:/$BASENAME \
+-v $HOME/.helm:/root/.helm \
+-v $HOME/.config/gcloud:/root/.config/gcloud \
+-v $HOME/.kube:/root/.kube \
+-v /usr/bin/docker:/usr/bin/docker \
+-v /var/run/docker.sock:/var/run/docker.sock \
+$([ -z $ENTRYPOINT ] || echo --entrypoint=$ENTRYPOINT)"
+
+OPTIONS=$(printf "%q " "$@")
+
+COMMAND="docker run $DEFAULT_PARAMS $PARAMS $IMAGE $OPTIONS"
+
+if [ $DEBUG ]; then
+    echo "$COMMAND"
+fi
+
+eval "$COMMAND"

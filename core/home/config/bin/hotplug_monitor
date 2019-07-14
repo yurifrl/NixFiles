@@ -1,0 +1,18 @@
+#! /usr/bin/bash
+# Sets right perspective when monitor is plugged in
+# Needed by udev rule /etc/udev/rules.d/95-hotplug-monitor
+#Rule for executing commands when an external screen is plugged in.
+# KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/dan/.Xauthority", RUN+="/usr/local/bin/hotplug_monitor.sh"
+# export DISPLAY=:0
+# export XAUTHORITY=/home/yuri/.Xauthority
+# http://tutos.readthedocs.io/en/latest/source/Arch.html
+
+function connect(){
+    xrandr --output HDMI1 --mode 1920x1080 --pos 0x0 --rotate normal --output LVDS1 --mode 1366x768 --pos 0x1080 --rotate normal --output VIRTUAL1 --off --output DP1 --off --output VGA1 --off
+}
+
+function disconnect(){
+    xrandr --output HDMI1 --off
+}
+
+xrandr | grep "HDMI1 connected" &> /dev/null && connect || disconnect

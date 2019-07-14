@@ -1,0 +1,3 @@
+#!/bin/sh
+
+kubectl get pod -o jsonpath='{.items[0].metadata.name}' -l app="$1"

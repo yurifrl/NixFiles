@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+export IMAGE="vault"
+export ENTRYPOINT="vault"
+export PARAMS="--cap-add=IPC_LOCK -e VAULT_ADDR=$VAULT_ADDR -e VAULT_SKIP_VERIFY=$VAULT_SKIP_VERIFY -e VAULT_TOKEN=$VAULT_TOKEN"
+
+docker-run "$@"

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cat << EOF
+Section "InputClass"
+           Identifier "My Mouse"
+           Driver "libinput"
+           MatchIsPointer "yes"
+           Option "AccelProfile" "flat"
+EndSection
+EOF
+
+echo '---> Edit X config'
+sudo /usr/bin/vim "/usr/share/X11/xorg.conf.d/95-mouse-accel.conf"
+
+echo '---> Restart X'
+#sudo startx
+
+echo '---> Check if mouse acceleration is disabled'
+xset -q | grep -A1 Pointer

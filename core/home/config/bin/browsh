@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+docker run --rm \
+  -t $(tty > /dev/null; echo "-i") \
+  browsh/browsh

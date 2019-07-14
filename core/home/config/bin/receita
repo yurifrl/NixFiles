@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# echo "git clone https://github.com/yurifrl/receitaFederal $HOME/.irpf"
+
+set unamestr $(uname)
+
+xhost +
+
+docker run --rm -it \
+  --name=receita \
+  --net=host \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $HOME/.irpf:/home yurifl/irpf

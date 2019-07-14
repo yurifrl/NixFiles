@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# gcr.io/cloud-builders/kubectl
+# lachlanevenson/k8s-kubectl:v1.7.4
+
+export IMAGE="gcr.io/cloud-builders/kubectl"
+export ENTRYPOINT="kubectl"
+
+docker-run "$@"

@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+NETWORK="${NETWORK:-default}"
+REDIS_HOST="${REDIS_HOST:-redis}"
+
+run() {
+    docker run -d \
+           -p 8081:8081 \
+           --network "$NETWORK" \
+           tenstartups/redis-commander --redis-host "$REDIS_HOST"
+}
+
+CONTAINER_ID=$(run)
+HOST="$(docker port "$CONTAINER_ID" 8081/tcp)"
+
+echo "---> port: "
+echo "http://$HOST"
+
+ctrl_c() {
+    echo "---> Stoping"
+    docker stop "$CONTAINER_ID"
+    docker rm "$CONTAINER_ID"
+    exit 0
+}
+
+echo "---> Ctrl+C to quit"
+trap ctrl_c INT
+while true; do
+    sleep 1
+done

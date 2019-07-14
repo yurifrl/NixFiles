@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+FOLDER="$HOME/Downloads/youtube-dl"
+
+# youtube-dl --get-id <playlist or channel> | youtube-dl-parallel -
+
+docker run --rm \
+  -t $(tty > /dev/null; echo "-i") \
+  -w /root \
+  -v "$FOLDER:/root" \
+  yurifl/youtube-dl-playlist "$@"
+

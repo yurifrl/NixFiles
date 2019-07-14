@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+export USER="yurifrl"
+
+cat $(kind get kubeconfig-path --name="kind") > /keybase/private/yurifrl/kconf/kind
+
+kconf
