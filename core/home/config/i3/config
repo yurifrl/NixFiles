@@ -153,8 +153,6 @@ bar {
 
 
 # Bind application to worspace
-## Chrome web apps
-assign [instance=".*.com*."] 3
 # xprop | grep CLASS
 assign [class="st-256color"] 1
 assign [class="xst-256color"] 1
@@ -165,6 +163,8 @@ assign [class="^discord"] 5
 assign [class="^parsec"] 4
 assign [class="^xfreerdp"] 4
 assign [class="^rdesktop"] 5
+## Chrome web apps
+assign [instance=".*.com*."] 3
 
 
 for_window [class="^rdesktop"] floating disable
@@ -198,7 +198,7 @@ focus_follows_mouse yes
 # ================================ On Start
 # exec --no-startup-id /usr/bin/google-chrome-stable
 exec --no-startup-id nm-applet --sm-disable
-exec --no-startup-id redshift -l 51.5033640:-0.1276250
+# exec --no-startup-id redshift -l 51.5033640:-0.1276250
 exec --no-startup-id i3-sensible-terminal
 # exec --no-startup-id /home/yuri/.bin/e
 exec --no-startup-id /home/yuri/.bin/monitor extend-vga-up
