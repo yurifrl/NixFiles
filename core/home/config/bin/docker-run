@@ -21,10 +21,10 @@ $([ $I = true ] && echo '-i') \
 -v $PWD:/$BASENAME \
 -v $HOME/.helm:/root/.helm \
 -v $HOME/.config/gcloud:/root/.config/gcloud \
---env-file <(env | grep AWS) \
 -v $HOME/.kube:/root/.kube \
 -v /usr/bin/docker:/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
+--env-file <(env | grep AWS) \
 $([ -z $ENTRYPOINT ] || echo --entrypoint=$ENTRYPOINT)"
 
 OPTIONS=$(printf "%q " "$@")

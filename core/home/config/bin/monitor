@@ -28,11 +28,17 @@ fi
 if [ $CMD = "mirror-vga" ] ;then
   echo "Mirroing with VGA output"
 
-  #xrandr --output HDMI-2 --off \
-  #  --output HDMI-1 --off \
-  #  --output DP-1 --off \
-  #  --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
-  #  --output DP-2 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
+  xrandr --output HDMI-2 --off \
+    --output HDMI-1 --off \
+    --output DP-1 --off \
+    --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
+    --output DP-2 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
+
+  exit 0
+fi
+
+if [ $CMD = "mirror-hdmi" ] ;then
+  echo "Mirroing with VGA output"
 
   xrandr --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
     --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711

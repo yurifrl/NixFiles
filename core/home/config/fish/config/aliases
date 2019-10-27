@@ -37,3 +37,5 @@ alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
 alias check_for_errors="journalctl -p 3 -xb"
 alias mk=microk8s.kubectl
+alias k=kubectl
+alias helm=helm-2.11

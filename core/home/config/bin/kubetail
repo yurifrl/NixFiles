@@ -110,7 +110,7 @@ if [ "$#" -ne 0 ]; then
   }
 
   # Get all pods matching the input and put them in an array. If no input then all pods are matched.
-  matching_pods=(`k get pods --context=${context} --no-headers ${selector} --namespace=${namespace} | grep "${pod}" | sed 's/ .*//'`)
+  matching_pods=(`kubectl get pods --context=${context} --no-headers ${selector} --namespace=${namespace} | grep "${pod}" | sed 's/ .*//'`)
   matching_pods_size=${#matching_pods[@]}
 
   if [ ${matching_pods_size} -eq 0 ]; then
@@ -143,7 +143,7 @@ if [ "$#" -ne 0 ]; then
       colored_line="$color_start[$pod] \$line $color_end"
     fi
 
-    pod_logs_commands+=("k --context=${context} logs ${pod} ${container} -f --since=${since} --namespace=${namespace} | while read line; do echo \"$colored_line\"; done");
+    pod_logs_commands+=("kubectl --context=${context} logs ${pod} ${container} -f --since=${since} --namespace=${namespace} | while read line; do echo \"$colored_line\"; done");
   done
 
   # Join all log commands into one string seperated by " & "

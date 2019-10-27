@@ -74,6 +74,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       pkgbuild-mode
+                                      rainbow-delimiters
                                       ;; purescript-mode
                                       ;; psci
                                       ;; psc-ide-emacs
@@ -349,6 +350,8 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; [config] Enable raimbow parenthesis
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   ;; [config] Disable snippets
   (setq lsp-enable-snippet nil)
   ;; [config] Setup scala lsp, gabriel sends regards

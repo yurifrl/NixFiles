@@ -2,6 +2,6 @@
 # The type as listed above
 Type=Application
 # The name of the application
-Name=Discord
+Name=Postman
 # The executable of the application, possibly with arguments.
-Exec=/usr/bin/discord
+Exec=/usr/local/src/Postman/Postman

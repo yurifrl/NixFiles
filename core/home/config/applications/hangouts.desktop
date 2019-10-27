@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=Hangouts
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://hangouts.google.com
+Exec=chrome --app=https://hangouts.google.com/?authuser=1

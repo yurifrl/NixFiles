@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 # https://microk8s.io/docs/working 
 
+sudo microk8s.enable registry
 echo "Sending $1 to microk8s"
 docker images | grep $1
 docker save "$1" > "/tmp/$1.tar"
-microk8s.ctr -n k8s.io image import /tmp/$1.tar
-microk8s.ctr -n k8s.io images ls | grep $1
+sudo microk8s.ctr -n k8s.io image import /tmp/$1.tar
+sudo microk8s.ctr -n k8s.io images ls | grep $1

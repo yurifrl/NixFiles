@@ -2,6 +2,7 @@
 # The type as listed above
 Type=Application
 # The name of the application
-Name=Godot
+Name=Telegram
 # The executable of the application, possibly with arguments.
-Exec=/var/lib/flatpak/exports/bin/org.godotengine.Godot
+Exec=chrome --app=https://web.telegram.org/#/im
+

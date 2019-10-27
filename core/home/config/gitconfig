@@ -16,6 +16,7 @@
   undo-last-commit="reset HEAD~"
   add="!echo 'use lg'"
   commit="!echo 'use lg'"
+  wtf="!wtc commit -a"
 [push]
  default=simple
 [core]
