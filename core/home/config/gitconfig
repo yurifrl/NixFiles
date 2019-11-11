@@ -10,6 +10,7 @@
   l=log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   ck=checkout
   ci="!git a . ; git c 'feature: testing ci :rocket:' ; git push"
+  wip="!git a . ; git c 'feature: wip :zap:' ; git push"
   tag-v="!git tag $(cat VERSION); git push origin $(cat VERSION)"
   chl-init="!git-chglog --init --silent"
   chl=!chl

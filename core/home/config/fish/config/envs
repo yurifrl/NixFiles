@@ -11,6 +11,9 @@ set -gx XDG_DATA_HOME "$HOME/.local/share"
 #
 set -gx HISTTIMEFORMAT "%d/%m/%y %T "
 
+# Disable rename for tmux
+set -gx DISABLE_AUTO_TITLE "true"
+
 # For lynx
 set -gx WWW_HOME "https://google.com"
 

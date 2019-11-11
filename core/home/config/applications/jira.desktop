@@ -4,5 +4,5 @@ Type=Application
 # The name of the application
 Name=Jira
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://dafiti.jira.com/jira/software/projects/SRE/boards/992
+Exec=chrome --app=https://dafiti.jira.com/secure/RapidBoard.jspa?rapidView=1055
 

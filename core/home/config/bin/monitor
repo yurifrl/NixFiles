@@ -46,6 +46,15 @@ if [ $CMD = "mirror-hdmi" ] ;then
   exit 0
 fi
 
+if [ $CMD = "extend-hdmi-up" ] ;then
+  echo "Extending with VGA output"
+
+  xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+	 --output eDP-1 --primary --mode 1366x768 --pos 304x1080 --rotate normal
+
+  exit 0
+fi
+
 if [ $CMD = "extend-vga-up" ] ;then
   echo "Extending with VGA output"
 

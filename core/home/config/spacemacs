@@ -75,6 +75,7 @@ values."
    dotspacemacs-additional-packages '(
                                       pkgbuild-mode
                                       rainbow-delimiters
+                                      smartparens
                                       ;; purescript-mode
                                       ;; psci
                                       ;; psc-ide-emacs
@@ -350,6 +351,8 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; [config] Enable smartparens
+  (add-hook 'prog-mode-hook #'smartparens-mode)
   ;; [config] Enable raimbow parenthesis
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   ;; [config] Disable snippets
