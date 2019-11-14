@@ -30,6 +30,14 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers '(
+                                       ;; Not sure
+                                       git
+                                       version-control
+                                       ;; ;; Other
+                                       neotree
+                                       better-defaults
+                                       evil-commentary
+                                       helm
                                        ;; Langs
                                        ;; https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Blang/reasonml
                                        ;; reasonml
@@ -60,14 +68,7 @@ values."
                                        auto-completion
                                        (lsp :variables
                                             lsp-ui-sideline-enable nil
-                                            lsp-ui-doc-enable nil)
-                                       ;; Not sure
-                                       git
-                                       version-control
-                                       ;; ;; Other
-                                       better-defaults
-                                       evil-commentary
-                                       helm)
+                                            lsp-ui-doc-enable nil))
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
@@ -76,6 +77,10 @@ values."
                                       pkgbuild-mode
                                       rainbow-delimiters
                                       smartparens
+                                      ;; [neotree]
+                                      winum
+                                      ;; Auto update keyring key
+                                      gnu-elpa-keyring-update
                                       ;; purescript-mode
                                       ;; psci
                                       ;; psc-ide-emacs
@@ -351,6 +356,12 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; [hack] Allow packages without signature
+  (setq package-check-signature nil)
+  ;; [config] Neotree config
+  (setq neo-theme 'arrow)
+  (setq neo-show-hidden-files nil)
+  (winum-mode)
   ;; [config] Enable smartparens
   (add-hook 'prog-mode-hook #'smartparens-mode)
   ;; [config] Enable raimbow parenthesis
