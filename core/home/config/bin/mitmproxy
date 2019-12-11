@@ -1,6 +1,13 @@
 #!/usr/bin/env sh
 
+# https://ourcodeworld.com/articles/read/422/how-to-perform-a-man-in-the-middle-mitm-attack-with-kali-linux
+#sudo iptables -t nat -I PREROUTING -p tcp -d 10.42.0.1 --dport 8080 -j DNAT --to 172.1.0.2:8080
+#sudo iptables -t nat -I PREROUTING -p tcp -d 10.42.0.1 --dport 8081 -j DNAT --to 172.1.0.2:8081
+#wget -qO- http://pudim.com.br 
+#ip a show
+#ip route show
+
 docker run --rm -it \
 	-v "$HOME/.certs/mitmproxy:/home/mitmproxy/.mitmproxy" \
 	-p 8080:8080 \
-	-p 127.0.0.1:8000:8081 mitmproxy/mitmproxy mitmweb --web-iface 0.0.0.0
+	-p 127.0.0.1:8081:8081 mitmproxy/mitmproxy mitmweb --web-iface 0.0.0.0

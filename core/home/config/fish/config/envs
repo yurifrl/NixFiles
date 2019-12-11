@@ -31,10 +31,13 @@ set -gx LOCAL_BIN "$HOME/.bin"
 set -gx SYSTEM_BIN "/usr/local/bin"
 
 # GO
-set -gx GOPATH "$HOME/Workdir"
-set -gx JAVA_HOME "/usr/lib/jvm/11/openj9"
-set -gx GOPATH "$HOME/.go" $GOPATH
+set -gx GOPATH "$HOME/.go:$HOME/Workdir"
+set -gx GOBIN "$HOME/.go/bin"
+
 set -gx GO111MODULE "on"
+
+# Java
+set -gx JAVA_HOME "/usr/lib/jvm/11/openj9"
 
 # PATH
 set -gx PATH "/usr/local/go/bin" $PATH

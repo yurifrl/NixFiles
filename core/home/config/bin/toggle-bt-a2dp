@@ -17,20 +17,6 @@ BLUETOOTH_DEVICE="Yurifrl Headphones"
 PROFILE_A2DP="a2dp_sink"
 PROFILE_HEADSET_UNIT="headset_head_unit"
 
-####  Restart Bluetooth
-if [ "${1}" == "reset" ] ; then
-  sudo rfkill block bluetooth && sleep 0.1 && sudo rfkill unblock bluetooth;
-  exit;
-fi;
-
-sink_name() {
-    pacmd list-sinks  | grep '\(name:\|alias\)' | grep -B1 "${1}"  | head -1 | sed -rn 's/\s*name: <(.*?)>/\1/p'
-}
-
-card_name() {
-    pacmd list-cards | grep 'name:' | grep "bluez" | sed -rn 's/\s*name: <(.*?)>/\1/p'
-}
-
 #### Toggle listen/speak
 if [ "${1}" == "" -o "${1}" == "toggle" ] ; then
   SINK_NAME=$(sink_name "${BLUETOOTH_DEVICE}")
