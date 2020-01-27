@@ -54,7 +54,7 @@ values."
                                        markdown
                                        yaml
                                        docker
-                                       haskell
+                                       (haskell :variables haskell-completion-backend 'lsp)
                                        ;; [syntax-checking, auto-completion, lsp]
                                        (go :variables
                                            go-backend 'lsp
@@ -362,6 +362,7 @@ values."
 (defun dotspacemacs/user-config ()
   ;;
   ;; (setenv "GOPATH" "/home/yuri.lima/.go")
+  ;; (setenv "PATH" (concat (getenv "PATH") ":/home/yuri.lima/.local/bin/"))
   ;; [config] Neotree config
   (setq neo-theme 'arrow)
   (setq neo-show-hidden-files nil)

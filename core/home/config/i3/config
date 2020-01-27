@@ -160,7 +160,13 @@ assign [class="xst-256color"] 1
 assign [class="^Emacs"] 1
 assign [class="^Meld"] 1
 assign [class="^code-oss"] 1
+assign [title=".*Emulator.*"] 2
 # 2 Is for chrome
+# ...
+# 3 Chat Apps
+assign [class="^discord"] 3
+assign [class="^slack"] 3
+assign [class="^zoom"] 3
 # 4 Is For midia
 assign [instance="^youtube"] 4
 assign [instance="^spotify"] 4
@@ -170,10 +176,10 @@ assign [class="^xfreerdp"] 5
 assign [class="^Cisco AnyConnect Secure Mobility Client"] 5
 assign [class="^Cisco"] 5
 assign [class="^Gnome-control-center"] 5
+assign [class="^sun-awt-X11-XDialogPeer"] 5
+# 6
 assign [class="^rdesktop"] 6
-# 3 Is for Apps
-assign [class="^discord"] 3
-assign [class="^zoom"] 3
+# ...
 assign [instance=".*.com*."] 3
 
 
@@ -181,6 +187,7 @@ for_window [class="^rdesktop"] floating disable
 for_window [class="Blueman-manager"] floating enable
 for_window [title="^Tab Limiter$"] floating enable
 for_window [title="^Add to Wunderlist$"] floating enable
+for_window [title=".*Emulator.*"] floating enable
 # for_window [window_role="^pop-up$"] floating enable
 
 # ================================ My Custom crazy keybinds
