@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+export IMAGE="google/cloud-sdk"
+export ENTRYPOINT="kubectl"
+
+docker-run "$@"
+

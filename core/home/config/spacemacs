@@ -39,9 +39,6 @@ values."
                                        evil-commentary
                                        helm
                                        ;; Langs
-                                       ;; https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Blang/reasonml
-                                       ;; reasonml
-                                       ;; https://github.com/zheli/scala-lsp
                                        scala
                                        purescript
                                        php
@@ -360,7 +357,6 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
-  ;;
   ;; (setenv "GOPATH" "/home/yuri.lima/.go")
   ;; (setenv "PATH" (concat (getenv "PATH") ":/home/yuri.lima/.local/bin/"))
   ;; [config] Neotree config
