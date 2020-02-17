@@ -57,7 +57,7 @@ set -gx GOOS linux
 set -gx CGO_ENABLED 0
 
 # Use local helm
-set -gx HELM_HOST "localhost:44134" 
+#set -gx HELM_HOST "localhost:44134" 
 
 # Load Secrets
 #set -gx KEYBASE_ENVS "/keybase/private/yurifrl/envs"
