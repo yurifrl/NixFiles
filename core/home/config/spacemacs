@@ -51,7 +51,10 @@ values."
                                        markdown
                                        yaml
                                        docker
-                                       (haskell :variables haskell-completion-backend 'lsp)
+                                       (haskell :variables
+                                                haskell-enable-hindent t
+                                                haskell-completion-backend 'lsp
+                                                haskell-process-type 'cabal-new-repl)
                                        ;; [syntax-checking, auto-completion, lsp]
                                        (go :variables
                                            go-backend 'lsp
@@ -64,6 +67,8 @@ values."
                                        syntax-checking
                                        auto-completion
                                        (lsp :variables
+                                            lsp-haskell-process-path-hie "ghcide"
+                                            lsp-haskell-process-args-hie '()
                                             lsp-ui-sideline-enable nil
                                             lsp-ui-doc-enable nil))
    ;; List of additional packages that will be installed without being
@@ -357,6 +362,9 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; http://magnus.therning.org/posts/2019-09-19-000-haskell--ghcide--and-spacemacs.html
+  ;; https://github.com/ssbothwell/dotfiles/blob/master/.spacemacs
+  ;;
   ;; (setenv "GOPATH" "/home/yuri.lima/.go")
   ;; (setenv "PATH" (concat (getenv "PATH") ":/home/yuri.lima/.local/bin/"))
   ;; [config] Neotree config

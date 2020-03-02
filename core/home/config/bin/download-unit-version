@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+#https://stackoverflow.com/questions/59821895/how-do-i-manually-install-older-versions-of-unity-2019-for-linux-arch 
+#https://unity3d.com/get-unity/download/archive
+
+wget "https://download.unity3d.com/download_unity/$1/LinuxEditorInstaller/Unity.tar.xz" -P ~/Downloads/ 
+
+#-O "unit-$1.tar.xz"
