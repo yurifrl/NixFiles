@@ -21,5 +21,4 @@
     loader.systemd-enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-  system.stateVersion = "19.03";
 }

@@ -11,7 +11,6 @@ let
       devicePath
     ];
 
-
     system.stateVersion = "19.03";
 
   };
