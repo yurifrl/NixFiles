@@ -6,7 +6,7 @@
 
 let
   homedir = builtins.getEnv "HOME";
-  unstable = import <nixos-unstable> {};
+  # unstable = import <nixos-unstable> {};
   mySt = pkgs.callPackage ../pkgs/st {};
   kconf = pkgs.callPackage ../pkgs/kconf {};
 in {
@@ -30,7 +30,7 @@ in {
   environment.systemPackages = with pkgs; [
     cabal-install
     gitAndTools.diff-so-fancy
-    unstable.tmux
+    # unstable.tmux
     kconf
     pulsemixer
     meld
@@ -43,7 +43,7 @@ in {
     emacs
     kbfs
     keybase-go
-    unstable.fish
+    # unstable.fish
     docker
     docker-compose
     google-chrome-beta
