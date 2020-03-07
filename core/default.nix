@@ -48,6 +48,7 @@ in {
     docker-compose
     google-chrome-beta
     ranger
+    xorg.xhost
   ];
 
   networking.networkmanager.enable = true;

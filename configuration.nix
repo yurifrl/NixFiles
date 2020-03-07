@@ -1,4 +1,5 @@
-# This is the configuration.nix that you should put in /etc/nixos.
-# Replace device-name by the name of your device and /path/to/yarn with
-# the path to the yarn repository folder
-(import /home/yuri/yarn-nix/).device-name
+# Move this to /etc/nixos/configuration.nix
+# Replace the path with the path to your dot files
+# and replace inspiron with your machine
+# you will have to also change the file devices/all-devices.nix
+(import /home/yuri/NixFiles).inspiron
