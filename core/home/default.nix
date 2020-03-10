@@ -59,7 +59,7 @@ with lib;
         ".emacs.d" = {
           source = fetchGit {
             url = "https://github.com/syl20bnr/spacemacs";
-            ref = "v0.200.13";
+            ref = "develop";
           };
           recursive = true;
         };

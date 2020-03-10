@@ -5,8 +5,10 @@
 { config, pkgs, ... }:
 
 let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   homedir = builtins.getEnv "HOME";
-  unstable = import <nixos-unstable> {};
   mySt = pkgs.callPackage ../pkgs/st {};
   kconf = pkgs.callPackage ../pkgs/kconf {};
 in {
@@ -23,14 +25,23 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
+    packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+      };
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    unstable.tmux
+    unstable.fish
+    #unstable.pbis-open
+    networkmanagerapplet
+    networkmanager_openvpn
     cabal-install
     gitAndTools.diff-so-fancy
-    unstable.tmux
     kconf
     pulsemixer
     meld
@@ -43,14 +54,15 @@ in {
     emacs
     kbfs
     keybase-go
-    unstable.fish
     docker
     docker-compose
     google-chrome-beta
     ranger
     xorg.xhost
+    xorg.xbacklight
   ];
 
+  # Network
   networking.networkmanager.enable = true;
 
   # Enable sound.

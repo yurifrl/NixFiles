@@ -17,8 +17,14 @@
       device = "/dev/sda2";
       preLVM = true;
     }];
-    # Use ufi
-    loader.systemd-enable = true;
+   
+    loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+
+    loader.grub.efiSupport = true;
+    loader.grub.efiInstallAsRemovable = true;
+    loader.efi.efiSysMountPoint = "/boot";
+    # Define on which hard drive you want to install Grub.
+    loader.grub.device = "nodev"; # or "nodev" for efi only
   };
 }
