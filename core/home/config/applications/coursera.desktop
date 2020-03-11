@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=Coursera
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://www.coursera.org
+Exec=google-chrome-beta --app=https://www.coursera.org

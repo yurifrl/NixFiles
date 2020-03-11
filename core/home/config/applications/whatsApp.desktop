@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=WhatsApp
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://web.whatsapp.com
+Exec=google-chrome-beta --app=https://web.whatsapp.com

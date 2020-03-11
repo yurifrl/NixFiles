@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=Spotify
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://open.spotify.com
+Exec=google-chrome-beta --app=https://open.spotify.com

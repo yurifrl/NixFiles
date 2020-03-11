@@ -4,5 +4,5 @@ Type=Application
 # The name of the application
 Name=Meet
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://meet.google.com
+Exec=google-chrome-beta --app=https://meet.google.com
 

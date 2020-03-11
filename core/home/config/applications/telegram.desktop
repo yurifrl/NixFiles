@@ -4,5 +4,5 @@ Type=Application
 # The name of the application
 Name=Telegram
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://web.telegram.org/#/im
+Exec=google-chrome-beta --app=https://web.telegram.org/#/im
 

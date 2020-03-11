@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=Twitch
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://www.twitch.tv
+Exec=google-chrome-beta --app=https://www.twitch.tv

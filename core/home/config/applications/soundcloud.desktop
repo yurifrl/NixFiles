@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=SoundCloud
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://soundcloud.com/discover
+Exec=google-chrome-beta --app=https://soundcloud.com/discover

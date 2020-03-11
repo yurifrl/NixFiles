@@ -4,5 +4,5 @@ Type=Application
 # The name of the application
 Name=Youtube
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://youtube.com/playlist?list=WL
+Exec=google-chrome-beta --app=https://youtube.com/playlist?list=WL
 

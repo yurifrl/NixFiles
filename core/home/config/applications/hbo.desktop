@@ -4,4 +4,4 @@ Type=Application
 # The name of the application
 Name=HBO
 # The executable of the application, possibly with arguments.
-Exec=chrome --app=https://www.hbogo.com.br
+Exec=google-chrome-beta --app=https://www.hbogo.com.br
