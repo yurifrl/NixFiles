@@ -9,9 +9,7 @@ let
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   homedir = builtins.getEnv "HOME";
-  #mySt = pkgs.callPackage ../pkgs/st {};
   krew = pkgs.callPackage ../pkgs/krew {};
-  #myZoom = pkgs.callPackage ../pkgs/zoom { };
   #dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
 in {
   imports = [
@@ -30,10 +28,6 @@ in {
       "openssl-1.0.2u"
     ];
     packageOverrides = pkgs: {
-        # No ideia of what this does
-        # networkmanager_openconnect = pkgs.networkmanager_openconnect.override {
-        #   openconnect = pkgs.openconnect_gnutls;
-        # };
         unstable = import unstableTarball {
           config = config.nixpkgs.config;
         };
@@ -44,8 +38,6 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #dftech-tools
-    #mySt
-    #myZoom
     ag
     discord
     docker
@@ -83,9 +75,26 @@ in {
   # Network
   networking.networkmanager.enable = true;
 
+  # Sound and Bluetooth
+  hardware = {
+    pulseaudio = {
+      enable = true;
+
+      # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
+      # Only the full build has Bluetooth support, so it must be selected here.
+      package = pkgs.pulseaudioFull;
+    };
+    bluetooth = {
+      enable = true;
+      extraConfig = "
+        [General]
+        Enable=Source,Sink,Media,Socket
+      ";
+    };
+  };
+
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   #
   virtualisation.docker.enable = true;
@@ -109,6 +118,7 @@ in {
     keybase = {
       enable = true;
     };
+
     kbfs = {
       enable = true;
       mountPoint = "%h/Keybase";
@@ -133,6 +143,7 @@ in {
           ];
         };
       };
+
       desktopManager = {
         default = "none";
         xterm.enable = false;

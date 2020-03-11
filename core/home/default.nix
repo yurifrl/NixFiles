@@ -34,15 +34,17 @@ in
         };
       };
       home = {
-        activation.copySSHKey = dag.dagEntryAfter ["writeBoundary"] ''
+        activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
            ln -sfn $HOME/Keybase/private/yurifrl/home/ssh $HOME/.ssh
            ln -sfn $HOME/Keybase/private/yurifrl/home/docker $HOME/.docker
            ln -sfn $HOME/Keybase/private/yurifrl/home/kube $HOME/.kube
+
+           ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
         '';
         file = {
-          ".spacemacs" = {
-            source = ./config/spacemacs;
-          };
+          #".spacemacs" = {
+          #  source = ./config/spacemacs;
+          #};
           ".Xresources" = {
             source = ./config/Xresources;
           };
