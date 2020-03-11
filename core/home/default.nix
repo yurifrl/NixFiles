@@ -3,13 +3,20 @@
 with import <nixpkgs> {};
 with builtins;
 with lib;
+let
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager.git";
+    ref = "release-19.03";
+  };
+  dag = import "${home-manager}/modules/lib/dag.nix" {
+    inherit lib;
+  };
+in
 {
   imports = [
     # Add home-manager module
-    "${fetchGit {
-      url = "https://github.com/rycee/home-manager";
-      ref = "release-19.03";
-    }}/nixos"
+    (import "${home-manager}/nixos")
+    
   ];
 
   home-manager.users.yuri = { pkgs, ... }: {
@@ -28,6 +35,10 @@ with lib;
         };
       };
       home = {
+        activation.copySSHKey = dag.dagEntryAfter ["writeBoundary"] ''
+           ln -sfn $HOME/Keybase/private/yurifrl/home/ssh $HOME/.ssh
+           ln -sfn $HOME/Keybase/private/yurifrl/home/docker $HOME/.docker
+        '';
         file = {
           ".spacemacs" = {
             source = ./config/spacemacs;

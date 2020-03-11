@@ -38,9 +38,10 @@ in {
     unstable.tmux
     unstable.fish
     #unstable.pbis-open
+    ag
     networkmanagerapplet
     networkmanager_openvpn
-    cabal-install
+    stack
     gitAndTools.diff-so-fancy
     kconf
     pulsemixer
@@ -54,6 +55,7 @@ in {
     emacs
     kbfs
     keybase-go
+    keybase-gui
     docker
     docker-compose
     google-chrome-beta
