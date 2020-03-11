@@ -55,7 +55,6 @@ in {
     emacs
     kbfs
     keybase-go
-    keybase-gui
     docker
     docker-compose
     google-chrome-beta

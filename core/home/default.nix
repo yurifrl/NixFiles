@@ -16,7 +16,6 @@ in
   imports = [
     # Add home-manager module
     (import "${home-manager}/nixos")
-    
   ];
 
   home-manager.users.yuri = { pkgs, ... }: {
@@ -38,6 +37,7 @@ in
         activation.copySSHKey = dag.dagEntryAfter ["writeBoundary"] ''
            ln -sfn $HOME/Keybase/private/yurifrl/home/ssh $HOME/.ssh
            ln -sfn $HOME/Keybase/private/yurifrl/home/docker $HOME/.docker
+           ln -sfn $HOME/Keybase/private/yurifrl/home/kube $HOME/.kube
         '';
         file = {
           ".spacemacs" = {
@@ -84,10 +84,6 @@ in
         };
         ".config/fish/config.fish" = {
           source = ./config/fish/config.fish;
-        };
-        ".config/fish/functions" = {
-          source = ./config/fish/functions;
-          recursive = true;
         };
         ".config/fish/config" = {
           source = ./config/fish/config;
