@@ -5,5 +5,5 @@ require 'date'
 hour = ARGV[0].split(":")[0]
 minutes = ARGV[0].split(":")[1]
 entrance = Time.new(2018, 04, 10, hour, minutes)
-result = entrance + ( 11 * 60 * 60 + 30 * 60 )
+result = entrance + ( 8 * 60 * 60 + 30 * 60 )
 p result.to_datetime.strftime("%H:%M")

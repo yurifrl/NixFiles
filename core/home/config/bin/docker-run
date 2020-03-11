@@ -24,6 +24,7 @@ $([ $I = true ] && echo '-i') \
 -v $HOME/.kube:/root/.kube \
 -v /usr/bin/docker:/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
+--env-file <(env | grep AWS) \
 $([ -z $ENTRYPOINT ] || echo --entrypoint=$ENTRYPOINT)"
 
 OPTIONS=$(printf "%q " "$@")

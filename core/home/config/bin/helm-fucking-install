@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+
+# Usage:
+# helm-fix <PRODUCT_NAME> <TEAM> <CLUSER_NAME>
+
+CLUSTER_NAME=$3
+helm=/usr/local/bin/helm-2
+PRODUCT_NAME=$1
+PURGE="${PURGE:-false}"
+TEAM=$2
+VALUES="${VALUES:-"deploy/chart/qa-values.yaml"}"
+
+: "${CHARTS:?Variable not set or empty}"
+: "${CLUSTER_NAME:?Variable not set or empty}"
+: "${PRODUCT_NAME:?Variable not set or empty}"
+: "${TEAM:?Variable not set or empty}"
+
+echo "CHARTS=$CHARTS"
+echo "CLUSTER_NAME=$CLUSTER_NAME"
+echo "PRODUCT_NAME=$PRODUCT_NAME"
+echo "PURGE=$PURGE"
+echo "TEAM=$TEAM"
+echo "VALUES=$VALUES"
+
+echo -n "Go on (y/n)? "
+read answer
+if [ "$answer" = "${answer#[Yy]}" ]; then
+    exit 1
+fi
+
+if [ "$PURGE" = true ]; then
+    kubectl delete ns "$PRODUCT_NAME"
+    kubectl delete ns "$PRODUCT_NAME-helm"
+
+    $helm --tiller-namespace kube-helm delete --purge "$PRODUCT_NAME"
+fi
+
+echo "### helm upgrade tiller"
+$helm upgrade $PRODUCT_NAME "$CHARTS/helm-install-products-new" \
+    --install \
+    --tiller-namespace kube-helm \
+    --set product=$PRODUCT_NAME \
+    --set team=$TEAM \
+    --set devGroupAsAdmin=true
+
+echo "### helm init"
+$helm init \
+    --service-account "$PRODUCT_NAME-helm" \
+    --tiller-namespace "$PRODUCT_NAME-helm"
+
+echo '### Checking tiller state'
+CMD='kubectl -n "$PRODUCT_NAME-helm" get pod -o jsonpath="{.items[0].status.phase}"'
+while [ $(eval $CMD) != "Running" ]; do
+    STATUS=$(eval $CMD)
+    echo "Tiller Status $STATUS waiting"
+done
+
+echo "### Tiller ready"
+
+
+echo "### helm install"
+$helm install "$CHARTS/gfg-application-web" \
+    -f $VALUES \
+    --name "$PRODUCT_NAME" \
+    --tiller-namespace "$PRODUCT_NAME-helm" \
+    --namespace "$PRODUCT_NAME" \
+    --version 1.4.8
+
+echo "### Geting kubeconfig"
+
+echo "### Creating tmp files"
+TMP_CLUSTER_CA=$(mktemp)
+TMP_KUBECONFIG=$(mktemp)
+
+echo "### Get Cluster CA"
+SA_TOKEN_SECRET=$(kubectl get -n "${PRODUCT_NAME}-helm" serviceaccount "${PRODUCT_NAME}-deploy" -o 'jsonpath={.secrets[0].name}')
+SA_TOKEN=$(kubectl get -n "${PRODUCT_NAME}-helm" secret "${SA_TOKEN_SECRET}" -o 'jsonpath={.data.token}' | base64 --decode)
+kubectl get -n "${PRODUCT_NAME}-helm" secret "${SA_TOKEN_SECRET}" -o 'jsonpath={.data.ca\.crt}' | base64 --decode > $TMP_CLUSTER_CA
+
+echo "### Set context"
+kubectl config set-cluster "${CLUSTER_NAME}" --server="https://api.${CLUSTER_NAME}" --embed-certs=true --certificate-authority="${TMP_CLUSTER_CA}" --kubeconfig "${TMP_KUBECONFIG}"
+kubectl config set-credentials "${CLUSTER_NAME}" --token="${SA_TOKEN}" --kubeconfig "${TMP_KUBECONFIG}"
+kubectl config set-context "${CLUSTER_NAME}" --cluster="${CLUSTER_NAME}" --user="${CLUSTER_NAME}" --kubeconfig "${TMP_KUBECONFIG}"
+kubectl config use-context "${CLUSTER_NAME}" --kubeconfig "${TMP_KUBECONFIG}"
+
+echo "### helm upgrade"
+$helm upgrade $PRODUCT_NAME "$CHARTS/gfg-application-web" \
+    --install \
+    -f $VALUES \
+    --tiller-namespace "$PRODUCT_NAME-helm" \
+    --namespace "$PRODUCT_NAME" \
+    --kubeconfig "${TMP_KUBECONFIG}" \
+    --version 1.4.8
+
+echo "### helm list"
+$helm list \
+    --tiller-namespace "$PRODUCT_NAME-helm" \
+    --namespace "$PRODUCT_NAME" \
+    --kubeconfig "${TMP_KUBECONFIG}"
+
+echo "### kubectl get pods"
+kubectl -n "$PRODUCT_NAME" get pods
+
+echo "### Print KUBECONFIG"
+cat $TMP_KUBECONFIG | base64 -w 0
+echo
+
+echo "### Cleanup"
+rm ${TMP_CLUSTER_CA}
+rm ${TMP_KUBECONFIG}

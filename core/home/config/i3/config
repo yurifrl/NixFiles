@@ -35,8 +35,8 @@ floating_modifier $mod
 # new_window 1pixel
 
 # start a terminal
-bindsym $mod+Return exec st
-# bindsym $mod+t exec i3-sensible-terminal
+#bindsym $mod+Return exec st
+bindsym $mod+t exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -154,16 +154,32 @@ bar {
 
 # Bind application to worspace
 # xprop | grep CLASS
+# 1 Is for editors
 assign [class="st-256color"] 1
 assign [class="xst-256color"] 1
 assign [class="^Emacs"] 1
 assign [class="^Meld"] 1
 assign [class="^code-oss"] 1
-assign [class="^discord"] 5
-assign [class="^parsec"] 4
-assign [class="^xfreerdp"] 4
-assign [class="^rdesktop"] 5
-## Chrome web apps
+assign [title=".*Emulator.*"] 2
+# 2 Is for chrome
+# ...
+# 3 Chat Apps
+assign [class="^discord"] 3
+assign [class="^slack"] 3
+assign [class="^zoom"] 3
+# 4 Is For midia
+assign [instance="^youtube"] 4
+assign [instance="^spotify"] 4
+# 5 Is for the rest
+assign [class="^parsec"] 5
+assign [class="^xfreerdp"] 5
+assign [class="^Cisco AnyConnect Secure Mobility Client"] 5
+assign [class="^Cisco"] 5
+assign [class="^Gnome-control-center"] 5
+assign [class="^sun-awt-X11-XDialogPeer"] 5
+# 6
+assign [class="^rdesktop"] 6
+# ...
 assign [instance=".*.com*."] 3
 
 
@@ -171,6 +187,7 @@ for_window [class="^rdesktop"] floating disable
 for_window [class="Blueman-manager"] floating enable
 for_window [title="^Tab Limiter$"] floating enable
 for_window [title="^Add to Wunderlist$"] floating enable
+for_window [title=".*Emulator.*"] floating enable
 # for_window [window_role="^pop-up$"] floating enable
 
 # ================================ My Custom crazy keybinds
@@ -187,7 +204,8 @@ bindsym $mod+Shift+bracketright move workspace to output down
 bindsym $mod+l exec "i3lock -c 000000 -n"
 
 # Suspend and lock
-bindsym $mod+Shift+l exec "~/.bin/suspend"
+#bindsym $mod+Shift+l exec "~/.bin/suspend"
+bindsym $mod+Shift+l exec "i3lock -c 000000 -n"
 
 # Binds
 # bindsym Print exec --no-startup-id "deepin-screenshot -f -n"

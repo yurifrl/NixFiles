@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Vpn
+GenericName=Vpn
+Exec=/opt/cisco/anyconnect/bin/vpnui
+Type=Application
+Terminal=false
+StartupWMClass=Vpn

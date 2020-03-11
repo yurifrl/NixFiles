@@ -9,8 +9,10 @@ let
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   homedir = builtins.getEnv "HOME";
-  mySt = pkgs.callPackage ../pkgs/st {};
-  kconf = pkgs.callPackage ../pkgs/kconf {};
+  #mySt = pkgs.callPackage ../pkgs/st {};
+  krew = pkgs.callPackage ../pkgs/krew {};
+  #myZoom = pkgs.callPackage ../pkgs/zoom { };
+  #dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
 in {
   imports = [
     ./home
@@ -18,14 +20,20 @@ in {
 
   environment.variables = {
     EDITOR = "vim";
-    TERMINAL = "st";
+    TERMINAL = "xst";
     SHELL = "fish";
-    PATH = "${homedir}/.bin:$PATH";
   };
 
   nixpkgs.config = {
     allowUnfree = true;
+    permittedInsecurePackages = [
+      "openssl-1.0.2u"
+    ];
     packageOverrides = pkgs: {
+        # No ideia of what this does
+        # networkmanager_openconnect = pkgs.networkmanager_openconnect.override {
+        #   openconnect = pkgs.openconnect_gnutls;
+        # };
         unstable = import unstableTarball {
           config = config.nixpkgs.config;
         };
@@ -35,32 +43,41 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    unstable.tmux
-    unstable.fish
-    #unstable.pbis-open
+    #dftech-tools
+    #mySt
+    #myZoom
     ag
-    networkmanagerapplet
-    networkmanager_openvpn
-    stack
-    gitAndTools.diff-so-fancy
-    kconf
-    pulsemixer
-    meld
-    vscode
-    go
-    mySt
-    git
-    wget
-    vim
-    emacs
-    kbfs
-    keybase-go
+    discord
     docker
     docker-compose
+    emacs
+    git
+    gitAndTools.diff-so-fancy
+    go
     google-chrome-beta
+    kbfs
+    keybase-go
+    krew
+    kubectl
+    meld
+    networkmanager-openconnect
+    networkmanager-openvpn
+    networkmanagerapplet
+    openconnect
+    pulsemixer
     ranger
-    xorg.xhost
+    stack
+    unstable.fish
+    unstable.pbis-open
+    unstable.tmux
+    unstable.xst
+    vim
+    vscode
+    wget
     xorg.xbacklight
+    xorg.xhost
+    xst
+    zoom-us
   ];
 
   # Network

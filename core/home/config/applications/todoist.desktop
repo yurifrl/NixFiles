@@ -1,0 +1,7 @@
+[Desktop Entry]
+# The type as listed above
+Type=Application
+# The name of the application
+Name=Todoist
+# The executable of the application, possibly with arguments.
+Exec=chrome --app=https://todoist.com/app?lang=en#project%2F2183626655%2Ffull

@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+set -x
+set temp_dir (mktemp -d)
+cd "$temp_dir"
+curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/download/v0.3.4/krew.{tar.gz,yaml}"
+tar zxvf krew.tar.gz
+set KREWNAME krew-(uname | tr '[:upper:]' '[:lower:]')_amd64
+eval ./$KREWNAME install --manifest=krew.yaml --archive=krew.tar.gz
+set -e KREWNAME
+set -e temp_dir

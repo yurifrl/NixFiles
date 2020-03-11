@@ -11,8 +11,8 @@ let
       devicePath
     ];
 
-    system.stateVersion = "19.03";
-
+    system.stateVersion = "19.09";
+    system.autoUpgrade.enable = true;
   };
   deviceModules =
     builtins.listToAttrs (map (deviceName: {

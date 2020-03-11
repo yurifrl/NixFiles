@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+CMD=$1
+
+if [ $CMD = "mi" ] ;then
+  echo "MI"
+  echo -e 'connect E8:EC:A3:4C:8B:E3' | bluetoothctl
+  exit 0
+fi
+
+echo "OPTIONS:"
+echo "
+mi
+"
+
+exit 1
