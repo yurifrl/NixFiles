@@ -1,9 +1,0 @@
-#!/usr/bin/env xdg-open
-[Desktop Entry]
-Version=1.0
-Terminal=false
-Type=Application
-Name=SketchUp for Web
-Exec=/opt/google/chrome/google-chrome --profile-directory=Default --app-id=beodkchghmjjfhojholjdhdfodleinln
-Icon=chrome-beodkchghmjjfhojholjdhdfodleinln-Default
-StartupWMClass=crx_beodkchghmjjfhojholjdhdfodleinln

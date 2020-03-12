@@ -1,9 +1,0 @@
-[Desktop Entry]
-# The type as listed above
-Type=Application
-# The name of the application
-Name=Config
-# The executable of the application, possibly with arguments.
-Exec=env XDG_CURRENT_DESKTOP=GNOME gnome-control-center
-# If true, it is KNOWN that the application will send a "remove" message when started with the DESKTOP_STARTUP_ID environment variable set
-StartupNotify=true

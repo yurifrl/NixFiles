@@ -35,16 +35,16 @@ in
       };
       home = {
         activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
-           ln -sfn $HOME/Keybase/private/yurifrl/home/ssh $HOME/.ssh
-           ln -sfn $HOME/Keybase/private/yurifrl/home/docker $HOME/.docker
-           ln -sfn $HOME/Keybase/private/yurifrl/home/kube $HOME/.kube
-
            ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
+           ln -sfn $HOME/NixFiles/core/home/config/bin $HOME/.bin
         '';
         file = {
-          #".spacemacs" = {
-          #  source = ./config/spacemacs;
-          #};
+          # ".spacemacs" = {
+          #   source = ./config/spacemacs;
+          # };
+          # ".bin" = {
+          #   source = ./config/bin;
+          # };
           ".Xresources" = {
             source = ./config/Xresources;
           };
@@ -53,9 +53,6 @@ in
           };
           ".ignore" = {
             source = ./config/ignore;
-          };
-          ".bin" = {
-            source = ./config/bin;
           };
           ".tmux.conf" = {
             source = ./config/tmux.conf;

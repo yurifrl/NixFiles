@@ -14,12 +14,15 @@ let
 in {
   imports = [
     ./home
+    ./secrets
   ];
 
-  environment.variables = {
-    EDITOR = "vim";
-    TERMINAL = "xst";
-    SHELL = "fish";
+  environment = {
+    variables = {
+      EDITOR = "vim";
+      TERMINAL = "xst";
+      SHELL = "fish";
+    };
   };
 
   nixpkgs.config = {
@@ -39,6 +42,7 @@ in {
   environment.systemPackages = with pkgs; [
     #dftech-tools
     ag
+    arandr
     discord
     docker
     docker-compose
@@ -51,6 +55,7 @@ in {
     keybase-go
     krew
     kubectl
+    kubernetes-helm
     meld
     networkmanager-openconnect
     networkmanager-openvpn
@@ -94,7 +99,10 @@ in {
   };
 
   # Enable sound.
-  sound.enable = true;
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
 
   #
   virtualisation.docker.enable = true;
@@ -108,6 +116,8 @@ in {
     #   temperature.day = 6500;
     #   temperature.night = 2700;
     # };
+
+    autorandr.enable = true;
 
     # ???????
     acpid.enable = true;
@@ -129,6 +139,7 @@ in {
       autorun = true;
       exportConfiguration = true;
       libinput.enable = true;
+      layout = "br";
       windowManager = {
         default = "i3";
         i3 = {
@@ -152,15 +163,25 @@ in {
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yuri = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+  users = {
+    users = {
+      yuri = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+        initialHashedPassword = "change";
+      };
+      # root = {
+      #   isNormalUser = true;
+      #   extraGroups = [ "wheel" "docker" "networkmanager" ];
+      # };
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.light.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -173,11 +194,11 @@ in {
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n = {
-  #   consoleFont = "Lat2-Terminus16";
-  #   consoleKeyMap = "us";
-  #   defaultLocale = "en_US.UTF-8";
-  # };
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "br-abnt2";
+    defaultLocale = "en_US.UTF-8";
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -186,16 +207,24 @@ in {
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
+      # Must have
+      powerline-fonts
+      source-code-pro
+      # hmm
+      source-code-pro
+      fira-code
+      fira-mono
+      fira-code-symbols
+      freefont_ttf
+      # Don`t know
       # anonymousPro
       # corefonts
       # dejavu_fonts
-      # font-droid
+      # noto-fonts
       # freefont_ttf
       # google-fonts
       # inconsolata
       # liberation_ttf
-      powerline-fonts
-      source-code-pro
       # terminus_font
       # ttf_bitstream_vera
       # ubuntu_font_family
