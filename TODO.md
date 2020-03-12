@@ -1,9 +1,11 @@
 # Nix TODO
 
+- [] xst anoying prompt on keystroke
 - [] i3 status bar
 - [] i3 sensible terminal change
 - [] xserver.autorun false and open i3 after login
 - [] haskell ide with spacemacs, install dep
+- [] Maybe switch to xmonad
 - [x] st opening on the 3th windows
 - [x] Emacs
 - [x] fish

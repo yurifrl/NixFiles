@@ -29,5 +29,4 @@
 
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  services.xserver.videoDrivers = ["nvidia"];
 }

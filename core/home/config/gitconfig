@@ -1,7 +1,7 @@
 [user]
   name = yuri
   email=yurifl03@gmail.com
-  signingkey = 84686530B2A88714
+  signingkey = "!echo $GIT_SIGINKEY"
 [alias]
   a=add
   ac="!git chl && git add"
@@ -37,3 +37,6 @@
 	process = git-lfs filter-process
 [merge]
 	tool = meld
+[extensions]
+	objectFormat = sha256
+	compatObjectFormat = sha1

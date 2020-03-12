@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+####  Resources:
+
+# https://gist.github.com/freyes/dd3fd38f9087b13733fd
+# https://askubuntu.com/questions/1004712/how-to-keep-the-audio-profile-at-a2dp-while-using-a-mic-with-bluetooth-headset
+
+##  Why this is needed
+# https://jimshaver.net/2015/03/31/going-a2dp-only-on-linux/
+
+##  My original question
+# https://askubuntu.com/questions/1004712/audio-profile-changes-automatically-to-hsp-bad-quality-when-i-change-input-to/1009156#1009156
+
+##  Script to monitor plugged earphones and switch when unplugged (Ubuntu does that, but nice script):
+# https://github.com/freundTech/linux-helper-scripts/blob/master/padevswitch/padevswitch
+
+
+# pacmd set-card-profile (pactl list cards short | egrep -o bluez_card[[:alnum:]._]+) headset_head_unit
+# pacmd set-card-profile (pactl list cards short | egrep -o bluez_card[[:alnum:]._]+) a2dp_sink
+
+CARD="$(pactl list cards short | egrep -o bluez_card[[:alnum:]._]+)"
+
+echo $CARD
+
+if [ "${1}" == "good" ] ;then
+    pacmd set-card-profile "${CARD}" a2dp_sink
+else
+    pacmd set-card-profile "${CARD}" headset_head_unit
+fi
+
+pacmd list-sinks  | grep '\(name:\|alias\)'

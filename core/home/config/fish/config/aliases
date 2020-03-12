@@ -24,7 +24,7 @@ alias s="git rebase --skip"
 alias m="git mergetool"
 alias lg="lazygit"
 
-alias w="cd $HOME/Workdir/src/github.com"
+alias w="cd $HOME/Workdir/src/github.com/dafiti-group"
 # alias vim="echo 'no'"
 
 alias g="git"
@@ -37,3 +37,9 @@ alias chmod='chmod --preserve-root'
 alias chown='chown --preserve-root'
 alias check_for_errors="journalctl -p 3 -xb"
 alias mk=microk8s.kubectl
+alias k=/usr/local/bin/kubectl
+#alias k=$HOME/.bin/kubectl-in-docker
+#alias kubectl=$HOME/.bin/kubectl-in-docker
+alias helm=helm-2
+alias tiller=tiller-2
+alias vim-edit-alias="vim ~/NixFiles/core/home/config/fish/config/aliases"

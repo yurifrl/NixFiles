@@ -1,6 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
+# Check for options https://nixos.org/nixos/options.html#
 
 { config, pkgs, ... }:
 
@@ -10,12 +11,19 @@ let
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
-  #dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
+  # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
 in {
   imports = [
     ./home
     ./secrets
   ];
+
+  nix = {
+    envVars = {
+      NIX_GITHUB_PRIVATE_USERNAME = "";
+      NIX_GITHUB_PRIVATE_PASSWORD = "";
+    };
+  };
 
   environment = {
     variables = {
@@ -23,6 +31,49 @@ in {
       TERMINAL = "xst";
       SHELL = "fish";
     };
+
+    # For batery
+    pathsToLink = [ "/libexec" ];
+
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    systemPackages = with pkgs; [
+      # dftech-tools
+      ag
+      arandr
+      discord
+      docker
+      docker-compose
+      emacs
+      git
+      gitAndTools.diff-so-fancy
+      go
+      google-chrome-beta
+      kbfs
+      keybase-go
+      krew
+      kubectl
+      kubernetes-helm
+      meld
+      networkmanager-openconnect
+      networkmanager-openvpn
+      networkmanagerapplet
+      openconnect
+      pulsemixer
+      ranger
+      stack
+      unstable.fish
+      unstable.pbis-open
+      unstable.tmux
+      unstable.xst
+      vim
+      vscode
+      wget
+      xorg.xbacklight
+      xorg.xhost
+      xst
+      zoom-us
+    ];
   };
 
   nixpkgs.config = {
@@ -37,46 +88,6 @@ in {
       };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #dftech-tools
-    ag
-    arandr
-    discord
-    docker
-    docker-compose
-    emacs
-    git
-    gitAndTools.diff-so-fancy
-    go
-    google-chrome-beta
-    kbfs
-    keybase-go
-    krew
-    kubectl
-    kubernetes-helm
-    meld
-    networkmanager-openconnect
-    networkmanager-openvpn
-    networkmanagerapplet
-    openconnect
-    pulsemixer
-    ranger
-    stack
-    unstable.fish
-    unstable.pbis-open
-    unstable.tmux
-    unstable.xst
-    vim
-    vscode
-    wget
-    xorg.xbacklight
-    xorg.xhost
-    xst
-    zoom-us
-  ];
-
   # Network
   networking.networkmanager.enable = true;
 
@@ -88,6 +99,10 @@ in {
       # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
       # Only the full build has Bluetooth support, so it must be selected here.
       package = pkgs.pulseaudioFull;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      extraConfig = ''
+        load-module module-bluetooth-policy auto_switch=2
+      '';
     };
     bluetooth = {
       enable = true;
@@ -155,9 +170,16 @@ in {
         };
       };
 
+      # Install xfce as desktop manager because i3 does not manages windows?
+      # https://nixos.wiki/wiki/I3
       desktopManager = {
-        default = "none";
+        default = "xfce";
         xterm.enable = false;
+        xfce = {
+          enable = true;
+          noDesktop = true;
+          enableXfwm = false;
+        };
       };
     };
   };
@@ -170,18 +192,16 @@ in {
         extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";
       };
-      # root = {
-      #   isNormalUser = true;
-      #   extraGroups = [ "wheel" "docker" "networkmanager" ];
-      # };
     };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-  programs.light.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
