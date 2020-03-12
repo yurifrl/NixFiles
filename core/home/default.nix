@@ -35,8 +35,8 @@ in
       };
       home = {
         activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
-           ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
-           ln -sfn $HOME/NixFiles/core/home/config/bin $HOME/.bin
+          ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
+          ln -sfn $HOME/NixFiles/core/home/config/bin $HOME/.bin
         '';
         file = {
           # ".spacemacs" = {

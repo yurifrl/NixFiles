@@ -64,10 +64,10 @@ set -gx CGO_ENABLED 0
 #set -gx HELM_HOST "localhost:44134" 
 
 # Load Secrets
-#set -gx KEYBASE_ENVS "/keybase/private/yurifrl/envs"
+#set -gx KEYBASE_ENVS "$HOME/Keybase/private/yurifrl/envs"
 
 if test -e $KEYBASE_ENVS
-   ev -q "/keybase/private/yurifrl/envs"
-   ev -q "/keybase/private/yurifrl/envs/*"
-   ev -q "/keybase/private/yurifrl/envs/*/*"
+   ev -q "$HOME/Keybase/private/yurifrl/envs"
+   ev -q "$HOME/Keybase/private/yurifrl/envs/dafiti"
+   ev -q "$HOME/Keybase/private/yurifrl/envs/dafiti/mobileapi"
 end

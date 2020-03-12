@@ -9,7 +9,7 @@
     ./hardware-configuration.nix
     ../../core
   ];
-  networking.hostName = "latitude";
+  networking.hostName = "dft-sp-wkn763";
   boot = {
     # My Legacy Boot
     initrd.luks.devices = [{

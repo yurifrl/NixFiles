@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Usage:
-# helm-fix <PRODUCT_NAME> <TEAM> <CLUSER_NAME>
+# helm-fucking-install externalshop MARKETPLACE live.k8s.dafiti.local
+# helm-fucking-install <PRODUCT_NAME> <TEAM> <CLUSER_NAME>
 
 CLUSTER_NAME=$3
 helm=/usr/local/bin/helm-2
@@ -24,7 +25,7 @@ echo "VALUES=$VALUES"
 
 echo -n "Go on (y/n)? "
 read answer
-if [ "$answer" = "${answer#[Yy]}" ]; then
+if [ "$answer" = "${answer#[Yy]}" ] ;then
     exit 1
 fi
 

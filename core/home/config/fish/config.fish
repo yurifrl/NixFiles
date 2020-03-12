@@ -8,19 +8,11 @@ fundle plugin 'yurifrl/fish-theme-afowler'
 fundle plugin 'joehillen/ev-fish'
 fundle plugin 'edc/bass'
 
+# Init Fundle
 fundle init
-
-# # start X at login
-# if status --is-login
-#   if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
-#     exec startx -- -keeptty
-#   end
-# end
-
-# set fish_greeting ""
 
 # Envs
 set -gx DOT_FILES ~/NixFiles
 
-source "$HOME/.config/fish/config/envs"
-source "$HOME/.config/fish/config/aliases"
+source "$HOME/.config/fish/config/envs.fish"
+source "$HOME/.config/fish/config/aliases.fish"
