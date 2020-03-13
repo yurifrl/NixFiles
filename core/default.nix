@@ -56,7 +56,6 @@ in {
       emacs
       git
       gitAndTools.diff-so-fancy
-      go
       google-chrome-beta
       kbfs
       keybase-go
@@ -64,23 +63,24 @@ in {
       kubectl
       kubernetes-helm
       meld
+      my-xst
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
+      nix-prefetch-git
       openconnect
       pulsemixer
       ranger
       stack
       unstable.fish
+      unstable.go
       unstable.pbis-open
       unstable.tmux
       vim
       vscode
       wget
-      nix-prefetch-git
       xorg.xbacklight
       xorg.xhost
-      my-xst
       zoom-us
     ];
   };

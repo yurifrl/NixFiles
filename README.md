@@ -9,6 +9,7 @@ Yuri`s Nix DotFiles
 - this will FORMAT your hardrive and download the dotfiles
 
 ## Non automated steps
+
 - Loging on keybase
 - Loging on chrome
 
