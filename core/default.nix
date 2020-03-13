@@ -12,6 +12,7 @@ let
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
   # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
+  my-xst = pkgs.callPackage ../pkgs/xst {};
 in {
   imports = [
     ./home
@@ -24,6 +25,14 @@ in {
       NIX_GITHUB_PRIVATE_PASSWORD = "";
     };
   };
+
+  ##!! Works only on nix-unstable for now
+  ## Special config
+  nixpkgs.overlays = [ (self: super: {
+    st = super.xst.override {
+        configFiles = "";
+    };
+  }) ];
 
   environment = {
     variables = {
@@ -65,13 +74,13 @@ in {
       unstable.fish
       unstable.pbis-open
       unstable.tmux
-      unstable.xst
       vim
       vscode
       wget
+      nix-prefetch-git
       xorg.xbacklight
       xorg.xhost
-      xst
+      my-xst
       zoom-us
     ];
   };
@@ -186,8 +195,18 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
+    groups = {
+      "domain users" = {
+        members = [ "yuri" "yuri.lima" ];
+      };
+    };
     users = {
       yuri = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+        initialHashedPassword = "change";
+      };
+      "yuri.lima" = {
         isNormalUser = true;
         extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";

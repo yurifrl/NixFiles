@@ -3,13 +3,16 @@
 with stdenv.lib;
 
 let
-  name = "st";
+  version = "0.7.2";
+  name = "xst-${version}";
 in stdenv.mkDerivation {
   inherit name;
 
-  src = fetchGit {
-    url = "https://github.com/gnotclub/xst";
-    ref = "master";
+  src = fetchFromGitHub {
+    owner = "yurifrl";
+    repo = "xst";
+    rev = "master";
+    sha256 = "0hgcwdb9bfij9dinic85qcz37i6khxlr6x0nl3krir9c69nyv4aq";
   };
 
   nativeBuildInputs = [ pkgconfig ];
@@ -17,11 +20,10 @@ in stdenv.mkDerivation {
 
   installPhase = ''
     TERMINFO=$out/share/terminfo make install PREFIX=$out
-    mv $out/bin/xst $out/bin/st
   '';
 
   meta = {
-    homepage = https://github.com/gnotclub/xst;
+    homepage = https://github.com/neeasade/xst;
     description = "Simple terminal fork that can load config from Xresources";
     license = licenses.mit;
     maintainers = [ maintainers.vyp ];
