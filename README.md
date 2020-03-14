@@ -12,8 +12,32 @@ Yuri`s Nix DotFiles
 
 - Loging on keybase
 - Loging on chrome
+- cachix use ghcide-nix
+- krew install --manifest=$HOME/NixFiles/pkgs/krew/krew.yaml
+- k krew install ctx
+- k krew install ns
+
+## Nixos
+
+Some nix usefull commands
+
+```bash
+# Delete old generations
+sudo nix-env --delete-generations old
+
+# Garbage collect
+nix-collect-garbage -d
+
+# After you garbage collect it clear's cache run search to setup things up
+nix search -u
+
+# Open nix repl
+nix repl
+:l <nixpkgs>
+```
 
 ## Reference
+- Nix Cheat Sheet https://nixos.wiki/wiki/Cheatsheet
 - Nix options https://nixos.org/nixos/options.html#
 - https://nixos.wiki/wiki/FAQ#How_can_I_install_a_package_from_unstable_while_remaining_on_the_stable_channel.3F
 - https://github.com/yrashk/nix-home/blob/master/home.nix
@@ -26,6 +50,7 @@ Yuri`s Nix DotFiles
     - https://www.mpscholten.de/nixos/2016/07/07/private-github-repositories-and-nixos.html
     - https://gist.github.com/cleverca22/ef075e5dfe092fa6b08cec0ae1dfde66
     - https://gist.github.com/dhess/6bbb00100b0fe9b8e17472c0c62bfb10
+- SOmething about nix packages http://gfxmonk.net/2018/05/12/a-journey-towards-better-nix-package-development.html
 
 ## Licencing
 

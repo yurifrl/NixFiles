@@ -9,9 +9,9 @@ let
   unstableTarball =
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+  # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
-  # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
   my-xst = pkgs.callPackage ../pkgs/xst {};
 in {
   imports = [
@@ -20,19 +20,12 @@ in {
   ];
 
   nix = {
+    trustedUsers = [ "root" "yuri" "yuri.lima"];
     envVars = {
       NIX_GITHUB_PRIVATE_USERNAME = "";
       NIX_GITHUB_PRIVATE_PASSWORD = "";
     };
   };
-
-  ##!! Works only on nix-unstable for now
-  ## Special config
-  nixpkgs.overlays = [ (self: super: {
-    st = super.xst.override {
-        configFiles = "";
-    };
-  }) ];
 
   environment = {
     variables = {
@@ -48,8 +41,11 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # dftech-tools
+      # Takes to long to build
+      # (import (builtins.fetchTarball "https://github.com/cachix/ghcide-nix/tarball/master") {}).ghcide-ghc865
       ag
       arandr
+      cachix
       discord
       docker
       docker-compose
@@ -87,14 +83,15 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
+    # This is for openconnect
     permittedInsecurePackages = [
       "openssl-1.0.2u"
     ];
     packageOverrides = pkgs: {
-        unstable = import unstableTarball {
-          config = config.nixpkgs.config;
-        };
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
       };
+    };
   };
 
   # Network
@@ -128,7 +125,7 @@ in {
     mediaKeys.enable = true;
   };
 
-  #
+  # Enable Docker
   virtualisation.docker.enable = true;
 
   # List services that you want to enable:
@@ -141,9 +138,10 @@ in {
     #   temperature.night = 2700;
     # };
 
+    # It's for auto detecting external monitor and scripts for that
     autorandr.enable = true;
 
-    # ???????
+    # It's for battery i suppose
     acpid.enable = true;
 
     # Enable the OpenSSH daemon.
@@ -214,6 +212,46 @@ in {
     };
   };
 
+  # Select internationalisation properties.
+  i18n = {
+    consoleFont = "Lat2-Terminus16";
+    consoleKeyMap = "br-abnt2";
+    defaultLocale = "en_US.UTF-8";
+  };
+
+  # Set your time zone.
+  time.timeZone = "America/Sao_Paulo";
+
+  # Fonts
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      # Must have
+      powerline-fonts
+      source-code-pro
+      # hmm
+      source-code-pro
+      fira-code
+      fira-mono
+      fira-code-symbols
+      freefont_ttf
+      # Don`t know
+      noto-fonts-emoji
+      # anonymousPro
+      # corefonts
+      # dejavu_fonts
+      # noto-fonts
+      # freefont_ttf
+      # google-fonts
+      # inconsolata
+      # liberation_ttf
+      # terminus_font
+      # ttf_bitstream_vera
+      # ubuntu_font_family
+    ];
+  };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -231,42 +269,4 @@ in {
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "br-abnt2";
-    defaultLocale = "en_US.UTF-8";
-  };
-
-  # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
-
-  fonts = {
-    enableFontDir = true;
-    enableGhostscriptFonts = true;
-    fonts = with pkgs; [
-      # Must have
-      powerline-fonts
-      source-code-pro
-      # hmm
-      source-code-pro
-      fira-code
-      fira-mono
-      fira-code-symbols
-      freefont_ttf
-      # Don`t know
-      # anonymousPro
-      # corefonts
-      # dejavu_fonts
-      # noto-fonts
-      # freefont_ttf
-      # google-fonts
-      # inconsolata
-      # liberation_ttf
-      # terminus_font
-      # ttf_bitstream_vera
-      # ubuntu_font_family
-    ];
-  };
 }
