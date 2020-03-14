@@ -70,6 +70,8 @@ in {
       stack
       unstable.fish
       unstable.go
+      unstable.gotools
+      unstable.kind
       unstable.pbis-open
       unstable.tmux
       vim
