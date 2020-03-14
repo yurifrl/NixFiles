@@ -9,6 +9,7 @@ let
   {
     imports = [
       devicePath
+      #./cachix.nix
     ];
 
     system.stateVersion = "19.09";

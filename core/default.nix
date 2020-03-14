@@ -5,14 +5,20 @@
 
 { config, pkgs, ... }:
 
+with (import (builtins.fetchGit {
+  name = "ghcide-for-nix";
+  url = https://github.com/magthe/ghcide-for-nix;
+  rev = "927a8caa62cece60d9d66dbdfc62b7738d61d75f";
+}) );
 let
   unstableTarball =
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
+  # nordvpn = pkgs.callPackage ../pkgs/nordvpn {};
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
-  my-xst = pkgs.callPackage ../pkgs/xst {};
+  myXst = pkgs.callPackage ../pkgs/xst {};
 in {
   imports = [
     ./home
@@ -45,11 +51,11 @@ in {
       # (import (builtins.fetchTarball "https://github.com/cachix/ghcide-nix/tarball/master") {}).ghcide-ghc865
       ag
       arandr
-      cachix
       discord
       docker
       docker-compose
       emacs
+      ghcide
       git
       gitAndTools.diff-so-fancy
       google-chrome-beta
@@ -59,10 +65,11 @@ in {
       kubectl
       kubernetes-helm
       meld
-      my-xst
+      myXst
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
+      nix-prefetch
       nix-prefetch-git
       openconnect
       pulsemixer
@@ -75,6 +82,7 @@ in {
       unstable.pbis-open
       unstable.tmux
       vim
+      vlc
       vscode
       wget
       xorg.xbacklight

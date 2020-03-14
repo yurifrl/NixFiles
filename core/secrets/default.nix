@@ -24,7 +24,7 @@ in {
             activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
                 ln -sfn ${keybase}/home/ssh $HOME/.ssh
                 ln -sfn ${keybase}/home/docker $HOME/.docker
-                ln -sfn ${keybase}/home/kube $HOME/.kube
+                #ln -sfn ${keybase}/home/kube $HOME/.kube
             '';
         };
     };
