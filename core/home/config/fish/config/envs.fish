@@ -4,7 +4,7 @@
 set -gx TERM st-256color
 
 #
-set -gx EDITOR /usr/bin/vim
+set -gx EDITOR vim
 # set -gx EDITOR /home/yuri/.bin/e
 set -gx XDG_DATA_HOME "$HOME/.local/share"
 
@@ -61,7 +61,7 @@ set -gx GOOS linux
 set -gx CGO_ENABLED 0
 
 # Use local helm
-#set -gx HELM_HOST "localhost:44134" 
+#set -gx HELM_HOST "localhost:44134"
 
 # Load Secrets
 #set -gx KEYBASE_ENVS "$HOME/Keybase/private/yurifrl/envs"

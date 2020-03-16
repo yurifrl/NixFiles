@@ -35,7 +35,7 @@ in {
 
   environment = {
     variables = {
-      EDITOR = "vim";
+      EDITOR = "/home/yuri/.nix-profile/bin/vim";
       TERMINAL = "xst";
       SHELL = "fish";
     };
@@ -72,8 +72,11 @@ in {
       nix-prefetch
       nix-prefetch-git
       openconnect
+      openssl
+      pavucontrol
       pulsemixer
       ranger
+      smbclient
       stack
       unstable.fish
       unstable.go

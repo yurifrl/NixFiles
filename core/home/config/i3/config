@@ -170,15 +170,6 @@ assign [class="^zoom"] 3
 # 4 Is For midia
 assign [instance="^youtube"] 4
 assign [instance="^spotify"] 4
-# 5 Is for the rest
-assign [class="^parsec"] 5
-assign [class="^xfreerdp"] 5
-assign [class="^Cisco AnyConnect Secure Mobility Client"] 5
-assign [class="^Cisco"] 5
-assign [class="^Gnome-control-center"] 5
-assign [class="^sun-awt-X11-XDialogPeer"] 5
-# 6
-assign [class="^rdesktop"] 6
 # ...
 assign [instance=".*.com*."] 3
 
