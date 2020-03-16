@@ -23,7 +23,8 @@ CARD="$(pactl list cards short | egrep -o bluez_card[[:alnum:]._]+)"
 echo $CARD
 
 if [ "${1}" == "good" ] ;then
-    pacmd set-card-profile "${CARD}" a2dp_sink
+    # pacmd set-card-profile "${CARD}" a2dp_sink
+    pacmd set-card-profile "${CARD}" a2dp_sink_aac
 else
     pacmd set-card-profile "${CARD}" headset_head_unit
 fi

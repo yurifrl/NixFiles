@@ -211,12 +211,12 @@ in {
     users = {
       yuri = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "docker" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";
       };
       "yuri.lima" = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "docker" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";
       };
     };
