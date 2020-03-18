@@ -47,10 +47,9 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # dftech-tools
-      # Takes to long to build
-      # (import (builtins.fetchTarball "https://github.com/cachix/ghcide-nix/tarball/master") {}).ghcide-ghc865
       ag
       arandr
+      charles4
       discord
       docker
       docker-compose
@@ -76,21 +75,25 @@ in {
       pavucontrol
       pulsemixer
       ranger
+      sbt
       smbclient
       stack
+      unstable.adoptopenjdk-jre-openj9-bin-11
       unstable.fish
       unstable.go
       unstable.gotools
       unstable.kind
+      unstable.metals
       unstable.pbis-open
       unstable.tmux
+      unstable.vscode
       vim
       vlc
-      vscode
       wget
       xorg.xbacklight
       xorg.xhost
       zoom-us
+      parcellite # Manages clipboard sync
     ];
   };
 
@@ -186,6 +189,7 @@ in {
             i3blocks
             acpi
             xclip
+            xsel
           ];
         };
       };
@@ -272,6 +276,7 @@ in {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  programs.java.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

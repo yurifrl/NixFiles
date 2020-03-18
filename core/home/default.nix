@@ -34,6 +34,10 @@ in
         };
       };
       home = {
+        activation.createPacelliteLinks = dag.dagEntryAfter ["writeBoundary"] ''
+          mkdir -p $HOME/.config/parcellite
+          ln -sfn $HOME/NixFiles/core/home/config/parcelliterc $HOME/.config/parcellite/parcelliterc
+        '';
         activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
           ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
           ln -sfn $HOME/NixFiles/core/home/config/bin $HOME/.bin
@@ -66,13 +70,13 @@ in
           };
           recursive = true;
         };
-        ".emacs.d" = {
-          source = fetchGit {
-            url = "https://github.com/syl20bnr/spacemacs";
-            ref = "develop";
-          };
-          recursive = true;
-        };
+        # ".emacs.d" = {
+        #   source = fetchGit {
+        #     url = "https://github.com/syl20bnr/spacemacs";
+        #     ref = "develop";
+        #   };
+        #   recursive = true;
+        # };
         ".local/share/applications" = {
           source = ./config/applications;
           recursive = true;

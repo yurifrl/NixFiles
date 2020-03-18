@@ -37,7 +37,7 @@ set -gx GOBIN "$HOME/.go/bin"
 set -gx GO111MODULE "on"
 
 # Java
-set -gx JAVA_HOME "/usr/lib/jvm/11/openj9"
+set -gx JAVA_HOME (readlink -e (type -p java) | sed  -e 's/\/bin\/java//g')
 
 # PATH
 set -gx PATH "/usr/local/go/bin" $PATH

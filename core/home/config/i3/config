@@ -211,3 +211,5 @@ exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id i3-sensible-terminal
 # exec --no-startup-id /home/yuri/.bin/e
 exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-up
+#
+exec --no-startup-id parcellite -d
