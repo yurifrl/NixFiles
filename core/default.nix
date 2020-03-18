@@ -94,6 +94,8 @@ in {
       xorg.xhost
       zoom-us
       parcellite # Manages clipboard sync
+      ffmpeg
+      steam
     ];
   };
 
@@ -176,7 +178,11 @@ in {
       enable = true;
       autorun = true;
       exportConfiguration = true;
-      libinput.enable = true;
+      libinput = {
+        enable = true;
+        # naturalScrolling = true;
+        tapping =  false;
+      };
       layout = "br";
       windowManager = {
         default = "i3";
@@ -244,6 +250,7 @@ in {
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
+      symbola
       # Must have
       powerline-fonts
       source-code-pro
@@ -254,7 +261,7 @@ in {
       fira-code-symbols
       freefont_ttf
       # Don`t know
-      noto-fonts-emoji
+      # noto-fonts-emoji
       # anonymousPro
       # corefonts
       # dejavu_fonts
@@ -279,7 +286,7 @@ in {
   programs.java.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 8888 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;

@@ -170,6 +170,8 @@ assign [class="^zoom"] 3
 # 4 Is For midia
 assign [instance="^youtube"] 4
 assign [instance="^spotify"] 4
+# 5 Games
+assign [class="^Steam"] 5
 # ...
 assign [instance=".*.com*."] 3
 
@@ -209,7 +211,12 @@ focus_follows_mouse yes
 exec --no-startup-id nm-applet --sm-disable
 # exec --no-startup-id redshift -l 51.5033640:-0.1276250
 exec --no-startup-id i3-sensible-terminal
-# exec --no-startup-id /home/yuri/.bin/e
 exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-up
 #
 exec --no-startup-id parcellite -d
+#
+exec --no-startup-id google-chrome-beta
+exec --no-startup-id Discord
+# exec --no-startup-id charles
+exec --no-startup-id emacs
+exec --no-startup-id google-chrome-beta --app=https://app.slack.com/client/TBHMCN197/CBJ7U91NW

@@ -4,16 +4,22 @@
 let
   # This function takes the path of a device module as an argument
   # and returns a complete module to be imported in configuration.nix
-  makeDevice = devicePath: { config, pkgs, lib, ... }:
-
-  {
+  makeDevice = devicePath: { config, pkgs, lib, ... }: {
     imports = [
       devicePath
       #./cachix.nix
     ];
-
+    #
     system.stateVersion = "19.09";
     system.autoUpgrade.enable = true;
+    # Need for mon-2-cam script
+    boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta
+                                 config.boot.kernelPackages.v4l2loopback
+                               ];
+    # Needed for steam
+    hardware.opengl.driSupport32Bit = true;
+    hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+    hardware.pulseaudio.support32Bit = true;
   };
   deviceModules =
     builtins.listToAttrs (map (deviceName: {

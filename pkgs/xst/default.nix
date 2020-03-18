@@ -12,7 +12,7 @@ in stdenv.mkDerivation {
     owner = "yurifrl";
     repo = "xst";
     rev = "master";
-    sha256 = "0hgcwdb9bfij9dinic85qcz37i6khxlr6x0nl3krir9c69nyv4aq";
+    sha256 = "10yhfhx40p45cbw5igr9mhaniq5wsdv60l5a14hqdnlzr9jglmh5";
   };
 
   nativeBuildInputs = [ pkgconfig ];
