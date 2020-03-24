@@ -18,7 +18,8 @@ let
   # nordvpn = pkgs.callPackage ../pkgs/nordvpn {};
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
-  myXst = pkgs.callPackage ../pkgs/xst {};
+  my-xst = pkgs.callPackage ../pkgs/xst {};
+  # obs-v4l2sink = pkgs.callPackage ../pkgs/obs-v4l2sink {};
 in {
   imports = [
     ./home
@@ -47,6 +48,7 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # dftech-tools
+      # obs-v4l2sink
       ag
       arandr
       charles4
@@ -54,6 +56,7 @@ in {
       docker
       docker-compose
       emacs
+      ffmpeg
       ghcide
       git
       gitAndTools.diff-so-fancy
@@ -64,20 +67,24 @@ in {
       kubectl
       kubernetes-helm
       meld
-      myXst
+      my-xst
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
       nix-prefetch
       nix-prefetch-git
+      obs-studio
       openconnect
       openssl
+      parcellite # Manages clipboard sync
       pavucontrol
       pulsemixer
       ranger
       sbt
       smbclient
       stack
+      steam
+      unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
       unstable.fish
       unstable.go
@@ -93,9 +100,6 @@ in {
       xorg.xbacklight
       xorg.xhost
       zoom-us
-      parcellite # Manages clipboard sync
-      ffmpeg
-      steam
     ];
   };
 
@@ -250,18 +254,19 @@ in {
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
+      # Gime emojigs
+      noto-fonts-emoji
+      # Fallback for xst
       symbola
       # Must have
       powerline-fonts
       source-code-pro
       # hmm
-      source-code-pro
       fira-code
       fira-mono
       fira-code-symbols
-      freefont_ttf
       # Don`t know
-      # noto-fonts-emoji
+      # freefont_ttf
       # anonymousPro
       # corefonts
       # dejavu_fonts
@@ -272,24 +277,31 @@ in {
       # liberation_ttf
       # terminus_font
       # ttf_bitstream_vera
-      # ubuntu_font_family
+      # ubuntu_
+      # font_family
     ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  programs.java.enable = true;
+  programs = {
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    java.enable = true;
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 8888 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
+  # /etc/hosts
+  # networking.extraHosts =
+  # ''
+  # '';
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

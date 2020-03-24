@@ -39,12 +39,12 @@ if ($acpi !~ /: (\w+), (\d+)%/) {
 
 $status = $1;
 $percent = $2;
-$full_text = "⚡";
+$full_text = "";
 
 if ($status eq 'Discharging') {
 	$full_text .= '🔋';
 } elsif ($status eq 'Charging') {
-  $full_text .= '🔌';
+  $full_text .= '⚡';
 }
 
 $full_text .= " $percent%";

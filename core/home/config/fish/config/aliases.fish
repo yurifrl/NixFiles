@@ -40,6 +40,6 @@ alias mk=microk8s.kubectl
 alias k=/run/current-system/sw/bin/kubectl
 #alias k=$HOME/.bin/kubectl-in-docker
 #alias kubectl=$HOME/.bin/kubectl-in-docker
-alias helm=helm-2
+# alias helm=helm-2
 alias tiller=tiller-2
 alias vim-edit-alias="vim ~/NixFiles/core/home/config/fish/config/aliases"

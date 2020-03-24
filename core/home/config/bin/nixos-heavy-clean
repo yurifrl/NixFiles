@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+set -e
+
+echo "Update"
+sudo nix-channel --update
+echo "Nix Env"
+sudo nix-env -u --always
+echo "Remove"
+sudo rm /nix/var/nix/gcroots/auto/*
+echo "Garbage Collect"
+sudo nix-collect-garbage -d
+echo "Update again"
+sudo nix-env -u --always
+echo "Rebuild"
+sudo nixos-rebuild switch
