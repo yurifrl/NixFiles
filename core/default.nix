@@ -49,7 +49,10 @@ in {
     systemPackages = with pkgs; [
       # dftech-tools
       # obs-v4l2sink
+      # kubernetes-helm
       ag
+      android-studio
+      appimage-run
       arandr
       charles4
       discord
@@ -61,11 +64,12 @@ in {
       git
       gitAndTools.diff-so-fancy
       google-chrome-beta
+      jq
       kbfs
       keybase-go
       krew
       kubectl
-      kubernetes-helm
+      lazygit
       meld
       my-xst
       networkmanager-openconnect
@@ -90,6 +94,7 @@ in {
       unstable.go
       unstable.gotools
       unstable.kind
+      unstable.kubernetes-helm
       unstable.metals
       unstable.pbis-open
       unstable.tmux
@@ -97,8 +102,6 @@ in {
       vim
       vlc
       wget
-      xorg.xbacklight
-      xorg.xhost
       zoom-us
     ];
   };
@@ -193,6 +196,10 @@ in {
         i3 = {
           enable = true;
           extraPackages = with pkgs; [
+            xorg.xbacklight
+            xorg.xhost
+            xorg.xwininfo
+            xorg.xprop
             dmenu
             i3status
             i3lock
@@ -290,7 +297,6 @@ in {
       enable = true;
       enableSSHSupport = true;
     };
-    java.enable = true;
   };
 
   # Open ports in the firewall.

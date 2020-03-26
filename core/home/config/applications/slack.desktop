@@ -5,4 +5,3 @@ Type=Application
 Name=Slack
 # The executable of the application, possibly with arguments.
 Exec=google-chrome-beta --app=https://app.slack.com/client/TBHMCN197/CBJ7U91NW
-

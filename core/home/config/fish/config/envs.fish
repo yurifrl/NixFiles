@@ -46,7 +46,7 @@ set -gx PATH "$HOME/.go/bin" $PATH
 set -gx PATH "$HOME/Workdir/bin" $PATH
 set -gx PATH "$HOME/.local/bin" $PATH
 set -gx PATH "$LOCAL_BIN" $PATH
-#set -gx PATH "$SYSTEM_BIN" $PATH
+set -gx PATH "$SYSTEM_BIN" $PATH
 #set -gx PATH "$NODE_BIN" $PATH
 # https://github.com/haskell/ghcup/tree/ad91509d28af967b48e667f07cc690c21b707742#installation
 set -gx PATH "$HOME/.cabal/bin" $PATH

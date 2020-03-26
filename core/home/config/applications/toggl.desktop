@@ -2,6 +2,6 @@
 # The type as listed above
 Type=Application
 # The name of the application
-Name=Coursera
+Name=Toggl
 # The executable of the application, possibly with arguments.
-Exec=google-chrome-beta --app=https://www.coursera.org
+Exec=google-chrome-beta --app=https://toggl.com/app/timer
