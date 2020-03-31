@@ -192,6 +192,7 @@ assign [class="Emacs"] 1
 assign [class="Meld"] 1
 assign [class="Code"] 1
 assign [title=".*Emulator.*"] 1
+assign [class="jetbrains-studio"] 1
 
 # 2 For Chrome
 # assign [class="(?i)google*"] 2

@@ -51,7 +51,8 @@ in {
       # obs-v4l2sink
       # kubernetes-helm
       ag
-      android-studio
+      unstable.android-studio
+      nixos.android-studio-stable
       appimage-run
       arandr
       charles4
@@ -88,6 +89,7 @@ in {
       smbclient
       stack
       steam
+      tilt
       unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
       unstable.fish
