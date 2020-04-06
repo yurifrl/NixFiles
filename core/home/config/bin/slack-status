@@ -21,24 +21,6 @@ if [ $CMD = "pomo-start" ] ;then
             }"
 fi
 
-
-if [ $CMD = "-pomostop" ] ;then
-    curl https://slack.com/api/users.setPresence \
-    -H "Authorization: Bearer $SLACK_TOKEN" \
-    -H 'Content-type: application/json; charset=utf-8' -d "{
-                    \"presence\": \"auto\"
-    }"
-    curl https://slack.com/api/users.profile.set \
-    -H "Authorization: Bearer $SLACK_TOKEN" \
-    -H 'Content-type: application/json; charset=utf-8' -d "{
-                    \"profile\": {
-                        \"status_text\": \"\",
-                        \"status_emoji\": \"\",
-                        \"status_expiration\": 0
-                    }
-    }"
-fi
-
 if [ $CMD = "lunch-start" ] ;then
     EXPIRATION=$(date -d "+ 60 minutes" +%s)
     curl https://slack.com/api/users.profile.set \
@@ -58,8 +40,26 @@ if [ $CMD = "lunch-start" ] ;then
             }"
 fi
 
+
+if [ $CMD = "stop" ] ;then
+    curl https://slack.com/api/users.setPresence \
+        -H "Authorization: Bearer $SLACK_TOKEN" \
+        -H 'Content-type: application/json; charset=utf-8' -d "{
+                    \"presence\": \"auto\"
+    }"
+    curl https://slack.com/api/users.profile.set \
+    -H "Authorization: Bearer $SLACK_TOKEN" \
+    -H 'Content-type: application/json; charset=utf-8' -d "{
+                    \"profile\": {
+                        \"status_text\": \"\",
+                        \"status_emoji\": \"\",
+                        \"status_expiration\": 0
+                    }
+    }"
+fi
+
 echo """
 pomo-start
-pomo-stop
-launch-start
+lunch-start
+stop
 """

@@ -49,6 +49,10 @@ in
           # ".bin" = {
           #   source = ./config/bin;
           # };
+          # https://unix.stackexchange.com/questions/452907/pavucontrol-wont-change-output-on-some-apps
+          ".alsoftrc" = {
+            source = ./config/alsoftrc;
+          };
           ".Xresources" = {
             source = ./config/Xresources;
           };

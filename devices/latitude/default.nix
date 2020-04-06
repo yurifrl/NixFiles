@@ -12,12 +12,13 @@
   networking.hostName = "dft-sp-wkn763";
   boot = {
     # My Legacy Boot
-    initrd.luks.devices = [{
-      name = "boot";
-      device = "/dev/sda2";
-      preLVM = true;
-    }];
-   
+    initrd.luks.devices = {
+      boot = {
+        device = "/dev/sda2";
+        preLVM = true;
+      };
+    };
+
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 

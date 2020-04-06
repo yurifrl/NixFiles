@@ -17,7 +17,7 @@
       device = "/dev/sda2";
       preLVM = true;
     }];
-   
+
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 

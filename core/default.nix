@@ -48,11 +48,11 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # dftech-tools
-      # obs-v4l2sink
       # kubernetes-helm
+      # nixos.android-studio-stable
+      # obs-v4l2sink
+      # unstable.android-studio
       ag
-      unstable.android-studio
-      nixos.android-studio-stable
       appimage-run
       arandr
       charles4
@@ -86,6 +86,7 @@ in {
       pulsemixer
       ranger
       sbt
+      sc-controller
       smbclient
       stack
       steam
@@ -101,9 +102,14 @@ in {
       unstable.pbis-open
       unstable.tmux
       unstable.vscode
+      unzip
       vim
       vlc
       wget
+      xorg.xbacklight
+      xorg.xhost
+      xorg.xprop
+      xorg.xwininfo
       zoom-us
     ];
   };
@@ -139,10 +145,15 @@ in {
     };
     bluetooth = {
       enable = true;
-      extraConfig = "
-        [General]
-        Enable=Source,Sink,Media,Socket
-      ";
+      # extraConfig = "
+      #   [General]
+      #   Enable=Source,Sink,Media,Socket
+      # ";
+      config = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
     };
   };
 
@@ -166,6 +177,7 @@ in {
     # };
 
     # It's for auto detecting external monitor and scripts for that
+    # It seams that a hard restart fixes it https://forum.manjaro.org/t/hdmi-shows-disconnected-in-xrandr/113606/3
     autorandr.enable = true;
 
     # It's for battery i suppose
@@ -184,6 +196,7 @@ in {
     };
 
     xserver = {
+      displayManager.defaultSession = "none+i3";
       enable = true;
       autorun = true;
       exportConfiguration = true;
@@ -192,16 +205,20 @@ in {
         # naturalScrolling = true;
         tapping =  false;
       };
+      config = ''
+        Section "InputClass"
+          Identifier "mouse accel"
+          Driver "libinput"
+          MatchIsPointer "on"
+          Option "AccelProfile" "flat"
+          Option "AccelSpeed" "0"
+        EndSection
+      '';
       layout = "br";
       windowManager = {
-        default = "i3";
         i3 = {
           enable = true;
           extraPackages = with pkgs; [
-            xorg.xbacklight
-            xorg.xhost
-            xorg.xwininfo
-            xorg.xprop
             dmenu
             i3status
             i3lock
@@ -216,10 +233,11 @@ in {
       # Install xfce as desktop manager because i3 does not manages windows?
       # https://nixos.wiki/wiki/I3
       desktopManager = {
-        default = "xfce";
         xterm.enable = false;
+        # Not working
+        # wallpaper.mode = "fill";
         xfce = {
-          enable = true;
+          enable = false;
           noDesktop = true;
           enableXfwm = false;
         };
@@ -249,9 +267,11 @@ in {
   };
 
   # Select internationalisation properties.
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "br-abnt2";
+  };
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "br-abnt2";
     defaultLocale = "en_US.UTF-8";
   };
 
