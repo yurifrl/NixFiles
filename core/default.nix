@@ -5,6 +5,7 @@
 
 { config, pkgs, ... }:
 
+# https://github.com/tesq0/nix-config/blob/a11c7a0c7f85694a71d862e8279956bd14c913d8/nixos/xboxdrv.nix
 with (import (builtins.fetchGit {
   name = "ghcide-for-nix";
   url = https://github.com/magthe/ghcide-for-nix;
@@ -24,6 +25,7 @@ in {
   imports = [
     ./home
     ./secrets
+    ./xboxdrv.nix
   ];
 
   nix = {
@@ -61,13 +63,16 @@ in {
       docker-compose
       emacs
       ffmpeg
+      firefox
       ghcide
       git
       gitAndTools.diff-so-fancy
       google-chrome-beta
+      htop
       jq
       kbfs
       keybase-go
+      killall
       krew
       kubectl
       lazygit
@@ -86,7 +91,7 @@ in {
       pulsemixer
       ranger
       sbt
-      sc-controller
+      siege
       smbclient
       stack
       steam
@@ -111,6 +116,7 @@ in {
       xorg.xprop
       xorg.xwininfo
       zoom-us
+      xboxdrv
     ];
   };
 
@@ -134,7 +140,6 @@ in {
   hardware = {
     pulseaudio = {
       enable = true;
-
       # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
       # Only the full build has Bluetooth support, so it must be selected here.
       package = pkgs.pulseaudioFull;
@@ -149,6 +154,7 @@ in {
       #   [General]
       #   Enable=Source,Sink,Media,Socket
       # ";
+      package = pkgs.bluezFull;
       config = {
         General = {
           Enable = "Source,Sink,Media,Socket";
@@ -182,6 +188,9 @@ in {
 
     # It's for battery i suppose
     acpid.enable = true;
+
+    #
+    blueman.enable = true;
 
     # Enable the OpenSSH daemon.
     openssh.enable = true;
@@ -227,6 +236,11 @@ in {
             xclip
             xsel
           ];
+          # Keychain
+          extraSessionCommands = ''
+            eval $(gnome-keyring-daemon --daemonize)
+            export SSH_AUTH_SOCK
+          '';
         };
       };
 
@@ -243,6 +257,9 @@ in {
         };
       };
     };
+
+    # Keychain
+    gnome3.gnome-keyring.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -311,13 +328,20 @@ in {
     ];
   };
 
+  # Keychain
+  # security.pam.services.lightdm.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
+    # Keychain
+    seahorse.enable = true;
     mtr.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
+      enableBrowserSocket = true;
+      enableExtraSocket = true;
     };
   };
 
