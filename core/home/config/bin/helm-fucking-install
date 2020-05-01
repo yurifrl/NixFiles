@@ -4,11 +4,12 @@
 # helm-fucking-install externalshop MARKETPLACE live.k8s.dafiti.local
 # helm-fucking-install <PRODUCT_NAME> <TEAM> <CLUSER_NAME>
 
-CLUSTER_NAME=$3
-helm=/usr/local/bin/helm-2
 PRODUCT_NAME=$1
-PURGE="${PURGE:-false}"
 TEAM=$2
+CLUSTER_NAME=$3
+PURGE="${PURGE:-false}"
+helm=/usr/local/bin/helm-2-11
+
 VALUES="${VALUES:-"deploy/chart/qa-values.yaml"}"
 
 : "${CHARTS:?Variable not set or empty}"
@@ -57,7 +58,6 @@ while [ $(eval $CMD) != "Running" ]; do
 done
 
 echo "### Tiller ready"
-
 
 echo "### helm install"
 $helm install "$CHARTS/gfg-application-web" \

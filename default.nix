@@ -18,20 +18,7 @@ let
                               config.boot.kernelPackages.v4l2loopback
                             ];
 
-      # https://github.com/NixOS/nixpkgs/issues/25490
-      # https://www.reddit.com/r/RetroPie/comments/bi5bm4/psa_new_method_for_disabling_ertm_fix_controller/
-      # https://github.com/baracoder/nix/blob/master/configuration.nix
-      # https://www.reddit.com/r/NixOS/comments/a7g4oi/declaratively_setting_sysfs_properties/
-      # https://nixos.org/nixos/options.html#kernel.sysctl
       extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
-      # blacklistedKernelModules = ["xpad"];
-      # kernelParams = [
-      #   "bluetooth.disable_ertm=1"
-      # ];
-      # kernel.sysctl = {
-      #   "bluetooth.disable_ertm" = 1;
-      # };
-      # kernelModules = [ "uinput" ];
     };
     # Needed for steam
     hardware.opengl.driSupport32Bit = true;

@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+export IMAGE="yokogawa/siege"
+export ENTRYPOINT="siege"
+
+docker-run "$@"

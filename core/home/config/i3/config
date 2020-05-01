@@ -173,6 +173,8 @@ for_window [class="DeusExMD"] floating disable
 for_window [title="UNDERTALE"] floating disable
 for_window [title="MAGICKA 2"] floating disable
 for_window [class="HotlineMiami2"] floating disable
+for_window [class="hl2_linux"] floating disable
+for_window [class="hollow_knight.x86_64"] floating disable
 
 # Bind application to worspace
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
@@ -190,11 +192,13 @@ assign [instance="(?i)spotify*"] 9
 # 8 Games
 assign [class="Steam"] 8
 # 7 Also Games
-assign [class="payday2_release"] 7
-assign [title="UNDERTALE"] 7
-assign [title="MAGICKA 2"] 7
-assign [class="Magicka2_x64" instance="Magicka2_x64" title="MAGICKA 2"] 7
-assign [class="HotlineMiami2"] 7
+assign [class="payday2_release"] 8
+assign [title="UNDERTALE"] 8
+assign [title="MAGICKA 2"] 8
+assign [class="Magicka2_x64"] 8
+assign [class="hollow_knight.x86_64"] 8
+assign [class="HotlineMiami2"] 8
+assign [class="hl2_linux"] 8
 # 2 ...
 # 3 Is the fallback for apps
 assign [window_role="pop-up"] 3

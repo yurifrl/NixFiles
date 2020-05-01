@@ -25,7 +25,7 @@ in {
   imports = [
     ./home
     ./secrets
-    ./xboxdrv.nix
+    # ./xboxdrv.nix
   ];
 
   nix = {
@@ -54,10 +54,13 @@ in {
       # nixos.android-studio-stable
       # obs-v4l2sink
       # unstable.android-studio
+      # siege
       ag
       appimage-run
       arandr
+      bind
       charles4
+      deepin.deepin-screenshot
       discord
       docker
       docker-compose
@@ -91,10 +94,11 @@ in {
       pulsemixer
       ranger
       sbt
-      siege
+      sdl-jstest
       smbclient
       stack
       steam
+      steam-run
       tilt
       unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
@@ -116,7 +120,6 @@ in {
       xorg.xprop
       xorg.xwininfo
       zoom-us
-      xboxdrv
     ];
   };
 
