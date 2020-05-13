@@ -16,11 +16,12 @@ let
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
-  # nordvpn = pkgs.callPackage ../pkgs/nordvpn {};
+  # obs-v4l2sink = pkgs.callPackage ../pkgs/obs-v4l2sink {};
   homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
-  my-xst = pkgs.callPackage ../pkgs/xst {};
-  # obs-v4l2sink = pkgs.callPackage ../pkgs/obs-v4l2sink {};
+  xst = pkgs.callPackage ../pkgs/xst {};
+  kind = pkgs.callPackage ../pkgs/kind {};
+  kustomize = pkgs.callPackage ../pkgs/kustomize {};
 in {
   imports = [
     ./home
@@ -55,24 +56,35 @@ in {
       # obs-v4l2sink
       # unstable.android-studio
       # siege
+      # cargo
+      # gnumake42
+      kustomize
+      kind
       ag
       appimage-run
       arandr
+      argocd
+      awscli
       bind
       charles4
+      containerd
       deepin.deepin-screenshot
       discord
       docker
       docker-compose
+      eksctl
       emacs
       ffmpeg
       firefox
       ghcide
       git
       gitAndTools.diff-so-fancy
+      gnumake
       google-chrome-beta
+      gradle
       htop
       jq
+      k3s
       kbfs
       keybase-go
       killall
@@ -80,7 +92,9 @@ in {
       kubectl
       lazygit
       meld
-      my-xst
+      minikube
+      # my-kind
+      xst
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
@@ -105,13 +119,13 @@ in {
       unstable.fish
       unstable.go
       unstable.gotools
-      unstable.kind
       unstable.kubernetes-helm
       unstable.metals
       unstable.pbis-open
       unstable.tmux
       unstable.vscode
       unzip
+      vgo2nix
       vim
       vlc
       wget
@@ -174,6 +188,7 @@ in {
 
   # Enable Docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = true;
 
   # List services that you want to enable:
   services = {
@@ -354,8 +369,7 @@ in {
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
   # /etc/hosts
-  # networking.extraHosts =
-  # ''
+  # networking.extraHosts = ''
   # '';
 
   # Configure network proxy if necessary

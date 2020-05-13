@@ -37,7 +37,8 @@ set -gx GOBIN "$HOME/.go/bin"
 set -gx GO111MODULE "on"
 
 # Java
-set -gx JAVA_HOME (readlink -e (type -p java) | sed  -e 's/\/bin\/java//g')
+# set -gx JAVA_HOME (readlink -e (type -p java) | sed  -e 's/\/bin\/java//g')
+set -gx JDK_HOME /nix/store/0j92w9fh2kg5r48m0ymz2p6ji1f02ka4-openjdk-8u242-b08/
 
 # PATH
 set -gx PATH "/usr/local/go/bin" $PATH

@@ -3,23 +3,25 @@ set -o errexit
 
 kind delete cluster
 
-# create registry container unless it already exists 
+# create registry container unless it already exists
 REGISTRY_CONTAINER_NAME='kind-registry'
 REGISTRY_PORT='5000'
 if [ "$(docker inspect -f '{{.State.Running}}' "${REGISTRY_CONTAINER_NAME}")" != 'true' ]; then
 	  docker run -d -p "${REGISTRY_PORT}:5000" --restart=always --name "${REGISTRY_CONTAINER_NAME}" registry:2
-  fi
+fi
 
-  # create a cluster with the local registry enabled in containerd
-  cat <<EOF | kind create cluster --config=-
+# create a cluster with the local registry enabled in containerd
+# image is passed here because there seems to exist a bug with latest
+cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-containerdConfigPatches: 
+containerdConfigPatches:
 - |-
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry:${REGISTRY_PORT}"]
     endpoint = ["http://registry:${REGISTRY_PORT}"]
 nodes:
 - role: control-plane
+  image: kindest/node:v1.16.2@sha256:490e066d9b30a50584aa77c20e67edcceb2d97276112200b223dd8a3d718c973
   extraMounts:
   - hostPath: /var/run/docker.sock
     containerPath: /var/docker.sock
@@ -39,7 +41,7 @@ EOF
 
 # add the registry to /etc/hosts on each node
 for node in $(kind get nodes); do
-	  docker exec "${node}" sh -c "echo $(docker inspect --format '{{.NetworkSettings.IPAddress }}' "${REGISTRY_CONTAINER_NAME}") registry >> /etc/hosts"
-  done
+    docker exec "${node}" sh -c "echo $(docker inspect --format '{{.NetworkSettings.IPAddress }}' "${REGISTRY_CONTAINER_NAME}") registry >> /etc/hosts"
+done
 
 kubectl cluster-info --context kind-kind
