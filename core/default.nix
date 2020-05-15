@@ -22,6 +22,7 @@ let
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
+  kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
 in {
   imports = [
     ./home
@@ -59,6 +60,7 @@ in {
       # cargo
       # gnumake42
       kustomize
+      kubebuilder
       kind
       ag
       appimage-run
