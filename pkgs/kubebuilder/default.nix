@@ -1,9 +1,15 @@
-{ lib, buildGoModule, fetchFromGitHub, tree }:
+{ lib, buildGoModule, fetchFromGitHub, tree, makeWrapper }:
 
 buildGoModule rec {
   pname = "kubebuilder";
   version = "2.3.1";
-  rev = "8b53abeb4280186e494b726edf8f54ca7aa64a49";
+  # rev = "f07a0146a40b1dc4048b1caaf075efcf1312aa00";
+
+  buildFlagsArray = let t = "sigs.k8s.io/kubebuilder"; in ''
+    -ldflags=
+      -s -X ${t}.version=${version}
+         -X ${t}.buildDate=unknown
+  '';
 
   src = fetchFromGitHub {
     owner = "kubernetes-sigs";
@@ -13,7 +19,13 @@ buildGoModule rec {
   };
 
   # avoid finding test and development commands
-  sourceRoot = "source/cmd";
+  buildPhase = ''
+    echo "========"
+    pwd
+    ls
+    go install ./cmd
+    exit 1
+  '';
 
   modSha256 = "0fbvj098c7aabilycdl4rcm7aylkc4q44z4wjlpkcpnqkfkq4xzi";
 
@@ -23,6 +35,6 @@ buildGoModule rec {
     '';
     homepage = "https://github.com/kubernetes-sigs/kubebuilder";
     license = licenses.asl20;
-    maintainers = with maintainers; [];
+    maintainers = with maintainers; [ yurifrl ];
   };
 }

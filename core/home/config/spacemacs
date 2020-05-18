@@ -47,6 +47,7 @@ values."
                                        shell-scripts
                                        nixos
                                        javascript
+                                       java
                                        html
                                        emacs-lisp
                                        markdown

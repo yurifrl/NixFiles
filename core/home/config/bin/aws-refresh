@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+ROOT=$HOME/Keybase/private/yurifrl/envs/dafiti/global
+
+echo "" > $ROOT/AWS_ACCESS_KEY_ID
+echo "" > $ROOT/AWS_SECRET_ACCESS_KEY
+echo "" > $ROOT/AWS_SESSION_TOKEN
+
+vim $ROOT/AWS_ACCESS_KEY_ID
+vim $ROOT/AWS_SECRET_ACCESS_KEY
+vim $ROOT/AWS_SESSION_TOKEN
+
+export AWS_ACCESS_KEY_ID=$(cat $ROOT/AWS_ACCESS_KEY_ID)
+export AWS_SECRET_ACCESS_KEY=$(cat $ROOT/AWS_SECRET_ACCESS_KEY)
+export AWS_SESSION_TOKEN=$(cat $ROOT/AWS_SESSION_TOKEN)
+
+echo $AWS_ACCESS_KEY_ID
+echo $AWS_SECRET_ACCESS_KEY
+echo $AWS_SESSION_TOKEN
+
+awsd eks update-kubeconfig --name $1

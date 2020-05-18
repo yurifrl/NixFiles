@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+#
+# Encrypt data with AWS KMS
+#
+set -euo pipefail
+
+test "${DEBUG:-false}" = "true" && set -x
+
+if [[ "$#" -lt 2 ]]; then
+    echo "Usage: ${0} <alias_key_name> <filename1> <filename2> <filenameN>"
+    echo "Example: ${0} qa-env-secrets /tmp/file.txt /tmp/file2.txt /tmp/fileN.txt"
+
+    exit 1
+fi
+
+alias_key_name="${1}"
+filenames=${@:2}
+
+for filename in $filenames; do
+
+    if [[ ! -s ${filename} ]]; then
+        echo "${filename}, file not found or empty"
+        exit 1
+    fi
+
+    kms_key_id="alias/${alias_key_name}"
+    echo -e "\nEncrypting \"${filename}\" into \"${filename}.kms\" with \"${kms_key_id}\"\n"
+    aws kms encrypt \
+       --key-id="${kms_key_id}" \
+       --plaintext "fileb://${filename}" \
+       --query=CiphertextBlob \
+       --output=text > "${filename}.kms"
+    # remove plain file
+    rm -f "${filename}"
+done

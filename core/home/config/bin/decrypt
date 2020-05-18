@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# Decrypt a file with AWS KMS
+#
+set -euo pipefail
+
+test "${DEBUG:-false}" = "true" && set -x
+
+if [[ "$#" -lt 1 ]]; then
+    echo "Usage: ${0} <filename>"
+    exit 1
+fi
+
+filename="${1}"
+
+test "$(uname)" == "Linux" && BASE64="base64 -d" || BASE64="base64 -D"
+
+if [[ ! -s "${filename}" ]]; then
+    echo "${filename}, file not found or empty"
+    exit 1
+fi
+
+output="${filename/.kms/}"
+tmpfile=$(mktemp)
+trap "rm ${tmpfile}" EXIT
+cat "${filename}" | $BASE64 > "${tmpfile}"
+
+echo "- Decrypting \"${filename}\" into \"${output}\""
+aws kms decrypt \
+    --ciphertext-blob="fileb://${tmpfile}" \
+    --query=Plaintext \
+    --output=text | $BASE64 > "${output}"
+# remove encrypt to force user to re-encrypt file with new value or revert changes
+rm -f "${filename}"

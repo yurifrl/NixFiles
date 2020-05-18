@@ -59,9 +59,7 @@ in {
       # siege
       # cargo
       # gnumake42
-      kustomize
-      kubebuilder
-      kind
+      # my-kind
       ag
       appimage-run
       arandr
@@ -87,16 +85,18 @@ in {
       htop
       jq
       k3s
+      k9s
       kbfs
       keybase-go
       killall
+      kind
       krew
+      # kubebuilder
       kubectl
+      kustomize
       lazygit
       meld
       minikube
-      # my-kind
-      xst
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
@@ -135,6 +135,7 @@ in {
       xorg.xhost
       xorg.xprop
       xorg.xwininfo
+      xst
       zoom-us
     ];
   };
