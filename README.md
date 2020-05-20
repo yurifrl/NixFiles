@@ -34,6 +34,9 @@ nix search -u
 # Open nix repl
 nix repl
 :l <nixpkgs>
+
+# Tets a single derivation
+nix-build -E 'with import <nixpkgs> { };  callPackage ./default.nix {}'
 ```
 
 ## Reference

@@ -16,6 +16,6 @@ stdenv.mkDerivation rec {
     description = "Kubernetes configuration manager";
     platforms = platforms.linux;
     license = licenses.mit;
-    maintainers = with stdenv.lib.maintainers; [ catern ];
+    maintainers = with stdenv.lib.maintainers; [ yurifrl ];
   };
 }

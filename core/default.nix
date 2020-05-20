@@ -15,9 +15,9 @@ let
   unstableTarball =
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+  homedir = builtins.getEnv "HOME";
   # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
   # obs-v4l2sink = pkgs.callPackage ../pkgs/obs-v4l2sink {};
-  homedir = builtins.getEnv "HOME";
   krew = pkgs.callPackage ../pkgs/krew {};
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
@@ -59,7 +59,6 @@ in {
       # siege
       # cargo
       # gnumake42
-      # my-kind
       ag
       appimage-run
       arandr
@@ -91,7 +90,7 @@ in {
       killall
       kind
       krew
-      # kubebuilder
+      kubebuilder
       kubectl
       kustomize
       lazygit
