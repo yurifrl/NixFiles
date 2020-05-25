@@ -80,7 +80,7 @@ in {
       gitAndTools.diff-so-fancy
       gnumake
       google-chrome-beta
-      gradle
+      unstable.gradle
       htop
       jq
       k3s
@@ -225,6 +225,11 @@ in {
     };
 
     xserver = {
+      # Keyboard config
+      layout = "us,br";
+      # https://askubuntu.com/questions/445099/whats-the-opposite-of-setxkbmap-option-ctrlnocaps
+      xkbOptions = "ctrl:nocaps, seurosign:e, compose:menu, grp:alt_space_toggle";
+
       displayManager.defaultSession = "none+i3";
       enable = true;
       autorun = true;
@@ -243,7 +248,7 @@ in {
           Option "AccelSpeed" "0"
         EndSection
       '';
-      layout = "br";
+
       windowManager = {
         i3 = {
           enable = true;
@@ -282,6 +287,15 @@ in {
     gnome3.gnome-keyring.enable = true;
   };
 
+  # Select internationalisation properties.
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "br-abnt2";
+  # };
+  # i18n = {
+  #   defaultLocale = "en_US.UTF-8";
+  # };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     groups = {
@@ -301,15 +315,6 @@ in {
         initialHashedPassword = "change";
       };
     };
-  };
-
-  # Select internationalisation properties.
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "br-abnt2";
-  };
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
   };
 
   # Set your time zone.

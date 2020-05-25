@@ -34,20 +34,22 @@ values."
                                        git
                                        version-control
                                        ;; Other
+                                       spacemacs-evil
                                        neotree
                                        better-defaults
                                        evil-commentary
+                                       multiple-cursors
                                        helm
                                        ;; Langs
                                        (scala :variables
                                               scala-backend 'scala-metals)
                                        purescript
                                        php
-                                       elixir
+                                       ;; elixir
+                                       (java :variables java-backend 'lsp)
                                        shell-scripts
                                        nixos
                                        javascript
-                                       java
                                        html
                                        emacs-lisp
                                        markdown
@@ -68,6 +70,7 @@ values."
                                        ;;                 spell-checking-enable-auto-dictionary t)
                                        syntax-checking
                                        auto-completion
+                                       dap
                                        (lsp :variables
                                             lsp-haskell-process-path-hie "ghcide"
                                             lsp-haskell-process-args-hie '()
@@ -117,8 +120,9 @@ values."
                                     powerline-evil
                                     ace-link
                                     magit
-                                    yasnippet
-                                    yasnippet-snippets)
+                                    yasnippet-snippets
+                                    ;; yasnippet
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -143,14 +147,14 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https nil
+   dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update t
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
