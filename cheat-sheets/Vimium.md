@@ -14,11 +14,6 @@
 - **gg** Scroll to the top of the page
 - **G** Scroll to the bottom of the page
 
-## Navigation History
-
-- **H** Go back in history
-- **L** Go forward in history
-
 ## Manipulating tabs
 
 - **K** Go one tab right
@@ -26,6 +21,11 @@
 - **t** Create new tab
 - **x** Close current tab
 - **X** Restore closed tab
+
+## Navigation History
+
+- **H** Go back in history
+- **L** Go forward in history
 
 ## Link Navigation
 

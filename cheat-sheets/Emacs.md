@@ -2,25 +2,26 @@
 
 ## Basics
 
+- **C-z** To [unfuck](https://www.reddit.com/r/spacemacs/comments/80zslm/escape_key_doesnt_always_let_me_exit_insert_mode/) my shit up
 - **C-c p a** Projectile find file
 - **C-x** Read e(X)ecute
-- **M** Unit defined by language
-- **C** Independent unit
 - **b** Backward
 - **f** Forward
 - **p** Previous (line)
 - **n** Next (line)
 - **a** Begin
 - **e** End
-- **C-x** Character extend
-- **M-x** Named command extend
-Arrows On helm list buffer navigate, opens file if press right?
-You don’t want to do buffer management, just use C-c p
+- Arrows On helm list buffer navigate, opens file if press right?
+- You don’t want to do buffer management, just use C-c p
 
 ## Buffer
 
-- **Ctrl+SPC** Flag buffer for deletion
-- **Alt+Shift+D** Delete flagged buffers
+- **C-x C-b** Opens buffer list in split window
+  - **d** To flag buffer for deletion
+  - **x** To remove flagged buffers
+- **C-x b** Opens buffer list on helm
+  - **Ctrl+SPC** Flag buffer for deletion
+  - **Alt+Shift+D** Delete flagged buffers
 
 ## Dired
 
@@ -30,7 +31,7 @@ You don’t want to do buffer management, just use C-c p
 
 ## Important
 
-- **<SPC>-Tab** Switch to last open buffer
+- **SPC-Tab** Switch to last open buffer
 - **C-c d** Close buffer on helm buffer list
 - **C-x C-b** List buffers
 - **C-x b** Quick buffer switch
@@ -43,7 +44,7 @@ You don’t want to do buffer management, just use C-c p
 - **C-h c** CMD Display CMD short help
 - **C-h m** Display docs on current major mode
 
-### Config
+## Config
 
 - **SPC-f-e-R** Reload config
 
@@ -54,6 +55,10 @@ You don’t want to do buffer management, just use C-c p
 - **n** Navigate to next occurrence of the word
 - **C-V g r I** Multi cursor line begin
 - **Cl-V g r A** Multi cursor line end
+
+## Neotree
+
+- **SPC f t** Toggle Neotree
 
 ## Go
 
@@ -69,6 +74,10 @@ You don’t want to do buffer management, just use C-c p
 
 - projectile-switch-project -> C-c C-p
 - Describe-mode C-h m
+
+## I'm good
+
+- **M-x** Named command extend
 
 ### ????
 

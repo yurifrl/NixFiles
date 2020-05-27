@@ -365,6 +365,9 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; Make C-c more powerfull
+  ;; https://github.com/syl20bnr/spacemacs/issues/12133
+  (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)
   ;; http://magnus.therning.org/posts/2019-09-19-000-haskell--ghcide--and-spacemacs.html
   ;; https://github.com/ssbothwell/dotfiles/blob/master/.spacemacs
   ;;
