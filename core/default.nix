@@ -27,7 +27,7 @@ in {
   imports = [
     ./home
     ./secrets
-    # ./xboxdrv.nix
+    ./modules
   ];
 
   nix = {
@@ -130,10 +130,11 @@ in {
       vim
       vlc
       wget
-      xorg.xbacklight
+      brightnessctl
       xorg.xhost
       xorg.xprop
       xorg.xwininfo
+      xorg.xev
       xst
       zoom-us
     ];
@@ -192,15 +193,25 @@ in {
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
 
+  # location
+  location = {
+    latitude = -23.502428;
+    longitude = -46.626527;
+  };
+
   # List services that you want to enable:
   services = {
-    # redshift = {
-    #   enable = false;
-    #   latitude = "-23.502428";
-    #   longitude = "-46.626527";
-    #   temperature.day = 6500;
-    #   temperature.night = 2700;
-    # };
+    redshift = {
+      enable = true;
+      brightness = {
+        day = "1";
+        night = "1";
+      };
+      temperature = {
+        # temperature.day = 6500;
+        # temperature.night = 2700;
+      };
+    };
 
     # It's for auto detecting external monitor and scripts for that
     # It seams that a hard restart fixes it https://forum.manjaro.org/t/hdmi-shows-disconnected-in-xrandr/113606/3
@@ -236,7 +247,7 @@ in {
       exportConfiguration = true;
       libinput = {
         enable = true;
-        # naturalScrolling = true;
+        naturalScrolling = true;
         tapping =  false;
       };
       config = ''
@@ -245,7 +256,13 @@ in {
           Driver "libinput"
           MatchIsPointer "on"
           Option "AccelProfile" "flat"
-          Option "AccelSpeed" "0"
+          Option "AccelSpeed" "1.0"
+        EndSection
+        Section "InputClass"
+          Identifier "Mouse Accel MX Ergo Mouse"
+          MatchDriver "libinput"
+          MatchProduct "MX Ergo Mouse"
+          Option "AccelSpeed" "1.0"
         EndSection
       '';
 
@@ -287,15 +304,6 @@ in {
     gnome3.gnome-keyring.enable = true;
   };
 
-  # Select internationalisation properties.
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "br-abnt2";
-  # };
-  # i18n = {
-  #   defaultLocale = "en_US.UTF-8";
-  # };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     groups = {
@@ -325,36 +333,15 @@ in {
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      # Gime emojigs
       noto-fonts-emoji
-      # Fallback for xst
       symbola
-      # Must have
       powerline-fonts
       source-code-pro
-      # hmm
       fira-code
       fira-mono
       fira-code-symbols
-      # Don`t know
-      # freefont_ttf
-      # anonymousPro
-      # corefonts
-      # dejavu_fonts
-      # noto-fonts
-      # freefont_ttf
-      # google-fonts
-      # inconsolata
-      # liberation_ttf
-      # terminus_font
-      # ttf_bitstream_vera
-      # ubuntu_
-      # font_family
     ];
   };
-
-  # Keychain
-  # security.pam.services.lightdm.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -378,8 +365,4 @@ in {
   # /etc/hosts
   # networking.extraHosts = ''
   # '';
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 }

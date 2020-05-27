@@ -7,7 +7,6 @@ let
   makeDevice = devicePath: { config, pkgs, lib, ... }: {
     imports = [
       devicePath
-      #./cachix.nix
     ];
     #
     system.stateVersion = "19.09";

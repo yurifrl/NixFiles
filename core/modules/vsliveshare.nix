@@ -2,19 +2,10 @@
 
 {
   imports = [
-    "${builtins.fetchGit {
-      url = "https://github.com/msteen/nixos-vsliveshare.git";
-      ref = "06259014e30fe1d2b328e0550a9cbe422981d9a2";
-    }}/modules/vsliveshare/home.nix"
+    (fetchTarball "https://github.com/msteen/nixos-vsliveshare/tarball/master")
   ];
 
-  home.packages = [
-    pkgs.gnome3.gnome-keyring
-    # pkgs.jdk11
-    pkgs.vscode
-  ];
-
-  services.gnome-keyring.enable = true;
+  #services.gnome-keyring.enable = true;
 
   services.vsliveshare = {
     enable = true;
