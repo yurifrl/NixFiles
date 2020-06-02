@@ -258,6 +258,7 @@ in {
       # xkbOptions = "ctrl:nocaps, seurosign:e, compose:menu, grp:alt_space_toggle";
       xkbOptions = "ctrl:nocaps,grp:alt_space_toggle,compose:ralt";
 
+      ## Nice sample cofig with options set here https://github.com/danielfullmer/nixos-config/blob/master/profiles/desktop/default.nix
       displayManager.defaultSession = "none+i3";
       enable = true;
       autorun = true;
