@@ -365,6 +365,8 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
+  ;; Change buffer handler
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
   ;; Make C-c more powerfull
   ;; https://github.com/syl20bnr/spacemacs/issues/12133
   (define-key evil-insert-state-map (kbd "C-c") 'evil-normal-state)

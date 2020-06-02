@@ -22,6 +22,9 @@ Yuri`s Nix DotFiles
 Some nix usefull commands
 
 ```bash
+# Check nix option
+nixos-option services.xserve
+
 # Delete old generations
 sudo nix-env --delete-generations old
 

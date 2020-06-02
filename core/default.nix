@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+# Edit thi/ configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 # Check for options https://nixos.org/nixos/options.html#
@@ -236,33 +236,51 @@ in {
     };
 
     xserver = {
+      imwheel = {
+        # enable = true;
+        # ## https://github.com/turboMaCk/Dotfiles/blob/9bfb7c098cd7290bfea6713f52ff1c2d3d2edb1c/nixos/machines/desktop.nix#L133
+        # # Shift_L,   Up,   Shift_L|Button4, 4
+        # # Shift_L,   Down, Shift_L|Button5, 4
+        # # Control_L, Up,   Control_L|Button4
+        # # Control_L, Down, Control_L|Button5
+        # rules = {
+        #     ".*" = ''
+        #     None,      Up,   Button4, 3
+        #     None,      Down, Button5, 3
+        #     '';
+        # };
+      };
+      ## if I want to add programmers devorak
+      ## http://stesie.github.io/2016/08/nixos-custom-keyboard-layout
       # Keyboard config
       layout = "us,br";
       # https://askubuntu.com/questions/445099/whats-the-opposite-of-setxkbmap-option-ctrlnocaps
-      xkbOptions = "ctrl:nocaps, seurosign:e, compose:menu, grp:alt_space_toggle";
+      # xkbOptions = "ctrl:nocaps, seurosign:e, compose:menu, grp:alt_space_toggle";
+      xkbOptions = "ctrl:nocaps,grp:alt_space_toggle,compose:ralt";
 
       displayManager.defaultSession = "none+i3";
       enable = true;
       autorun = true;
-      exportConfiguration = true;
       libinput = {
         enable = true;
-        naturalScrolling = true;
+        # This seams to enable natural scrolling
+        naturalScrolling = false;
         tapping =  false;
+        accelProfile = "flat";
       };
+      exportConfiguration = true;
+      # AccelSeepd Does the trick for mouse speed
       config = ''
         Section "InputClass"
-          Identifier "mouse accel"
+          Identifier "Mx Ergo"
+          MatchIsPointer "true"
+          MatchProduct "Ergo|Mouse"
           Driver "libinput"
-          MatchIsPointer "on"
-          Option "AccelProfile" "flat"
-          Option "AccelSpeed" "1.0"
-        EndSection
-        Section "InputClass"
-          Identifier "Mouse Accel MX Ergo Mouse"
-          MatchDriver "libinput"
-          MatchProduct "MX Ergo Mouse"
-          Option "AccelSpeed" "1.0"
+          Option "AccelSpeed" "0.4"
+          Option "AccelerationThreshold"   "0"
+          Option "AccelerationNumerator"   "4"
+          Option "AccelerationDenominator" "2"
+          Option "Coordinate Transformation Matrix" "1 0 0 0 1 0 0 0 .6"
         EndSection
       '';
 
@@ -290,8 +308,6 @@ in {
       # https://nixos.wiki/wiki/I3
       desktopManager = {
         xterm.enable = false;
-        # Not working
-        # wallpaper.mode = "fill";
         xfce = {
           enable = false;
           noDesktop = true;

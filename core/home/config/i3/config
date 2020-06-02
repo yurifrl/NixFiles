@@ -111,8 +111,8 @@ bar {
   position top
 }
 
-# Everytime a window has youtube in the name move to 9
-for_window [title="(?i)youtube*"] move to 9
+# Everytime a window has youtube in the name move to 4
+for_window [title="(?i)youtube*"] move to 4
 
 # Toggle floating
 for_window [class="^rdesktop"] floating disable
@@ -132,29 +132,29 @@ for_window [class="hollow_knight.x86_64"] floating disable
 # Bind application to worspace
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
 # xprop | grep CLASS
-# 10 Chat Apps
-assign [class="discord"] 10
-assign [class="zoom"] 10
-assign [class="Slack"] 10
-assign [instance="(?i)slack*"] 10
-assign [instance="(?i)whatsapp*"] 10
-assign [instance="(?i)telegram*"] 10
-# 9 Is For midia
-assign [title="(?i)youtube*"] 9
-assign [instance="(?i)spotify*"] 9
-# 8 Games
-assign [class="Steam"] 8
-# 7 Also Games
-assign [class="payday2_release"] 8
-assign [title="UNDERTALE"] 8
-assign [title="MAGICKA 2"] 8
-assign [class="Magicka2_x64"] 8
-assign [class="hollow_knight.x86_64"] 8
-assign [class="HotlineMiami2"] 8
-assign [class="hl2_linux"] 8
-# 2 ...
-# 3 Is the fallback for apps
-assign [window_role="pop-up"] 3
+# 6 Games
+assign [class="Steam"] 6
+# 5 Also Games
+assign [class="payday2_release"] 6
+assign [title="UNDERTALE"] 6
+assign [title="MAGICKA 2"] 6
+assign [class="Magicka2_x64"] 6
+assign [class="hollow_knight.x86_64"] 6
+assign [class="HotlineMiami2"] 6
+assign [class="hl2_linux"] 6
+
+# 4 Is For midia
+assign [title="(?i)youtube*"] 4
+assign [instance="(?i)spotify*"] 4
+
+# 3 Chat Apps
+assign [class="discord"] 3
+assign [class="zoom"] 3
+assign [class="Slack"] 3
+assign [instance="(?i)slack*"] 3
+assign [instance="(?i)whatsapp*"] 3
+assign [instance="(?i)telegram*"] 3
+
 # 1 Is for editors
 assign [class="st-256color"] 1
 assign [class="Emacs"] 1
@@ -163,9 +163,12 @@ assign [class="Code"] 1
 assign [title=".*Emulator.*"] 1
 assign [class="jetbrains-studio"] 1
 
+# 4 Is the fallback for apps
+assign [window_role="pop-up"] 4
+
 # 2 For Chrome
 # assign [class="(?i)google*"] 2
-assign [class="Google-chrome-beta" id=31457489 instance="google-chrome-beta" title="New Tab - Google Chrome" window_role="browser"] 2
+# assign [class="Google-chrome-beta" id=31457489 instance="google-chrome-beta" title="New Tab - Google Chrome" window_role="browser"] 2
 
 # ================================ My Custom crazy keybinds
 # Run scripts whenever i3 config run
@@ -186,8 +189,9 @@ exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-up
 # i3menu
 exec --no-startup-id parcellite -d
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-manager
+#exec --no-startup-id blueman-manager
 # Apps
 exec --no-startup-id i3-sensible-terminal
-exec --no-startup-id google-chrome-beta
-exec --no-startup-id Discord
+# exec --no-startup-id google-chrome-beta
+exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'
+# exec --no-startup-id Discord
