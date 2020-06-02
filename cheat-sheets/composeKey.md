@@ -1,5 +1,7 @@
 # Compose key Alt Right
 
+`AltR +`
+
 ```
 '	a		á		apostrophe	→ acute				áćéíĺńóṕŕśúýźÁĆÉÍĹŃÓṔŔŚÚÝŹ…
 `	a		à		grave		→ grave				àèìòùÀÈÌÒÙ…
