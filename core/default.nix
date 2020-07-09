@@ -5,7 +5,6 @@
 
 { config, pkgs, ... }:
 
-# https://github.com/tesq0/nix-config/blob/a11c7a0c7f85694a71d862e8279956bd14c913d8/nixos/xboxdrv.nix
 with (import (builtins.fetchGit {
   name = "ghcide-for-nix";
   url = https://github.com/magthe/ghcide-for-nix;
@@ -67,7 +66,6 @@ in {
       bind
       charles4
       containerd
-      deepin.deepin-screenshot
       discord
       docker
       docker-compose
@@ -120,11 +118,13 @@ in {
       unstable.fish
       unstable.go
       unstable.gotools
-      unstable.kubernetes-helm
+      # kubernetes-helm
+      audacity
+      nmap
+      nmap-graphical
       unstable.metals
       unstable.pbis-open
       unstable.tmux
-      unstable.vscode
       unzip
       vgo2nix
       vim
@@ -137,6 +137,15 @@ in {
       xorg.xev
       xst
       zoom-us
+      bazel
+      nodejs
+      wirelesstools
+      arduino
+      python3
+      ccls
+      clang
+      clang-tools
+      platformio
     ];
   };
 
@@ -155,6 +164,19 @@ in {
 
   # Network
   networking.networkmanager.enable = true;
+
+  # Don't require sudo for brigthnessctl
+  security = {
+    # sudo.enable = true;
+    sudo.extraRules = [{
+      runAs = "root";
+      groups = [ "wheel" ];
+      commands = [{
+        command = "/run/current-system/sw/bin/brightnessctl";
+        options = [ "NOPASSWD" ];
+      }];
+    }];
+  };
 
   # Sound and Bluetooth
   hardware = {
@@ -201,6 +223,29 @@ in {
 
   # List services that you want to enable:
   services = {
+    # Allow access to USB devices without requiring root permissions
+    udev.extraRules = ''
+      # SR V4 power board
+      SUBSYSTEM=="usb", ATTR{idVendor}=="1bda", ATTR{idProduct}=="0010", GROUP="dialout", MODE="0666"
+      # SR V4 servo board
+      SUBSYSTEM=="usb", ATTR{idVendor}=="1bda", ATTR{idProduct}=="0011", GROUP="dialout", MODE="0666"
+      # Altera "USB Blaster" JTAG cable
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="09fb", ATTRS{idProduct}=="6001", GROUP="dialout", MODE="0666"
+    '';
+
+    logind.lidSwitch = "ignore";
+
+    # https://github.com/vidbina/nixos-configuration
+    # http://vid.bina.me/config/mediabuttons-nixos-dell-xps/
+    # https://nixos.wiki/wiki/Actkbd
+    actkbd = {
+      enable = true;
+      bindings = [
+        { keys = [ 224 ]; events = [ "key" ]; command = "brightnessctl s 30%-"; }
+        { keys = [ 225 ]; events = [ "key" ]; command = "brightnessctl s +30"; }
+      ];
+    };
+
     redshift = {
       enable = true;
       brightness = {
@@ -331,12 +376,12 @@ in {
     users = {
       yuri = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "docker" "networkmanager" "audio" "dialout" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";
       };
       "yuri.lima" = {
         isNormalUser = true;
-        extraGroups = [ "wheel" "docker" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+        extraGroups = [ "wheel" "docker" "networkmanager" "audio" "dialout" ]; # Enable ‘sudo’ for the user.
         initialHashedPassword = "change";
       };
     };

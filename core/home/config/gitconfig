@@ -18,6 +18,7 @@
   add="!echo 'use lg'"
   commit="!echo 'use lg'"
   wtf="!wtc commit -a"
+  sync="!git pull && git push"
 [push]
  default=simple
 [core]

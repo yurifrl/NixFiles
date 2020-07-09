@@ -78,9 +78,9 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 #
-bindsym $mod+XF86MonBrightnessDow workspace 5
-bindsym XF86MonBrightnessUp exec brightnessctl s +5% # increase screen brightness
-bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # decrease screen brightness
+# bindsym $mod+XF86MonBrightnessDow workspace 5
+# bindsym XF86MonBrightnessUp exec brightnessctl s +30 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec brightnessctl s 30%- # decrease screen brightness
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -177,15 +177,18 @@ assign [window_role="pop-up"] 4
 # move workspace to left and right monitors
 # Literally just MOD+SHIFT+} to move the workspace to the right monitor,
 # and MOD+SHIFT+{ to move the workspace left.
-bindsym $mod+Shift+bracketleft move workspace to output up
-bindsym $mod+Shift+bracketright move workspace to output down
+# bindsym $mod+Shift+bracketleft move workspace to output up
+# bindsym $mod+Shift+bracketright move workspace to output down
+
+bindsym $mod+Shift+bracketleft move workspace to output right
+bindsym $mod+Shift+bracketright move workspace to output left
 
 # Key bind lock
 bindsym Control+$mod+l exec "i3lock -c 000000 -n"
 
 # ================================ On Start
 # Scripts
-exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-up
+exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-left
 # i3menu
 exec --no-startup-id parcellite -d
 exec --no-startup-id nm-applet

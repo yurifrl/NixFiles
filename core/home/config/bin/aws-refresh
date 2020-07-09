@@ -2,6 +2,7 @@
 
 ROOT=$HOME/Keybase/private/yurifrl/envs/dafiti/global
 
+echo "" > $ROOT/AWS_ENVS
 vim $ROOT/AWS_ENVS
 
 source $ROOT/AWS_ENVS

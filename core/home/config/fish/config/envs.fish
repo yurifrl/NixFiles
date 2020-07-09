@@ -56,6 +56,8 @@ set -gx PATH "$HOME/.ghcup/bin" $PATH
 set -gx PATH "$HOME/.krew/bin" $PATH
 # Kubebuilder
 set -gx PATH "/usr/local/kubebuilder/bin" $PATH
+# Istio
+set -gx PATH "$HOME/.istioctl/bin" $PATH
 
 # Go Envs
 set -gx GOOS linux

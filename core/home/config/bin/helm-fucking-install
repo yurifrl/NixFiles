@@ -10,12 +10,14 @@ CLUSTER_NAME=$3
 PURGE="${PURGE:-false}"
 helm=/usr/local/bin/helm-2-11
 
-VALUES="${VALUES:-"deploy/chart/qa-values.yaml"}"
+ADMIN="${ADMIN:-false}"
+VALUES="${VALUES:-"$CHARTS/helm-install-products-new/values.yaml"}"
 
 : "${CHARTS:?Variable not set or empty}"
 : "${CLUSTER_NAME:?Variable not set or empty}"
 : "${PRODUCT_NAME:?Variable not set or empty}"
 : "${TEAM:?Variable not set or empty}"
+: "${ADMIN:?Variable not set or empty}"
 
 echo "CHARTS=$CHARTS"
 echo "CLUSTER_NAME=$CLUSTER_NAME"
@@ -23,6 +25,7 @@ echo "PRODUCT_NAME=$PRODUCT_NAME"
 echo "PURGE=$PURGE"
 echo "TEAM=$TEAM"
 echo "VALUES=$VALUES"
+echo "ADMIN=$ADMIN"
 
 echo -n "Go on (y/n)? "
 read answer
@@ -49,6 +52,23 @@ echo "### helm init"
 $helm init \
     --service-account "$PRODUCT_NAME-helm" \
     --tiller-namespace "$PRODUCT_NAME-helm"
+
+if [ "$ADMIN" = true ]; then
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: "$PRODUCT_NAME-helm"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: "$PRODUCT_NAME-helm"
+    namespace: "$PRODUCT_NAME-helm"
+EOF
+fi
 
 echo '### Checking tiller state'
 CMD='kubectl -n "$PRODUCT_NAME-helm" get pod -o jsonpath="{.items[0].status.phase}"'

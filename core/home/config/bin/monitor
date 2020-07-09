@@ -41,7 +41,7 @@ if [ $CMD = "mirror-hdmi" ] ;then
   echo "Mirroing with VGA output"
 
   xrandr --output eDP-1 --primary --mode 1366x768 --scale 1x1 \
-    --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
+         --output HDMI-1 --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711
 
   exit 0
 fi
@@ -50,10 +50,32 @@ if [ $CMD = "extend-hdmi-up" ] ;then
   echo "Extending with VGA output"
 
   xrandr --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal \
-	 --output eDP-1 --primary --mode 1366x768 --pos 304x1080 --rotate normal
+         --output eDP-1 --primary --mode 1366x768 --pos 304x1080 --rotate normal
 
   exit 0
 fi
+
+if [ $CMD = "extend-hdmi-left" ] ;then
+    echo "Extending HDMI output left"
+
+    xrandr --output eDP-1 --primary --mode 1366x768 --pos 0x0 --rotate normal \
+           --output HDMI-1 --mode 1920x1080 --pos 1366x0 --rotate normal \
+           --output DP-1 --off \
+           --output HDMI-2 --off
+
+    exit 0
+fi
+if [ $CMD = "extend-hdmi-right" ] ;then
+    echo "Extending HDMI output right"
+
+    xrandr --output eDP-1 --primary --mode 1366x768 --pos 1920x312 --rotate normal \
+           --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+           --output DP-1 --off \
+            --output HDMI-2 --off
+
+    exit 0
+fi
+
 
 if [ $CMD = "extend-vga-up" ] ;then
   echo "Extending with VGA output"
@@ -67,11 +89,15 @@ if [ $CMD = "extend-vga-up" ] ;then
   exit 0
 fi
 
+
 echo "OPTIONS:"
 echo "
 reset
 mirror-vga
 extend-vga-up
+extend-hmdi-up
+extend-hmdi-left
+extend-hmdi-right
 "
 
 exit 1

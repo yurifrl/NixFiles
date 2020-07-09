@@ -3,5 +3,6 @@
 {
   imports = [
     #   ./vsliveshare.nix
+    ./vscode.nix
   ];
 }

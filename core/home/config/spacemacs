@@ -70,7 +70,7 @@ values."
                                        ;;                 spell-checking-enable-auto-dictionary t)
                                        syntax-checking
                                        auto-completion
-                                       dap
+                                       ;; dap
                                        (lsp :variables
                                             lsp-haskell-process-path-hie "ghcide"
                                             lsp-haskell-process-args-hie '()
@@ -96,6 +96,7 @@ values."
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    dap
                                     hybrid
                                     ensime
                                     php-extras
