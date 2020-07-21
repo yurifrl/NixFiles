@@ -57,6 +57,8 @@ nix-build -E 'with import <nixpkgs> { };  callPackage ./default.nix {}'
     - https://gist.github.com/cleverca22/ef075e5dfe092fa6b08cec0ae1dfde66
     - https://gist.github.com/dhess/6bbb00100b0fe9b8e17472c0c62bfb10
 - SOmething about nix packages http://gfxmonk.net/2018/05/12/a-journey-towards-better-nix-package-development.html
+- [Reference nixfiles](https://github.com/sondr3/dotfiles)
+- [Nix reference thread](https://discourse.nixos.org/t/how-do-you-organize-your-configuration/7306)
 
 ## Licencing
 

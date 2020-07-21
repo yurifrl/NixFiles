@@ -11,10 +11,13 @@ with (import (builtins.fetchGit {
   rev = "927a8caa62cece60d9d66dbdfc62b7738d61d75f";
 }));
 let
+  # Unstable packages
   unstableTarball =
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
+  # Envs
   homedir = builtins.getEnv "HOME";
+  # My Packages
   krew = pkgs.callPackage ../pkgs/krew {};
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
@@ -49,21 +52,15 @@ in {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
-      # dftech-tools
-      # kubernetes-helm
-      # nixos.android-studio-stable
-      # obs-v4l2sink
-      # unstable.android-studio
-      # siege
-      # cargo
-      # gnumake42
-      # appimage-run
-      # kubernetes-helm
       ag
       arandr
+      arduino
       argocd
+      audacity
       awscli
+      bazel
       bind
+      brightnessctl
       charles4
       containerd
       discord
@@ -78,7 +75,6 @@ in {
       gitAndTools.diff-so-fancy
       gnumake
       google-chrome-beta
-      unstable.gradle
       htop
       jq
       k3s
@@ -97,14 +93,19 @@ in {
       networkmanager-openconnect
       networkmanager-openvpn
       networkmanagerapplet
+      ngrok
       nix-prefetch
       nix-prefetch-git
+      nmap
+      nmap-graphical
+      nodejs
       obs-studio
       openconnect
       openssl
       parcellite # Manages clipboard sync
       pavucontrol
       pulsemixer
+      python3
       ranger
       sbt
       sdl-jstest
@@ -118,9 +119,7 @@ in {
       unstable.fish
       unstable.go
       unstable.gotools
-      audacity
-      nmap
-      nmap-graphical
+      unstable.gradle
       unstable.metals
       unstable.pbis-open
       unstable.tmux
@@ -129,19 +128,13 @@ in {
       vim
       vlc
       wget
-      brightnessctl
+      wirelesstools
+      xorg.xev
       xorg.xhost
       xorg.xprop
       xorg.xwininfo
-      xorg.xev
       xst
       zoom-us
-      bazel
-      nodejs
-      wirelesstools
-      arduino
-      python3
-      ngrok
     ];
   };
 
