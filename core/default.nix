@@ -9,14 +9,12 @@ with (import (builtins.fetchGit {
   name = "ghcide-for-nix";
   url = https://github.com/magthe/ghcide-for-nix;
   rev = "927a8caa62cece60d9d66dbdfc62b7738d61d75f";
-}) );
+}));
 let
   unstableTarball =
     fetchTarball
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   homedir = builtins.getEnv "HOME";
-  # dftech-tools = pkgs.callPackage ../pkgs/dftech-tools {};
-  # obs-v4l2sink = pkgs.callPackage ../pkgs/obs-v4l2sink {};
   krew = pkgs.callPackage ../pkgs/krew {};
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
@@ -33,7 +31,7 @@ in {
   nix = {
     trustedUsers = [ "root" "yuri" "yuri.lima"];
     envVars = {
- NIX_GITHUB_PRIVATE_USERNAME = "";
+      NIX_GITHUB_PRIVATE_USERNAME = "";
       NIX_GITHUB_PRIVATE_PASSWORD = "";
     };
   };
