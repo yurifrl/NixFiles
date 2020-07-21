@@ -20,6 +20,7 @@ let
   krew = pkgs.callPackage ../pkgs/krew {};
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
+  tilt = pkgs.callPackage ../pkgs/tilt {};
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
   kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
 in {
@@ -32,7 +33,7 @@ in {
   nix = {
     trustedUsers = [ "root" "yuri" "yuri.lima"];
     envVars = {
-      NIX_GITHUB_PRIVATE_USERNAME = "";
+ NIX_GITHUB_PRIVATE_USERNAME = "";
       NIX_GITHUB_PRIVATE_PASSWORD = "";
     };
   };
@@ -58,8 +59,9 @@ in {
       # siege
       # cargo
       # gnumake42
+      # appimage-run
+      # kubernetes-helm
       ag
-      appimage-run
       arandr
       argocd
       awscli
@@ -118,7 +120,6 @@ in {
       unstable.fish
       unstable.go
       unstable.gotools
-      # kubernetes-helm
       audacity
       nmap
       nmap-graphical
@@ -142,14 +143,12 @@ in {
       wirelesstools
       arduino
       python3
-      ccls
-      clang
-      clang-tools
-      platformio
+      ngrok
     ];
   };
 
   nixpkgs.config = {
+    allowBroken = true;
     allowUnfree = true;
     # This is for openconnect
     permittedInsecurePackages = [
@@ -223,6 +222,7 @@ in {
 
   # List services that you want to enable:
   services = {
+    resolved.enable = true;
     # Allow access to USB devices without requiring root permissions
     udev.extraRules = ''
       # SR V4 power board

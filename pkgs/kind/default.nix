@@ -4,10 +4,10 @@ with stdenv.lib;
 
 buildGoPackage rec {
   pname = "kind";
-  version = "0.8.1";
+  version = "master";
 
   src = fetchFromGitHub {
-    rev    = "v${version}";
+    rev    = "${version}";
     owner  = "kubernetes-sigs";
     repo   = "kind";
     sha256 = "0r301nqvycik8fwlghq0cymmq4rm7xp8haj39i2nynxyw8zk6zym";

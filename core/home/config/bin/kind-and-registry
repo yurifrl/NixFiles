@@ -1,47 +1,31 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -o errexit
 
-kind delete cluster
-
 # create registry container unless it already exists
-REGISTRY_CONTAINER_NAME='kind-registry'
-REGISTRY_PORT='5000'
-if [ "$(docker inspect -f '{{.State.Running}}' "${REGISTRY_CONTAINER_NAME}")" != 'true' ]; then
-	  docker run -d -p "${REGISTRY_PORT}:5000" --restart=always --name "${REGISTRY_CONTAINER_NAME}" registry:2
+reg_name='kind-registry'
+reg_port='5000'
+running="$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)"
+if [ "${running}" != 'true' ]; then
+    docker run \
+           -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
+           registry:2
 fi
 
 # create a cluster with the local registry enabled in containerd
-# image is passed here because there seems to exist a bug with latest
 cat <<EOF | kind create cluster --config=-
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 containerdConfigPatches:
 - |-
-  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry:${REGISTRY_PORT}"]
-    endpoint = ["http://registry:${REGISTRY_PORT}"]
-nodes:
-- role: control-plane
-  image: kindest/node:v1.16.2@sha256:490e066d9b30a50584aa77c20e67edcceb2d97276112200b223dd8a3d718c973
-  extraMounts:
-  - hostPath: /var/run/docker.sock
-    containerPath: /var/docker.sock
-  kubeadmConfigPatches:
-  - |
-    kind: InitConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        node-labels: "ingress-ready=true"
-        authorization-mode: "AlwaysAllow"
-  extraPortMappings:
-  # Istio port
-  - containerPort: 31460
-    hostPort: 80
-    protocol: TCP
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:${reg_port}"]
+    endpoint = ["http://${reg_name}:${reg_port}"]
 EOF
 
-# add the registry to /etc/hosts on each node
-for node in $(kind get nodes); do
-    docker exec "${node}" sh -c "echo $(docker inspect --format '{{.NetworkSettings.IPAddress }}' "${REGISTRY_CONTAINER_NAME}") registry >> /etc/hosts"
-done
+# connect the registry to the cluster network
+docker network connect "kind" "${reg_name}"
 
-kubectl cluster-info --context kind-kind
+# tell https://tilt.dev to use the registry
+# https://docs.tilt.dev/choosing_clusters.html#discovering-the-registry
+for node in $(kind get nodes); do
+    kubectl annotate node "${node}" "kind.x-k8s.io/registry=localhost:${reg_port}";
+done
