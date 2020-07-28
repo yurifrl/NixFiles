@@ -25,6 +25,7 @@ let
   kubeseal = pkgs.callPackage ../pkgs/kubeseal {};
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
   kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
+  mydiscord = pkgs.callPackage ../pkgs/discord {};
 in {
   imports = [
     ./home
@@ -54,6 +55,7 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # killall: use pkill -f
+      mydiscord
       kubeseal
       ag
       arandr
@@ -120,7 +122,7 @@ in {
       tilt
       unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
-      discord
+      # unstable.discord-ptb
       unstable.fish
       unstable.go
       unstable.gotools
