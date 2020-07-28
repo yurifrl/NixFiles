@@ -22,6 +22,7 @@ let
   xst = pkgs.callPackage ../pkgs/xst {};
   kind = pkgs.callPackage ../pkgs/kind {};
   tilt = pkgs.callPackage ../pkgs/tilt {};
+  kubeseal = pkgs.callPackage ../pkgs/kubeseal {};
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
   kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
 in {
@@ -52,6 +53,8 @@ in {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
+      # killall: use pkill -f
+      kubeseal
       ag
       arandr
       arduino
@@ -63,7 +66,6 @@ in {
       brightnessctl
       charles4
       containerd
-      discord
       docker
       docker-compose
       eksctl
@@ -76,16 +78,17 @@ in {
       gnumake
       google-chrome-beta
       htop
+      inetutils
       jq
       k3s
       k9s
       kbfs
       keybase-go
-      killall
       kind
       krew
       kubebuilder
       kubectl
+      kubernetes-helm
       kustomize
       lazygit
       meld
@@ -109,6 +112,7 @@ in {
       ranger
       sbt
       sdl-jstest
+      shutter
       smbclient
       stack
       steam
@@ -116,6 +120,7 @@ in {
       tilt
       unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
+      discord
       unstable.fish
       unstable.go
       unstable.gotools
@@ -134,6 +139,7 @@ in {
       xorg.xprop
       xorg.xwininfo
       xst
+      youtube-dl
       zoom-us
     ];
   };

@@ -109,6 +109,9 @@ bar {
 
   # i3bar position
   position top
+
+  # tray position
+  tray_output eDP-1
 }
 
 # Everytime a window has youtube in the name move to 4
@@ -133,15 +136,16 @@ for_window [class="hollow_knight.x86_64"] floating disable
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
 # xprop | grep CLASS
 # 6 Games
-assign [class="Steam"] 6
+assign [class="Steam"] 5
 # 5 Also Games
-assign [class="payday2_release"] 6
-assign [title="UNDERTALE"] 6
-assign [title="MAGICKA 2"] 6
-assign [class="Magicka2_x64"] 6
-assign [class="hollow_knight.x86_64"] 6
-assign [class="HotlineMiami2"] 6
-assign [class="hl2_linux"] 6
+assign [class="payday2_release"] 5
+assign [title="UNDERTALE"] 5
+assign [title="MAGICKA 2"] 5
+assign [class="Magicka2_x64"] 5
+assign [class="hollow_knight.x86_64"] 5
+assign [class="HotlineMiami2"] 5
+assign [class="hl2_linux"] 5
+assign [class="arma3.x86_64"] 5
 
 # 4 Is For midia
 assign [title="(?i)youtube*"] 4
