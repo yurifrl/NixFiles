@@ -26,6 +26,7 @@ let
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
   kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
   mydiscord = pkgs.callPackage ../pkgs/discord {};
+  armalauncher = pkgs.callPackage ../pkgs/arma3-unix-launcher {};
 in {
   imports = [
     ./home

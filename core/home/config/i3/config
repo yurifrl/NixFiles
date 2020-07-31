@@ -146,6 +146,7 @@ assign [class="hollow_knight.x86_64"] 5
 assign [class="HotlineMiami2"] 5
 assign [class="hl2_linux"] 5
 assign [class="arma3.x86_64"] 5
+assign [class="arma3launcher.exe"] 5
 
 # 4 Is For midia
 assign [title="(?i)youtube*"] 4
