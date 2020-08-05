@@ -17,7 +17,11 @@ let
                               config.boot.kernelPackages.v4l2loopback
                             ];
 
-      extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
+      # Fix keyboard function key issue https://www.reddit.com/r/MechanicalKeyboards/comments/d5io49/keychron_k2_f_keys_dont_work_w_linux_help/
+      extraModprobeConfig = ''
+      options bluetooth disable_ertm=1
+      options hid_apple fnmode=2
+      '';
     };
     # Needed for steam
     hardware.opengl.driSupport32Bit = true;

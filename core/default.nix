@@ -241,8 +241,8 @@ in {
     actkbd = {
       enable = true;
       bindings = [
-        { keys = [ 224 ]; events = [ "key" ]; command = "brightnessctl s 30%-"; }
-        { keys = [ 225 ]; events = [ "key" ]; command = "brightnessctl s +30"; }
+        { keys = [ 232 ]; events = [ "key" ]; command = "brightnessctl s 30%-"; }
+        { keys = [ 233 ]; events = [ "key" ]; command = "brightnessctl s +30"; }
       ];
     };
 

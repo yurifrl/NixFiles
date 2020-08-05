@@ -3,6 +3,7 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... }:
 
+# Current in use
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>

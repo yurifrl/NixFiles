@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, fetchurl, ... }:
 
 {
   imports = [
-    #   ./vsliveshare.nix
+    # ./vsliveshare.nix
     ./vscode.nix
+    ./certs.nix
   ];
 }

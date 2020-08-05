@@ -96,31 +96,31 @@ values."
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
-                                    dap
-                                    hybrid
-                                    ensime
-                                    php-extras
-                                    undo-tree
+                                    ace-link
                                     auto-yasnippet
-                                    helm-c-yasnippet
-                                    magit-gitflow
-                                    magit-popup
-                                    magit-svn
-                                    git-gutter+
-                                    git-gutter
-                                    git-timemachine
-                                    git-messenger
-                                    git-link
-                                    git-gutter-fringe+
-                                    git-gutter-fringe
-                                    magit-svn
-                                    magit-gitflow
-                                    magit-popup
-                                    evil-magit
+                                    dap
+                                    ensime
+                                    ;; evil-magit
+                                    ;; git-gutter
+                                    ;; git-gutter+
+                                    ;; git-gutter-fringe
+                                    ;; git-gutter-fringe+
+                                    ;; git-link
+                                    ;; git-messenger
+                                    ;; git-timemachine
+                                    ;; helm-c-yasnippet
+                                    ;; hybrid
+                                    ;; magit
+                                    ;; magit-gitflow
+                                    ;; magit-gitflow
+                                    ;; magit-popup
+                                    ;; magit-popup
+                                    ;; magit-svn
+                                    ;; magit-svn
+                                    php-extras
                                     powerline
                                     powerline-evil
-                                    ace-link
-                                    magit
+                                    undo-tree
                                     yasnippet-snippets
                                     ;; yasnippet
                                     )

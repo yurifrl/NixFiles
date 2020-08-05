@@ -62,6 +62,7 @@ nix-build -E 'with import <nixpkgs> { };  callPackage ./default.nix {}'
 - [Fetch url implementation](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/fetchurl/default.nix)
 - [Binaries in nixos](https://nixos.wiki/wiki/Packaging/Binaries)
 - [Binaries in nixos 2](https://discourse.nixos.org/t/how-to-install-github-released-binary/1328)
+- [Keychron function keys not working](https://www.reddit.com/r/MechanicalKeyboards/comments/d5io49/keychron_k2_f_keys_dont_work_w_linux_help/)
 
 ## Licencing
 
