@@ -62,7 +62,7 @@ in {
       arandr
       arduino
       argocd
-      audacity
+      # audacity
       awscli
       bazel
       bind
@@ -121,7 +121,7 @@ in {
       steam
       steam-run
       tilt
-      unity3d
+      # unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
       # unstable.discord-ptb
       unstable.fish

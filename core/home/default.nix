@@ -18,6 +18,8 @@ in
     (import "${home-manager}/nixos")
   ];
 
+  programs.nm-applet.enable = true;
+
   home-manager.users.yuri = { pkgs, ... }: {
     programs = {
       vim = {

@@ -111,7 +111,8 @@ bar {
   position top
 
   # tray position
-  tray_output eDP-1
+  # tray_output eDP-1
+  tray_output HDMI-1
 }
 
 # Everytime a window has youtube in the name move to 4
@@ -130,12 +131,13 @@ for_window [title="UNDERTALE"] floating disable
 for_window [title="MAGICKA 2"] floating disable
 for_window [class="HotlineMiami2"] floating disable
 for_window [class="hl2_linux"] floating disable
-for_window [class="hollow_knight.x86_64"] floating disable
+ for_window [class="hollow_knight.x86_64"] floating disable
 
 # Bind application to worspace
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
 # xprop | grep CLASS
-# 6 Games
+# 5 Games
+assign [class="steam"] 5
 assign [class="Steam"] 5
 # 5 Also Games
 assign [class="payday2_release"] 5
@@ -193,13 +195,12 @@ bindsym Control+$mod+l exec "i3lock -c 000000 -n"
 
 # ================================ On Start
 # Scripts
-exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-left
+# exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-right
 # i3menu
 exec --no-startup-id parcellite -d
-exec --no-startup-id nm-applet
-#exec --no-startup-id blueman-manager
+# exec --no-startup-id nm-applet
+# exec --no-startup-id blueman-manager
 # Apps
 exec --no-startup-id i3-sensible-terminal
-# exec --no-startup-id google-chrome-beta
 exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'
 # exec --no-startup-id Discord
