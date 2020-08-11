@@ -9,5 +9,6 @@
     ./parcellite.nix
     ./vscode.nix
     ./chrome.nix
+    ./ghcide.nix
   ];
 }

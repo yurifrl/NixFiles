@@ -5,11 +5,6 @@
 
 { config, pkgs, ... }:
 
-with (import (builtins.fetchGit {
-  name = "ghcide-for-nix";
-  url = https://github.com/magthe/ghcide-for-nix;
-  rev = "927a8caa62cece60d9d66dbdfc62b7738d61d75f";
-}));
 let
   # Unstable packages
   unstableTarball =
@@ -17,20 +12,11 @@ let
       https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   # Envs
   homedir = builtins.getEnv "HOME";
-  # My Packages
-  krew = pkgs.callPackage ../pkgs/krew {};
-  xst = pkgs.callPackage ../pkgs/xst {};
-  kind = pkgs.callPackage ../pkgs/kind {};
-  tilt = pkgs.callPackage ../pkgs/tilt {};
-  kubeseal = pkgs.callPackage ../pkgs/kubeseal {};
-  kustomize = pkgs.callPackage ../pkgs/kustomize {};
-  kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
-  armalauncher = pkgs.callPackage ../pkgs/arma3-unix-launcher {};
 in {
   imports = [
     ./home
     ./secrets
-    ./modules
+    ../modules
   ];
 
   nix = {
@@ -38,6 +24,21 @@ in {
     envVars = {
       NIX_GITHUB_PRIVATE_USERNAME = "";
       NIX_GITHUB_PRIVATE_PASSWORD = "";
+    };
+  };
+
+  nixpkgs.config = {
+    allowBroken = true;
+    allowUnfree = true;
+    # This is for openconnect
+    permittedInsecurePackages = [
+      "openssl-1.0.2u"
+    ];
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+      yuri = pkgs.callPackage ../pkgs {};
     };
   };
 
@@ -55,12 +56,12 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # killall: use pkill -f
-      kubeseal
+      # audacity
+      # unity3d
       ag
       arandr
       arduino
       argocd
-      # audacity
       awscli
       bazel
       bind
@@ -72,7 +73,6 @@ in {
       eksctl
       ffmpeg
       firefox
-      ghcide
       git
       gitAndTools.diff-so-fancy
       gnumake
@@ -84,12 +84,8 @@ in {
       k9s
       kbfs
       keybase-go
-      kind
-      krew
-      kubebuilder
       kubectl
       kubernetes-helm
-      kustomize
       lazygit
       meld
       minikube
@@ -116,8 +112,6 @@ in {
       stack
       steam
       steam-run
-      tilt
-      # unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
       unstable.fish
       unstable.go
@@ -136,26 +130,17 @@ in {
       xorg.xhost
       xorg.xprop
       xorg.xwininfo
-      xst
       youtube-dl
+      yuri.kind
+      yuri.krew
+      yuri.kubebuilder
+      yuri.kubeseal
+      yuri.kustomize
+      yuri.tilt
+      yuri.xst
       zoom-us
     ];
   };
-
-  nixpkgs.config = {
-    allowBroken = true;
-    allowUnfree = true;
-    # This is for openconnect
-    permittedInsecurePackages = [
-      "openssl-1.0.2u"
-    ];
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
-
 
   # Don't require sudo for brigthnessctl
   security = {
@@ -399,6 +384,7 @@ in {
   programs = {
     # My
     parcellite.enable = true;
+    ghcide.enable = true;
     emacs = {
       enable = true;
       autostart = false;
@@ -418,20 +404,6 @@ in {
       enableExtraSocket = true;
     };
   };
-
-  # systemd.user.services.blueman = {
-  #   wantedBy = [ "graphical-session.target" ];
-  #   partOf = [ "graphical-session.target" ];
-  #   serviceConfig.ExecStart = [
-  #     "${pkgs.blueman}/bin/blueman-applet"
-  #   ];
-  # };
-
-  # systemd.services.blueman-applet = {
-  #   wantedBy = [ "graphical-session.target" ];
-  #   partOf = [ "graphical-session.target" ];
-  #   serviceConfig.ExecStart = "${pkgs.blueman}/bin/blueman-applet";
-  # };
 
   # Network
   networking = {

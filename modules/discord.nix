@@ -1,8 +1,8 @@
-{ config, lib, pkgs, environment, ... }:
 # https://github.com/sociam/xray-archiver/blob/c7f57c43c6cc10a5feb55cc12d06a48bc5b95286/module.nix#L119
+{ config, lib, pkgs, environment, ... }:
 with lib;
 let
-  discord = pkgs.callPackage ../../pkgs/discord {};
+  discord = pkgs.callPackage ../pkgs/discord {};
 in {
   options.programs.discord = {
     enable = mkEnableOption "discord enable";
