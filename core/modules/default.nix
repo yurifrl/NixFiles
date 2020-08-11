@@ -1,9 +1,13 @@
-{ pkgs, lib, fetchurl, ... }:
+{ pkgs, lib, fetchurl, environment, services, ... }:
 
 {
   imports = [
-    # ./vsliveshare.nix
-    ./vscode.nix
+    ./blueman.nix
     ./certs.nix
+    ./discord.nix
+    ./emacs.nix
+    ./parcellite.nix
+    ./vscode.nix
+    ./chrome.nix
   ];
 }

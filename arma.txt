@@ -1,0 +1,10 @@
+ls -s $HOME/.local/share/Steam/steamapps/workshop/content/107410 $HOME/.local/share/Steam/steamapps/common/Arma\ 3/
+
+-mod=mods/450814997 -mod=mods/1128256978 -mod=mods/583496184 -mod=mods/1376636636 -mod=mods/843425103 -mod=mods/843577117
+
+http://steamcommunity.com/sharedfiles/filedetails/?id=450814997
+http://steamcommunity.com/sharedfiles/filedetails/?id=1128256978
+http://steamcommunity.com/sharedfiles/filedetails/?id=583496184
+http://steamcommunity.com/sharedfiles/filedetails/?id=1376636636
+http://steamcommunity.com/sharedfiles/filedetails/?id=843425103
+http://steamcommunity.com/sharedfiles/filedetails/?id=843577117

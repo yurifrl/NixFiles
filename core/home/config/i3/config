@@ -112,7 +112,7 @@ bar {
 
   # tray position
   # tray_output eDP-1
-  tray_output HDMI-1
+  # tray_output HDMI-1
 }
 
 # Everytime a window has youtube in the name move to 4
@@ -197,10 +197,11 @@ bindsym Control+$mod+l exec "i3lock -c 000000 -n"
 # Scripts
 # exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-right
 # i3menu
-exec --no-startup-id parcellite -d
-# exec --no-startup-id nm-applet
+# exec --no-startup-id parcellite -d
 # exec --no-startup-id blueman-manager
 # Apps
 exec --no-startup-id i3-sensible-terminal
-exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'
+# exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'
+# exec --no-startup-id nm-applet
 # exec --no-startup-id Discord
+# exec --no-startup-id /home/yuri/.bin/discord

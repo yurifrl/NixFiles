@@ -25,7 +25,6 @@ let
   kubeseal = pkgs.callPackage ../pkgs/kubeseal {};
   kustomize = pkgs.callPackage ../pkgs/kustomize {};
   kubebuilder = pkgs.callPackage ../pkgs/kubebuilder {};
-  mydiscord = pkgs.callPackage ../pkgs/discord {};
   armalauncher = pkgs.callPackage ../pkgs/arma3-unix-launcher {};
 in {
   imports = [
@@ -56,7 +55,6 @@ in {
     # $ nix search wget
     systemPackages = with pkgs; [
       # killall: use pkill -f
-      mydiscord
       kubeseal
       ag
       arandr
@@ -72,7 +70,6 @@ in {
       docker
       docker-compose
       eksctl
-      emacs
       ffmpeg
       firefox
       ghcide
@@ -108,7 +105,6 @@ in {
       obs-studio
       openconnect
       openssl
-      parcellite # Manages clipboard sync
       pavucontrol
       pulsemixer
       python3
@@ -123,7 +119,6 @@ in {
       tilt
       # unity3d
       unstable.adoptopenjdk-jre-openj9-bin-11
-      # unstable.discord-ptb
       unstable.fish
       unstable.go
       unstable.gotools
@@ -161,12 +156,9 @@ in {
     };
   };
 
-  # Network
-  networking.networkmanager.enable = true;
 
   # Don't require sudo for brigthnessctl
   security = {
-    # sudo.enable = true;
     sudo.extraRules = [{
       runAs = "root";
       groups = [ "wheel" ];
@@ -191,10 +183,6 @@ in {
     };
     bluetooth = {
       enable = true;
-      # extraConfig = "
-      #   [General]
-      #   Enable=Source,Sink,Media,Socket
-      # ";
       package = pkgs.bluezFull;
       config = {
         General = {
@@ -224,6 +212,7 @@ in {
   services = {
     resolved.enable = true;
     # Allow access to USB devices without requiring root permissions
+    # For arduino
     udev.extraRules = ''
       # SR V4 power board
       SUBSYSTEM=="usb", ATTR{idVendor}=="1bda", ATTR{idProduct}=="0010", GROUP="dialout", MODE="0666"
@@ -281,20 +270,20 @@ in {
     };
 
     xserver = {
-      imwheel = {
-        # enable = true;
-        # ## https://github.com/turboMaCk/Dotfiles/blob/9bfb7c098cd7290bfea6713f52ff1c2d3d2edb1c/nixos/machines/desktop.nix#L133
-        # # Shift_L,   Up,   Shift_L|Button4, 4
-        # # Shift_L,   Down, Shift_L|Button5, 4
-        # # Control_L, Up,   Control_L|Button4
-        # # Control_L, Down, Control_L|Button5
-        # rules = {
-        #     ".*" = ''
-        #     None,      Up,   Button4, 3
-        #     None,      Down, Button5, 3
-        #     '';
-        # };
-      };
+      # imwheel = {
+      #   enable = true;
+      #   ## https://github.com/turboMaCk/Dotfiles/blob/9bfb7c098cd7290bfea6713f52ff1c2d3d2edb1c/nixos/machines/desktop.nix#L133
+      #   # Shift_L,   Up,   Shift_L|Button4, 4
+      #   # Shift_L,   Down, Shift_L|Button5, 4
+      #   # Control_L, Up,   Control_L|Button4
+      #   # Control_L, Down, Control_L|Button5
+      #   rules = {
+      #       ".*" = ''
+      #       None,      Up,   Button4, 3
+      #       None,      Down, Button5, 3
+      #       '';
+      #   };
+      # };
       ## if I want to add programmers devorak
       ## http://stesie.github.io/2016/08/nixos-custom-keyboard-layout
       # Keyboard config
@@ -408,6 +397,15 @@ in {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
+    # My
+    parcellite.enable = true;
+    emacs = {
+      enable = true;
+      autostart = false;
+    };
+    chrome.enable = true;
+    discord.enable = true;
+    blueman.enable = true;
     # Network Manager Applet
     nm-applet.enable = true;
     # Keychain
@@ -421,12 +419,30 @@ in {
     };
   };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8888 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = true;
-  # /etc/hosts
-  # networking.extraHosts = ''
-  # '';
+  # systemd.user.services.blueman = {
+  #   wantedBy = [ "graphical-session.target" ];
+  #   partOf = [ "graphical-session.target" ];
+  #   serviceConfig.ExecStart = [
+  #     "${pkgs.blueman}/bin/blueman-applet"
+  #   ];
+  # };
+
+  # systemd.services.blueman-applet = {
+  #   wantedBy = [ "graphical-session.target" ];
+  #   partOf = [ "graphical-session.target" ];
+  #   serviceConfig.ExecStart = "${pkgs.blueman}/bin/blueman-applet";
+  # };
+
+  # Network
+  networking = {
+    networkmanager.enable = true;
+    # Open ports in the firewall.
+    # firewall.allowedTCPPorts = [ 8888 ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    firewall.enable = true;
+    # /etc/hosts
+    # extraHosts = ''
+    # '';
+  };
 }
