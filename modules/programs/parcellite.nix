@@ -1,24 +1,24 @@
 { config, lib, pkgs, ... }:
 with lib;
-{
-  options.programs.parcellite = {
+let
+ cfg = config.yuri.programs.parcellite;
+in {
+  options.yuri.programs.parcellite = {
     enable = mkEnableOption "parcellite enable";
     autostart = mkOption {
       type = with types; uniq bool;
-      default = true;
+      default = false;
       description = "
         parcellite autostart
       ";
     };
   };
 
-  config.environment = mkIf config.programs.parcellite.enable {
-    systemPackages = with pkgs; [
-      parcellite
-    ];
-  };
+  config.environment.systemPackages = with pkgs; [
+    parcellite
+  ];
 
-  config.systemd = mkIf config.programs.parcellite.autostart {
+  config.systemd = mkIf cfg.autostart {
     user.services.parcellite = {
       description = "parcellite autostart";
       wantedBy = [ "graphical-session.target" ];

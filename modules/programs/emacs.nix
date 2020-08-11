@@ -1,24 +1,24 @@
 { config, lib, pkgs, environment, ... }:
 with lib;
-{
-  options.programs.emacs = {
+let
+ cfg = config.yuri.programs.emacs;
+in {
+  options.yuri.programs.emacs = {
     enable = mkEnableOption "emacs enable";
     autostart = mkOption {
       type = with types; uniq bool;
-      default = true;
+      default = false;
       description = "
         emacs autostart
       ";
     };
   };
 
-  config.environment = mkIf config.programs.emacs.enable {
-    systemPackages = with pkgs; [
-      emacs
-    ];
-  };
+  config.environment.systemPackages = with pkgs; [
+    emacs
+  ];
 
-  config.systemd = mkIf config.programs.emacs.autostart {
+  config.systemd = mkIf cfg.autostart {
     user.services.emacs = {
       description = "Emacs autstart";
       wantedBy = [ "graphical-session.target" ];

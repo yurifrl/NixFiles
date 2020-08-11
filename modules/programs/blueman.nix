@@ -5,10 +5,10 @@
 { config, lib, pkgs, services, ... }:
 
 with lib;
-
-{
-  options.programs.blueman = {
-    enable = mkEnableOption "blueman-applet enable";
+let
+ cfg = config.yuri.programs.blueman;
+in {
+  options.yuri.programs.blueman = {
     autostart = mkOption {
       type = with types; uniq bool;
       default = true;
@@ -18,11 +18,9 @@ with lib;
     };
   };
 
-  config.services = mkIf config.programs.blueman.enable {
-    blueman.enable = true;
-  };
+  config.services.blueman.enable = true;
 
-  config.systemd = mkIf config.programs.blueman.autostart {
+  config.systemd = mkIf cfg.autostart {
     user.services.blueman = {
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];

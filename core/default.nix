@@ -6,18 +6,33 @@
 { config, pkgs, ... }:
 
 let
-  # Unstable packages
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
   # Envs
   homedir = builtins.getEnv "HOME";
+  # Modules
+  modules = import ../modules;
 in {
   imports = [
     ./home
-    ./secrets
-    ../modules
+    modules.blueman
+    modules.certs
+    modules.chrome
+    modules.discord
+    modules.emacs
+    modules.ghcide
+    modules.parcellite
+    modules.secrets
+    modules.terminal
+    modules.vscode
   ];
+
+  yuri.programs = {
+    parcellite.autostart = true;
+    discord.autostart = true;
+    blueman.autostart = true;
+    # TODO: Chrome, cant open with i3 so I can redirect to workspace 2
+    # TODO: Terminal wont open
+    # TODO: Monitor script
+  };
 
   nix = {
     trustedUsers = [ "root" "yuri" "yuri.lima"];
@@ -35,9 +50,6 @@ in {
       "openssl-1.0.2u"
     ];
     packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
       yuri = pkgs.callPackage ../pkgs {};
     };
   };
@@ -112,14 +124,14 @@ in {
       stack
       steam
       steam-run
-      unstable.adoptopenjdk-jre-openj9-bin-11
-      unstable.fish
-      unstable.go
-      unstable.gotools
-      unstable.gradle
-      unstable.metals
-      unstable.pbis-open
-      unstable.tmux
+      adoptopenjdk-jre-openj9-bin-11
+      fish
+      go
+      gotools
+      gradle
+      metals
+      pbis-open
+      tmux
       unzip
       vgo2nix
       vim
@@ -238,9 +250,6 @@ in {
 
     # It's for battery i suppose
     acpid.enable = true;
-
-    #
-    blueman.enable = true;
 
     # Enable the OpenSSH daemon.
     openssh.enable = true;
@@ -382,16 +391,6 @@ in {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
-    # My
-    parcellite.enable = true;
-    ghcide.enable = true;
-    emacs = {
-      enable = true;
-      autostart = false;
-    };
-    chrome.enable = true;
-    discord.enable = true;
-    blueman.enable = true;
     # Network Manager Applet
     nm-applet.enable = true;
     # Keychain

@@ -2,26 +2,25 @@
 { config, lib, pkgs, environment, ... }:
 with lib;
 let
-  discord = pkgs.callPackage ../pkgs/discord {};
+  discord = pkgs.callPackage ../../pkgs/discord {};
+  cfg = config.yuri.programs.discord;
 in {
-  options.programs.discord = {
+  options.yuri.programs.discord = {
     enable = mkEnableOption "discord enable";
     autostart = mkOption {
       type = with types; uniq bool;
-      default = true;
+      default = false;
       description = "
         discord autostart
       ";
     };
   };
 
-  config.environment = mkIf config.programs.discord.enable {
-    systemPackages = with pkgs; [
-      discord
-    ];
-  };
+  config.environment.systemPackages = [
+    discord
+  ];
 
-  config.systemd = mkIf config.programs.discord.autostart {
+  config.systemd = mkIf cfg.autostart {
     user.services.discord = {
       description = "Discord";
       wantedBy = [ "graphical-session.target" "multi-user.target" "network-online.target" ];

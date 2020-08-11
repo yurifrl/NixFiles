@@ -1,7 +1,5 @@
-{ config, pkgs, ... }:
-
-let
-  mktplaceExt = [
+{
+  extensions = [
     {
       name = "vscode-fish";
       publisher = "bmalehorn";
@@ -140,21 +138,5 @@ let
       version = "0.22.0";
       sha256 = "0fzh9m867kn6cc5d2vmmwq23vhlr80jazs01b8cxgpkipl1w3v4j";
     }
-  ];
-
-  extensions = (with pkgs.vscode-extensions; [
-    ms-vscode.cpptools
-    bbenoist.Nix
-  ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace mktplaceExt;
-
-  vscode-with-extensions = pkgs.vscode-with-extensions.override {
-    vscodeExtensions = extensions;
-  };
-in {
-  # nix-prefetch-url https://vsciot-vscode.gallery.vsassets.io/_apis/public/gallery/publisher/vsciot-vscode/extension/vscode-arduino/0.3.1/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
-
-  environment.systemPackages = [
-    # unstable.vscode
-    vscode-with-extensions
   ];
 }
