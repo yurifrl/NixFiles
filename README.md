@@ -9,7 +9,6 @@ Yuri`s Nix DotFiles
 - this will FORMAT your hardrive and download the dotfiles
 - after install
   - sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-  - sudo nix-channel --add https://github.com/rycee/home-manager/archive/release-20.03.tar.gz home-manager
   - sudo nix-channel --update
 
 ## Non automated steps
