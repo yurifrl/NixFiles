@@ -22,6 +22,7 @@ $([ $I = true ] && echo '-i') \
 -v $HOME/.helm:/root/.helm \
 -v $HOME/.config/gcloud:/root/.config/gcloud \
 -v $HOME/.kube:/root/.kube \
+-v /tmp:/tmp \
 -v /usr/bin/docker:/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
 --env-file <(env | grep AWS) \

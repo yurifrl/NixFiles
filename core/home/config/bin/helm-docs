@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+export IMAGE="jnorwood/helm-docs:latest"
+docker-run "$@"

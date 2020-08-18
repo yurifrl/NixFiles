@@ -192,6 +192,7 @@ bindsym $mod+Shift+bracketright move workspace to output left
 
 # Key bind lock
 bindsym Control+$mod+l exec "i3lock -c 000000 -n"
+bindsym Control+$mod+Shift+l exec "systemctl suspend & i3lock -c 000000 -n"
 
 # ================================ On Start
 # Scripts

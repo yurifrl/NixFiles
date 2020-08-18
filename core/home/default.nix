@@ -1,16 +1,16 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
-with import <nixpkgs> {};
 with builtins;
 with lib;
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    ref = "release-19.03";
+    ref = "master";
   };
   dag = import "${home-manager}/modules/lib/dag.nix" {
     inherit lib;
   };
+  keybase = "$HOME/Keybase/private/yurifrl";
 in
 {
   imports = [
@@ -25,30 +25,18 @@ in
         extraConfig =
           (builtins.readFile ./config/vim/config) +
           (builtins.readFile ./config/vim/keybindings);
-          plugins = [
-            "vim-airline"
-            "vim-commentary"
-            "auto-pairs"
-            "vim-surround"
-          ];
         };
       };
       home = {
-        # activation.createPacelliteLinks = dag.dagEntryAfter ["writeBoundary"] ''
-        #   mkdir -p $HOME/.config/parcellite
-        #   ln -sfn $HOME/NixFiles/core/home/config/parcelliterc $HOME/.config/parcellite/parcelliterc
-        # '';
         activation.createLinks = dag.dagEntryAfter ["writeBoundary"] ''
           ln -sfn $HOME/NixFiles/core/home/config/spacemacs $HOME/.spacemacs
           ln -sfn $HOME/NixFiles/core/home/config/bin $HOME/.bin
+          # Secrets
+          ln -sfn ${keybase}/home/ssh $HOME/.ssh
+          ln -sfn ${keybase}/home/docker $HOME/.docker
+          # ln -sfn ${keybase}/home/kube $HOME/.kube
         '';
         file = {
-          # ".spacemacs" = {
-          #   source = ./config/spacemacs;
-          # };
-          # ".bin" = {
-          #   source = ./config/bin;
-          # };
           # https://unix.stackexchange.com/questions/452907/pavucontrol-wont-change-output-on-some-apps
           ".alsoftrc" = {
             source = ./config/alsoftrc;
@@ -74,13 +62,6 @@ in
           };
           recursive = true;
         };
-        # ".emacs.d" = {
-        #   source = fetchGit {
-        #     url = "https://github.com/syl20bnr/spacemacs";
-        #     ref = "develop";
-        #   };
-        #   recursive = true;
-        # };
         ".local/share/applications" = {
           source = ./config/applications;
           recursive = true;

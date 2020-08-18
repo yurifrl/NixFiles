@@ -20,7 +20,6 @@ in {
     modules.emacs
     modules.ghcide
     modules.parcellite
-    modules.secrets
     modules.terminal
     modules.vscode
   ];
@@ -36,6 +35,7 @@ in {
 
   nix = {
     trustedUsers = [ "root" "yuri" "yuri.lima"];
+    allowedUsers = [ "root" "yuri" "yuri.lima"];
     envVars = {
       NIX_GITHUB_PRIVATE_USERNAME = "";
       NIX_GITHUB_PRIVATE_PASSWORD = "";
