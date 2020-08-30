@@ -22,6 +22,7 @@ in {
     modules.parcellite
     modules.terminal
     modules.vscode
+    modules.android
   ];
 
   yuri.programs = {
@@ -74,7 +75,8 @@ in {
       arandr
       arduino
       argocd
-      awscli
+      flutter
+      # awscli
       bazel
       bind
       brightnessctl
@@ -96,7 +98,7 @@ in {
       k9s
       kbfs
       keybase-go
-      kubectl
+      # kubectl
       kubernetes-helm
       lazygit
       meld
@@ -150,6 +152,9 @@ in {
       yuri.kustomize
       yuri.tilt
       yuri.xst
+      yuri.k8slens
+      yuri.kubectl
+      # yuri.awscli
       zoom-us
     ];
   };

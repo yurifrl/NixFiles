@@ -69,6 +69,8 @@ set -gx CGO_ENABLED 0
 # Load Secrets
 #set -gx KEYBASE_ENVS "$HOME/Keybase/private/yurifrl/envs"
 
+# set -gx ANDROID_SDK_ROOT "/home/yuri/Android/Sdk"
+
 if test -e $KEYBASE_ENVS
    ev -q "$HOME/Keybase/private/yurifrl/envs"
    ev -q "$HOME/Keybase/private/yurifrl/envs/dafiti"

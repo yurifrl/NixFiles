@@ -19,12 +19,14 @@ $([ $T = true ] && echo '-t') \
 $([ $I = true ] && echo '-i') \
 -w /$BASENAME \
 -v $PWD:/$BASENAME \
--v $HOME/.helm:/root/.helm \
--v $HOME/.config/gcloud:/root/.config/gcloud \
--v $HOME/.kube:/root/.kube \
+-v $HOME/:/root/ \
 -v /tmp:/tmp \
 -v /usr/bin/docker:/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
+-e AWS_SESSION_TOKEN \
+-e AWS_ACCESS_KEY_ID \
+-e AWS_SECRET_ACCESS_KEY \
+-e AWS_DEFAULT_REGION \
 --env-file <(env | grep AWS) \
 $([ -z $ENTRYPOINT ] || echo --entrypoint=$ENTRYPOINT)"
 

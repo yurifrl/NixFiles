@@ -39,6 +39,9 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+# change focus
+bindsym $mod+a focus left
+bindsym $mod+d focus right
 
 # move focused window
 bindsym $mod+Shift+Left move left
@@ -191,7 +194,7 @@ bindsym $mod+Shift+bracketleft move workspace to output right
 bindsym $mod+Shift+bracketright move workspace to output left
 
 # Key bind lock
-bindsym Control+$mod+l exec "i3lock -c 000000 -n"
+bindsym Control+$mod+l exec "( ( sleep 5s ; echo "5 minutes complete") & $COMMAND ) & i3lock -c 000000 -n"
 bindsym Control+$mod+Shift+l exec "systemctl suspend & i3lock -c 000000 -n"
 
 # ================================ On Start

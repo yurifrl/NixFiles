@@ -11,4 +11,4 @@ echo "$AWS_ACCESS_KEY_ID" > $ROOT/AWS_ACCESS_KEY_ID
 echo "$AWS_SECRET_ACCESS_KEY" > $ROOT/AWS_SECRET_ACCESS_KEY
 echo "$AWS_SESSION_TOKEN" > $ROOT/AWS_SESSION_TOKEN
 
-awsd eks update-kubeconfig --name $1
+aws eks update-kubeconfig --name $1

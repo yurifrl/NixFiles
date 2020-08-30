@@ -8,7 +8,7 @@
   chrome = ./programs/chrome.nix;
   ghcide = ./programs/ghcide.nix;
   terminal = ./programs/terminal.nix;
-
+  android = ./programs/android.nix;
   # Services
   secrets = ./services/secrets.nix;
   certs = ./services/certs.nix;

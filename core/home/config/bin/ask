@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+export IMAGE="martindsouza/amazon-ask-cli"
+docker-run "$@"

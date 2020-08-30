@@ -15,4 +15,7 @@
   tilt = pkgs.callPackage ./tilt { };
   xst = pkgs.callPackage ./xst { };
   zoom = pkgs.callPackage ./zoom { };
+  k8slens = pkgs.callPackage ./k8slens { };
+  kubectl = pkgs.callPackage ./kubectl { };
+  androidsdk = pkgs.callPackage ./androidsdk { };
 }
