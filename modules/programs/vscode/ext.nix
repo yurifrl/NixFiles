@@ -138,5 +138,17 @@
       version = "0.22.0";
       sha256 = "0fzh9m867kn6cc5d2vmmwq23vhlr80jazs01b8cxgpkipl1w3v4j";
     }
+    {
+      name = "flutter";
+      publisher = "Dart-Code";
+      version = "3.13.2";
+      sha256 = "1jpb01a3fazwi89b2f59sm8sbzbfaawdxaais53dsay1wbg5hncz";
+    }
+    {
+      name = "dart-code";
+      publisher = "Dart-Code";
+      version = "3.13.2";
+      sha256 = "05pyqijwkqby4q9izkddkrhlfd0jhdc1xqdf6342l1r7p8bwyqyr";
+    }
   ];
 }

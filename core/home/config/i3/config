@@ -10,6 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -134,7 +135,7 @@ for_window [title="UNDERTALE"] floating disable
 for_window [title="MAGICKA 2"] floating disable
 for_window [class="HotlineMiami2"] floating disable
 for_window [class="hl2_linux"] floating disable
- for_window [class="hollow_knight.x86_64"] floating disable
+for_window [class="hollow_knight.x86_64"] floating disable
 
 # Bind application to worspace
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
@@ -176,9 +177,10 @@ assign [class="jetbrains-studio"] 1
 # 4 Is the fallback for apps
 assign [window_role="pop-up"] 4
 
-# 2 For Chrome
+# 2 For Chrome and emulator
 # assign [class="(?i)google*"] 2
 # assign [class="Google-chrome-beta" id=31457489 instance="google-chrome-beta" title="New Tab - Google Chrome" window_role="browser"] 2
+# assign [title=".*Emulator.*"] 2
 
 # ================================ My Custom crazy keybinds
 # Run scripts whenever i3 config run
@@ -194,12 +196,12 @@ bindsym $mod+Shift+bracketleft move workspace to output right
 bindsym $mod+Shift+bracketright move workspace to output left
 
 # Key bind lock
-bindsym Control+$mod+l exec "( ( sleep 5s ; echo "5 minutes complete") & $COMMAND ) & i3lock -c 000000 -n"
-bindsym Control+$mod+Shift+l exec "systemctl suspend & i3lock -c 000000 -n"
+bindsym Control+$mod+l exec "i3lock -c 000000 -n"
+bindsym Control+$mod+$alt+l exec "systemctl suspend & i3lock -c 000000 -n"
 
 # ================================ On Start
 # Scripts
 exec --no-startup-id /home/yuri/.bin/monitor extend-hdmi-right
 # Apps
 exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal'
-exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'
+#exec --no-startup-id i3-msg 'workspace 2; exec google-chrome-beta'

@@ -22,7 +22,7 @@ in {
     modules.parcellite
     modules.terminal
     modules.vscode
-    modules.android
+    modules.mobile
   ];
 
   yuri.programs = {
@@ -74,8 +74,7 @@ in {
       ag
       arandr
       arduino
-      argocd
-      flutter
+      # flutter
       # awscli
       bazel
       bind
@@ -111,6 +110,7 @@ in {
       nix-prefetch-git
       nmap
       nmap-graphical
+      git-hub
       nodejs
       obs-studio
       openconnect
@@ -133,6 +133,7 @@ in {
       gradle
       metals
       pbis-open
+      perl
       tmux
       unzip
       vgo2nix
@@ -145,6 +146,7 @@ in {
       xorg.xprop
       xorg.xwininfo
       youtube-dl
+      telepresence
       yuri.kind
       yuri.krew
       yuri.kubebuilder
@@ -154,6 +156,9 @@ in {
       yuri.xst
       yuri.k8slens
       yuri.kubectl
+      yuri.argocd
+      yuri.okteto
+      yuri.kubefwd
       # yuri.awscli
       zoom-us
     ];
@@ -418,7 +423,7 @@ in {
     # Or disable the firewall altogether.
     firewall.enable = true;
     # /etc/hosts
-    # extraHosts = ''
-    # '';
+    extraHosts = ''
+    '';
   };
 }

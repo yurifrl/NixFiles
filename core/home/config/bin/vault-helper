@@ -8,7 +8,6 @@
 # Required Envs
 : "${VAULT_ADDR:?VAULT_ADDR Variable not set or empty}"
 : "${VAULT_TOKEN:?VAULT_TOKEN Variable not set or empty}"
-: "${ENGINE_NAME:?ENGINE_NAME Variable not set or empty}"
 
 # Defaults
 : "${IMAGE:=seriouscomp/vault-helper}"
@@ -17,7 +16,6 @@
 DEFAULT_PARAMS="--rm \
 -e VAULT_ADDR \
 -e VAULT_TOKEN \
--e ENGINE_NAME \
 -e AWS_SESSION_TOKEN \
 -e AWS_ACCESS_KEY_ID \
 -e AWS_SECRET_ACCESS_KEY \

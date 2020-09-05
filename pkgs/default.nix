@@ -18,4 +18,7 @@
   k8slens = pkgs.callPackage ./k8slens { };
   kubectl = pkgs.callPackage ./kubectl { };
   androidsdk = pkgs.callPackage ./androidsdk { };
+  argocd = pkgs.callPackage ./argocd { };
+  okteto = pkgs.callPackage ./okteto { };
+  kubefwd = pkgs.callPackage ./kubefwd { };
 }
