@@ -21,4 +21,5 @@
   argocd = pkgs.callPackage ./argocd { };
   okteto = pkgs.callPackage ./okteto { };
   kubefwd = pkgs.callPackage ./kubefwd { };
+  parsec = pkgs.callPackage ./parsec { };
 }

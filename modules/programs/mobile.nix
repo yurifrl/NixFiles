@@ -18,6 +18,8 @@ let
     useGoogleTVAddOns = true;
   };
   android-sdk-path = "${android.androidsdk}/libexec/android-sdk";
+  # flutterPkgs = (import (builtins.fetchTarball "https://github.com/babariviere/nixpkgs/archive/flutter-init.tar.gz") {});
+  # dartPkgs = (import (builtins.fetchTarball "https://github.com/GRBurst/nixpkgs/archive/dart.tar.gz") {});
 in {
   nixpkgs.config.android_sdk.accept_license = true;
 
@@ -26,13 +28,15 @@ in {
       FLUTTER_SDK = "${pkgs.flutter.unwrapped}";
       # ANDROID_SDK_ROOT = android-sdk-path;
       # ANDROID_HOME = android-sdk-path;
-      ANDROID_JAVA_HOME = "${pkgs.adoptopenjdk-jre-openj9-bin-11.home}";
-      ANDROID_HOME="$HOME/Android/Sdk";
-      ANDROID_SDK_ROOT="$HOME/Android/Sdk";
+      # ANDROID_JAVA_HOME = "${pkgs.adoptopenjdk-jre-openj9-bin-11.home}";
+      # ANDROID_HOME="$HOME/Android/Sdk";
+      # ANDROID_SDK_ROOT="$HOME/Android/Sdk";
     };
     systemPackages = with pkgs; [
-      flutter
-      android-studio
+      # flutter
+      # android-studio
+      # flutterPkgs.flutter
+      # dartPkgs.dart
       android.androidsdk
       adoptopenjdk-jre-openj9-bin-11
       xorg.libXtst

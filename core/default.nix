@@ -114,6 +114,7 @@ in {
       nodejs
       obs-studio
       openconnect
+      remmina
       openssl
       pavucontrol
       pulsemixer
@@ -158,6 +159,7 @@ in {
       yuri.kubectl
       yuri.argocd
       yuri.okteto
+      yuri.parsec
       yuri.kubefwd
       # yuri.awscli
       zoom-us
