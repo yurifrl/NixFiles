@@ -1,6 +1,7 @@
 { lib, stdenv, fetchurl, alsaLib, dbus, libGL, libpulseaudio, libva,
-makeDesktopItem, udev, xorg }:
+makeDesktopItem, libudev, xorg }:
 
+# https://github.com/delroth/infra.delroth.net/blob/master/pkgs/parsec.nix
 let
   pname = "parsec";
   binaryName = "parsecd";
@@ -16,7 +17,7 @@ in stdenv.mkDerivation rec {
   };
 
   runtimeDependencies = [
-    alsaLib dbus.lib libGL libpulseaudio libva.out stdenv.cc.cc.lib udev.lib
+    alsaLib dbus.lib libGL libpulseaudio libva.out stdenv.cc.cc.lib libudev
     xorg.libX11 xorg.libXcursor xorg.libXi xorg.libXinerama xorg.libXrandr
     xorg.libXScrnSaver
   ];

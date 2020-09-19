@@ -45,6 +45,11 @@ nix repl
 nix-build -E 'with import <nixpkgs> { };  callPackage ./default.nix {}'
 ```
 
+## Parsec
+[aws guide](https://www.richardneililagan.com/posts/create-game-server-aws-parsec)
+[google guide](https://medium.com/flickstiq-com/how-to-setup-google-cloud-for-cloud-gaming-b8c1eddef243)
+[cli](https://github.com/parsec-cloud/Parsec-Cloud-Preparation-Tool)
+
 ## Reference
 - Nix Cheat Sheet https://nixos.wiki/wiki/Cheatsheet
 - Nix options https://nixos.org/nixos/options.html#

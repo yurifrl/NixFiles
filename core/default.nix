@@ -10,6 +10,9 @@ let
   homedir = builtins.getEnv "HOME";
   # Modules
   modules = import ../modules;
+  myCustomLayout = pkgs.writeText "xkb-layout" ''
+    keycode 166=
+  '';
 in {
   imports = [
     ./home
@@ -23,6 +26,7 @@ in {
     modules.terminal
     modules.vscode
     modules.mobile
+    modules.jupyter
   ];
 
   yuri.programs = {
@@ -68,14 +72,17 @@ in {
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
-      # killall: use pkill -f
       # audacity
+      # awscli
+      # flutter
+      # killall: use pkill -f
+      # kubectl
       # unity3d
+      # yuri.awscli
+      adoptopenjdk-jre-openj9-bin-11
       ag
       arandr
       arduino
-      # flutter
-      # awscli
       bazel
       bind
       brightnessctl
@@ -86,10 +93,16 @@ in {
       eksctl
       ffmpeg
       firefox
+      fish
+      flameshot
       git
+      git-hub
       gitAndTools.diff-so-fancy
       gnumake
+      go
       google-chrome-beta
+      gotools
+      gradle
       htop
       inetutils
       jq
@@ -97,10 +110,10 @@ in {
       k9s
       kbfs
       keybase-go
-      # kubectl
       kubernetes-helm
       lazygit
       meld
+      metals
       minikube
       networkmanager-openconnect
       networkmanager-openvpn
@@ -110,16 +123,17 @@ in {
       nix-prefetch-git
       nmap
       nmap-graphical
-      git-hub
       nodejs
       obs-studio
       openconnect
-      remmina
       openssl
       pavucontrol
+      pbis-open
+      perl
       pulsemixer
       python3
       ranger
+      remmina
       sbt
       sdl-jstest
       shutter
@@ -127,14 +141,8 @@ in {
       stack
       steam
       steam-run
-      adoptopenjdk-jre-openj9-bin-11
-      fish
-      go
-      gotools
-      gradle
-      metals
-      pbis-open
-      perl
+      telepresence
+      tightvnc
       tmux
       unzip
       vgo2nix
@@ -144,24 +152,23 @@ in {
       wirelesstools
       xorg.xev
       xorg.xhost
+      xorg.xmodmap
       xorg.xprop
       xorg.xwininfo
       youtube-dl
-      telepresence
+      yuri.argocd
+      yuri.k8slens
       yuri.kind
       yuri.krew
       yuri.kubebuilder
+      yuri.kubectl
+      yuri.kubefwd
       yuri.kubeseal
       yuri.kustomize
-      yuri.tilt
-      yuri.xst
-      yuri.k8slens
-      yuri.kubectl
-      yuri.argocd
       yuri.okteto
       yuri.parsec
-      yuri.kubefwd
-      # yuri.awscli
+      yuri.tilt
+      yuri.xst
       zoom-us
     ];
   };
@@ -299,7 +306,10 @@ in {
       xkbOptions = "ctrl:nocaps,grp:alt_space_toggle,compose:ralt";
 
       ## Nice sample cofig with options set here https://github.com/danielfullmer/nixos-config/blob/master/profiles/desktop/default.nix
-      displayManager.defaultSession = "none+i3";
+      displayManager = {
+        sessionCommands = "${pkgs.xorg.xmodmap}/bin/xmodmap ${myCustomLayout}";
+        defaultSession = "none+i3";
+      };
       enable = true;
       autorun = true;
       libinput = {
@@ -307,23 +317,30 @@ in {
         # This seams to enable natural scrolling
         naturalScrolling = false;
         tapping =  false;
-        accelProfile = "flat";
+        # accelProfile = "flat";
+        accelSpeed = "0.3";
+        # additionalOptions = ''
+        #   Option "AccelerationThreshold"   "0"
+        #   Option "AccelerationNumerator"   "3"
+        #   Option "AccelerationDenominator" "2"
+        #   Option "Coordinate Transformation Matrix" "1 0 0 0 1 0 0 0 .6"
+        # '';
       };
-      exportConfiguration = true;
+      # exportConfiguration = true;
       # AccelSeepd Does the trick for mouse speed
-      config = ''
-        Section "InputClass"
-          Identifier "Mx Ergo"
-          MatchIsPointer "true"
-          MatchProduct "Ergo|Mouse"
-          Driver "libinput"
-          Option "AccelSpeed" "0.4"
-          Option "AccelerationThreshold"   "0"
-          Option "AccelerationNumerator"   "4"
-          Option "AccelerationDenominator" "2"
-          Option "Coordinate Transformation Matrix" "1 0 0 0 1 0 0 0 .6"
-        EndSection
-      '';
+      # config = ''
+      #   Section "InputClass"
+      #     Identifier "Mx Ergo"
+      #     MatchIsPointer "true"
+      #     MatchProduct "Ergo|Mouse"
+      #     Driver "libinput"
+      #     Option "AccelSpeed" "0.4"
+      #     Option "AccelerationThreshold"   "0"
+      #     Option "AccelerationNumerator"   "4"
+      #     Option "AccelerationDenominator" "2"
+      #     Option "Coordinate Transformation Matrix" "1 0 0 0 1 0 0 0 .6"
+      #   EndSection
+      # '';
 
       windowManager = {
         i3 = {

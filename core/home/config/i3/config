@@ -58,9 +58,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $alt+h focus left
-bindsym $alt+l focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -139,6 +136,7 @@ for_window [title="MAGICKA 2"] floating disable
 for_window [class="HotlineMiami2"] floating disable
 for_window [class="hl2_linux"] floating disable
 for_window [class="hollow_knight.x86_64"] floating disable
+for_window [class="Nm-connection-editor"] floating enable
 
 # Bind application to worspace
 # https://faq.i3wm.org/question/2172/how-do-i-find-the-criteria-for-use-with-i3-config-commands-like-for_window-eg-to-force-splashscreens-and-dialogs-to-show-in-floating-mode.1.html
@@ -146,6 +144,8 @@ for_window [class="hollow_knight.x86_64"] floating disable
 # 5 Games
 assign [class="steam"] 5
 assign [class="Steam"] 5
+assign [class="parsecd"] 5
+
 # 5 Also Games
 assign [class="payday2_release"] 5
 assign [title="UNDERTALE"] 5
