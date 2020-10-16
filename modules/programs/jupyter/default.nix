@@ -1,8 +1,15 @@
 { config, lib, pkgs, services, ... }:
 
+# https://github.com/tweag/jupyterWith
+# https://github.com/shitikovkirill/NixConfDevServer/blob/master/programmin/jupyter/service/default.nix
 with lib;
 let
   cfg = config.yuri.programs.jupyter;
+
+  jupyter = import (builtins.fetchGit {
+    url = https://github.com/tweag/jupyterWith;
+    rev = "";
+  }) {};
 
   ihaskell = jupyter.kernels.iHaskellWith {
     name = "haskell";
@@ -13,13 +20,10 @@ let
     name = "gophernotes";
   };
 
-  jupyter = import (builtins.fetchGit {
-    url = https://github.com/tweag/jupyterWith;
-    rev = "";
-  }) {};
+  myKernels = pkgs.callPackage ./kernels {};
 
   jupyterEnvironment = jupyter.jupyterlabWith {
-    kernels = [ ihaskell go ];
+    kernels = [ ihaskell go (myKernels.java {}) ];
   };
 in {
   config.environment.systemPackages = with pkgs; [

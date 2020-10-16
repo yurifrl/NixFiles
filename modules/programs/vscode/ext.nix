@@ -42,11 +42,17 @@
       version = "0.1.1";
       sha256 = "1iylv69l8230w8mgbwim2aval8ax00x8klbl4sv4w4qmp4h1a6w4";
     }
+    # {
+    #   name = "vscode-elixir";
+    #   publisher = "mjmcloug";
+    #   version = "1.1.0";
+    #   sha256 = "0kj7wlhapkkikn1md8cknrffrimk0g0dbbhavasys6k3k7pk2khh";
+    # }
     {
-      name = "vscode-elixir";
-      publisher = "mjmcloug";
-      version = "1.1.0";
-      sha256 = "0kj7wlhapkkikn1md8cknrffrimk0g0dbbhavasys6k3k7pk2khh";
+      name = "elixir-ls";
+      publisher = "JakeBecker";
+      version = "0.5.0";
+      sha256 = "0wyxkq0ra17s6jhsx70i46d62lqgvpdfrh6wkya8l0dng2xi0idk";
     }
     {
       name = "vscode-docker";
@@ -149,6 +155,18 @@
       publisher = "Dart-Code";
       version = "3.13.2";
       sha256 = "05pyqijwkqby4q9izkddkrhlfd0jhdc1xqdf6342l1r7p8bwyqyr";
+    }
+    {
+      name = "grammarly";
+      publisher = "znck";
+      version = "0.12.5";
+      sha256 = "0blsyc57smz0kkwf8n8c4k7afqs55lrz44jb4hhc2zm8vjrv5hcv";
+    }
+    {
+      name = "vscode-mermaid-preview";
+      publisher = "vstirbu";
+      version = "1.5.6";
+      sha256 = "1fxrli042axnf5xjz0np996cd4xayd13slvl2jrwf47px1z50l3d";
     }
   ];
 }

@@ -29,7 +29,7 @@ in stdenv.mkDerivation rec {
     inherit desktopName;
     genericName = meta.description;
     categories = "Network;InstantMessaging;";
-    mimeType = "x-scheme-handler/discord";
+    mimeType = "x-scheme-handler/parsec";
   };
 
   unpackPhase = ''

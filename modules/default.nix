@@ -9,7 +9,8 @@
   ghcide = ./programs/ghcide.nix;
   terminal = ./programs/terminal.nix;
   mobile = ./programs/mobile.nix;
-  jupyter = ./programs/jupyter.nix;
+  jupyter = ./programs/jupyter;
+  elixir-ls = ./programs/elixir-ls.nix;
   # Services
   secrets = ./services/secrets.nix;
   certs = ./services/certs.nix;

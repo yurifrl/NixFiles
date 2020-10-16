@@ -27,6 +27,8 @@ let
     hardware.opengl.driSupport32Bit = true;
     hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     hardware.pulseaudio.support32Bit = true;
+    # Fixed the behavior where clicking the view button on the xbox controller closes a window
+    hardware.xpadneo.enable = true;
   };
 
   deviceModules =

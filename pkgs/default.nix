@@ -22,4 +22,5 @@
   okteto = pkgs.callPackage ./okteto { };
   kubefwd = pkgs.callPackage ./kubefwd { };
   parsec = pkgs.callPackage ./parsec { };
+  elixir-ls = pkgs.callPackage ./elixir-ls { };
 }

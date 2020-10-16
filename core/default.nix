@@ -27,6 +27,7 @@ in {
     modules.vscode
     modules.mobile
     modules.jupyter
+    modules.elixir-ls
   ];
 
   yuri.programs = {
@@ -94,7 +95,7 @@ in {
       ffmpeg
       firefox
       fish
-      flameshot
+      flameshot # screenshot
       git
       git-hub
       gitAndTools.diff-so-fancy
@@ -150,6 +151,8 @@ in {
       vlc
       wget
       wirelesstools
+      podman
+      podman-compose
       xorg.xev
       xorg.xhost
       xorg.xmodmap
@@ -170,6 +173,8 @@ in {
       yuri.tilt
       yuri.xst
       zoom-us
+      # linuxPackages.xpadneo
+      aws-iam-authenticator
     ];
   };
 
@@ -404,7 +409,7 @@ in {
 
   # Fonts
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       noto-fonts-emoji

@@ -45,7 +45,7 @@ values."
                                               scala-backend 'scala-metals)
                                        purescript
                                        php
-                                       ;; elixir
+                                       (elixir :variables elixir-backend 'lsp)
                                        (java :variables java-backend 'lsp)
                                        shell-scripts
                                        nixos
@@ -70,7 +70,7 @@ values."
                                        ;;                 spell-checking-enable-auto-dictionary t)
                                        syntax-checking
                                        auto-completion
-                                       ;; dap
+                                       dap
                                        (lsp :variables
                                             lsp-haskell-process-path-hie "ghcide"
                                             lsp-haskell-process-args-hie '()
@@ -84,6 +84,8 @@ values."
                                       pkgbuild-mode
                                       rainbow-delimiters
                                       smartparens
+                                      elixir-mode
+                                      eglot
                                       ;; [neotree]
                                       winum
                                       ;; Auto update keyring key
@@ -267,7 +269,7 @@ values."
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   ;; dotspacemacs-helm-use-fuzzy 'always
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state nil
@@ -366,7 +368,22 @@ values."
 
 ;; Layer config stuff
 (defun dotspacemacs/user-config ()
-  ;; Change buffer handler
+  ;; [config] Elixir
+  (require 'eglot)
+  ;; This is optional. It automatically runs `M-x eglot` for you whenever you are in `elixir-mode`
+  (add-hook 'elixir-mode-hook 'eglot-ensure)
+  ;; Make sure to edit the path appropriately, use the .bat script instead for Windows
+  (add-to-list 'eglot-server-programs '(elixir-mode "/run/current-system/sw/bin/elixir_ls_launch.sh"))
+  ;;
+  (use-package lsp-mode
+    :commands lsp
+    :ensure t
+    :diminish lsp-mode
+    :hook
+    (elixir-mode . lsp)
+    :init
+    (add-to-list 'exec-path "/run/current-system/sw/bin/elixir_ls_launch.sh"))
+  ;; [config] Change buffer handler
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   ;; Make C-c more powerfull
   ;; https://github.com/syl20bnr/spacemacs/issues/12133
