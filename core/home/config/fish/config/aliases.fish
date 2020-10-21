@@ -22,7 +22,8 @@ alias umount-usb='udiskie-umount /dev/sdb1'
 alias c="git rebase --continue"
 alias s="git rebase --skip"
 alias m="git mergetool"
-alias lg="lazygit"
+alias lg="gitui"
+alias gui="gitui"
 
 alias w="cd $HOME/Workdir/src/github.com/dafiti-group"
 # alias vim="echo 'no'"

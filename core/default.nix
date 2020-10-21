@@ -84,6 +84,7 @@ in {
       ag
       arandr
       arduino
+      aws-iam-authenticator
       bazel
       bind
       brightnessctl
@@ -112,7 +113,7 @@ in {
       kbfs
       keybase-go
       kubernetes-helm
-      lazygit
+      gitAndTools.gitui
       meld
       metals
       minikube
@@ -131,6 +132,8 @@ in {
       pavucontrol
       pbis-open
       perl
+      podman
+      podman-compose
       pulsemixer
       python3
       ranger
@@ -151,8 +154,6 @@ in {
       vlc
       wget
       wirelesstools
-      podman
-      podman-compose
       xorg.xev
       xorg.xhost
       xorg.xmodmap
@@ -173,8 +174,6 @@ in {
       yuri.tilt
       yuri.xst
       zoom-us
-      # linuxPackages.xpadneo
-      aws-iam-authenticator
     ];
   };
 

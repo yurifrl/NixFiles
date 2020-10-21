@@ -42,12 +42,6 @@
       version = "0.1.1";
       sha256 = "1iylv69l8230w8mgbwim2aval8ax00x8klbl4sv4w4qmp4h1a6w4";
     }
-    # {
-    #   name = "vscode-elixir";
-    #   publisher = "mjmcloug";
-    #   version = "1.1.0";
-    #   sha256 = "0kj7wlhapkkikn1md8cknrffrimk0g0dbbhavasys6k3k7pk2khh";
-    # }
     {
       name = "elixir-ls";
       publisher = "JakeBecker";
@@ -167,6 +161,12 @@
       publisher = "vstirbu";
       version = "1.5.6";
       sha256 = "1fxrli042axnf5xjz0np996cd4xayd13slvl2jrwf47px1z50l3d";
+    }
+    {
+      name = "python";
+      publisher = "ms-python";
+      version = "2020.9.114305";
+      sha256 = "1vh0wvfvzszc58lw7dbl60knpm5l6rrsghfchhn5dvwyadx4a33h";
     }
   ];
 }

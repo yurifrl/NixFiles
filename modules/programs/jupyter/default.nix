@@ -28,5 +28,10 @@ let
 in {
   config.environment.systemPackages = with pkgs; [
     jupyterEnvironment
+    python38Packages.ipykernel
   ];
+  # config.services.jupyter = {
+  #   enable = true;
+  #   password = "password";
+  # };
 }
