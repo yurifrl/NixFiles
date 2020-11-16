@@ -11,6 +11,7 @@
   mobile = ./programs/mobile.nix;
   jupyter = ./programs/jupyter;
   elixir-ls = ./programs/elixir-ls.nix;
+  esp-idf = ./programs/esp-idf;
   # Services
   secrets = ./services/secrets.nix;
   certs = ./services/certs.nix;

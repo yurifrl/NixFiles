@@ -26,8 +26,7 @@
 ## Dired
 
 - **C-j** Enter file dir
-- **C-l** Go up a level
-- **C-r** Go back
+- **C-h** Go up a level back a dir
 
 ## Important
 

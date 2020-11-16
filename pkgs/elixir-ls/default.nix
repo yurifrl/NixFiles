@@ -1,4 +1,6 @@
-{ stdenv, fetchurl, unzip, lib, elixir }:
+{ stdenv, fetchurl, unzip, lib, elixir, pkgs }:
+
+# https://github.com/NixOS/nixpkgs/pull/97245/files
 
 stdenv.mkDerivation rec {
   pname = "elixir-ls";
@@ -11,6 +13,8 @@ stdenv.mkDerivation rec {
     sha256 = "009g6pg13ngdik9yd5s141v5x8w4yzi7288zyzfszshwqpai8sfz";
   };
 
+  buildInputs = [ pkgs.makeWrapper ];
+
   nativeBuildInputs = [
     unzip
   ];
@@ -21,10 +25,11 @@ stdenv.mkDerivation rec {
     mkdir -p ${targetPath}
     ${unzip}/bin/unzip ${src} -d ${targetPath}
     rm ${targetPath}/*.bat
-    mv ${targetPath}/debugger.sh ${targetPath}/elixir_ls_debugger.sh
-    mv ${targetPath}/language_server.sh ${targetPath}/elixir_ls_server.sh
-    mv ${targetPath}/launch.sh ${targetPath}/elixir_ls_launch.sh
+    cp ${targetPath}/debugger.sh ${targetPath}/elixir_ls_debugger.sh
+    cp ${targetPath}/language_server.sh ${targetPath}/elixir_ls_server.sh
+    cp ${targetPath}/launch.sh ${targetPath}/elixir_ls_launch.sh
   '';
+
 
   postFixup = ''
     ls ${targetPath}

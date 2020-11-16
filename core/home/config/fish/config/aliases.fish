@@ -26,6 +26,7 @@ alias lg="gitui"
 alias gui="gitui"
 
 alias w="cd $HOME/Workdir/src/github.com/dafiti-group"
+# alias w="cd $HOME/Workdir/src/github.com/yurifrl"
 # alias vim="echo 'no'"
 
 alias g="git"
@@ -44,3 +45,4 @@ alias k=/run/current-system/sw/bin/kubectl
 # alias helm=helm-2
 alias tiller=tiller-2
 alias vim-edit-alias="vim ~/NixFiles/core/home/config/fish/config/aliases"
+alias proj="touch .projectile"

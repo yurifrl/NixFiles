@@ -28,6 +28,7 @@ in {
     modules.mobile
     modules.jupyter
     modules.elixir-ls
+    modules.esp-idf
   ];
 
   yuri.programs = {
@@ -51,6 +52,10 @@ in {
   nixpkgs.config = {
     allowBroken = true;
     allowUnfree = true;
+    vivaldi = {
+      proprietaryCodecs = true;
+      enableWideVine = true;
+    };
     # This is for openconnect
     permittedInsecurePackages = [
       "openssl-1.0.2u"
@@ -80,10 +85,13 @@ in {
       # kubectl
       # unity3d
       # yuri.awscli
+      helmsman
+      terraform
       adoptopenjdk-jre-openj9-bin-11
       ag
       arandr
       arduino
+      python27Packages.pyserial
       aws-iam-authenticator
       bazel
       bind
@@ -100,9 +108,11 @@ in {
       git
       git-hub
       gitAndTools.diff-so-fancy
+      gitAndTools.gitui
       gnumake
       go
       google-chrome-beta
+      google-cloud-sdk
       gotools
       gradle
       htop
@@ -113,7 +123,6 @@ in {
       kbfs
       keybase-go
       kubernetes-helm
-      gitAndTools.gitui
       meld
       metals
       minikube

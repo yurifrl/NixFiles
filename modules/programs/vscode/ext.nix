@@ -49,12 +49,6 @@
       sha256 = "0wyxkq0ra17s6jhsx70i46d62lqgvpdfrh6wkya8l0dng2xi0idk";
     }
     {
-      name = "vscode-docker";
-      publisher = "ms-azuretools";
-      version = "1.3.1";
-      sha256 = "17q4727ah129hxdvrw1x0fcki7hidphmlnznxx7xvylcw937h6ch";
-    }
-    {
       name = "vsliveshare";
       publisher = "ms-vsliveshare";
       version = "1.0.2427";
@@ -65,12 +59,6 @@
       publisher = "platformio";
       version = "1.10.0";
       sha256 = "1df37q5xcnwdcxxahrxhwr8h2wg42sd0kjl54v1hnrgjdg0c5nqw";
-    }
-    {
-      name = "vscode-arduino";
-      publisher = "vsciot-vscode";
-      version = "0.3.1";
-      sha256 = "0j7kzalhmnmqxgnsij64jkw97z3wwh3qx3j7rq5za9zfsa61jczs";
     }
     {
       name = "java";
@@ -167,6 +155,12 @@
       publisher = "ms-python";
       version = "2020.9.114305";
       sha256 = "1vh0wvfvzszc58lw7dbl60knpm5l6rrsghfchhn5dvwyadx4a33h";
+    }
+    {
+      name = "vscode-docker";
+      publisher = "ms-azuretools";
+      version = "1.7.0";
+      sha256 = "0xl5y36kwh59mnb9j1pnsl5bn62z4n4lvsp31r1xscxrs9vh1ngb";
     }
   ];
 }

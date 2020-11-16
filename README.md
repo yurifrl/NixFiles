@@ -74,6 +74,15 @@ nix-build -E 'with import <nixpkgs> { };  callPackage ./default.nix {}'
 - [TODO](https://github.com/rycee/home-manager/blob/master/modules/services/blueman-applet.nix)
 - [nixpkgs example](https://github.com/kampka/nix-packages)
 
+## Emacs
+
+## Sample configs
+
+- [Nice decopled config](https://github.com/danieljaouen/dotfiles/blob/master/topics/emacs/spacemacs.el)
+- [Some elixir keybindings](https://github.com/nicobao/setup/blob/master/spacemacs/.spacemacs)
+- [More elixir config](https://github.com/freewebwithme/dotfiles/blob/master/spacemacs)
+- [Some configs for elixit, blog post](https://xiangji.me/2019/10/22/emacs-setup-for-elixir-and-vue/)
+
 ## Licencing
 
 MIT license.
