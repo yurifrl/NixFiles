@@ -25,8 +25,8 @@ alias m="git mergetool"
 alias lg="gitui"
 alias gui="gitui"
 
-alias w="cd $HOME/Workdir/src/github.com/dafiti-group"
-# alias w="cd $HOME/Workdir/src/github.com/yurifrl"
+# alias w="cd $HOME/Workdir/src/github.com/telnyx"
+alias w="cd $HOME/Workdir/src/github.com/yurifrl"
 # alias vim="echo 'no'"
 
 alias g="git"
@@ -46,3 +46,5 @@ alias k=/run/current-system/sw/bin/kubectl
 alias tiller=tiller-2
 alias vim-edit-alias="vim ~/NixFiles/core/home/config/fish/config/aliases"
 alias proj="touch .projectile"
+alias docker=podman
+alias login-ops="aws eks --region us-east-1 update-kubeconfig --name useast1-eks-ops-dafiti-la  --role-arn=arn:aws:iam::415484646523:role/devops-full  --alias useast1-eks-ops-dafiti-la"

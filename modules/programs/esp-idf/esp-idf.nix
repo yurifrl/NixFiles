@@ -6,7 +6,7 @@ let
   pypkgs = python-packages: with python-packages; [
     pyserial
     click
-    cryptography
+    # cryptography
     future
     pyparsing
     pyelftools

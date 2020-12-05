@@ -3,13 +3,13 @@
 let
   mktplaceExt = import ./ext.nix;
 
-  extensions = (with pkgs.vscode-extensions; [
-    ms-vscode.cpptools
-    bbenoist.Nix
-  ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace mktplaceExt.extensions;
+  # extensions = (with pkgs.vscode-extensions; [
+  #   # ms-vscode.cpptools
+  #   # bbenoist.Nix
+  # ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace mktplaceExt.extensions;
 
   vscode-with-extensions = pkgs.vscode-with-extensions.override {
-    vscodeExtensions = extensions;
+    vscodeExtensions = mktplaceExt.extensions;
   };
   cfg = config.yuri.programs.ghcide;
 

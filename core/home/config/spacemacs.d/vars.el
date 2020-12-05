@@ -18,3 +18,5 @@
 (setq create-lockfiles nil)
 ;; [config] Remove duplciated entrys from emacs
 (setq history-delete-duplicates t)
+;; Hide hell buffers
+(setq helm-boring-buffer-regexp-list (list (rx "*Messages") (rx "*eldoc")))

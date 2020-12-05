@@ -37,12 +37,6 @@
       sha256 = "1285bs89d7hqn8h8jyxww7712070zw2ccrgy6aswd39arscniffs";
     }
     {
-      name = "cpp-costarter";
-      publisher = "madopew";
-      version = "0.1.1";
-      sha256 = "1iylv69l8230w8mgbwim2aval8ax00x8klbl4sv4w4qmp4h1a6w4";
-    }
-    {
       name = "elixir-ls";
       publisher = "JakeBecker";
       version = "0.5.0";
