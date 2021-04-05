@@ -21,6 +21,7 @@
   - **x** To remove flagged buffers
 - **C-x b** Opens buffer list on helm
   - **Ctrl+C D** Deletes buffer
+  - **Ctrl+C a** Opens hidden buffers configured with helm-boring-buffer-regexp-list
   - **Ctrl+SPC** Flag buffer for deletion
   - **Alt+Shift+D** Delete flagged buffers
 
