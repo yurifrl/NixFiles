@@ -63,6 +63,20 @@
 - **C-V g r I** Multi cursor line begin
 - **Cl-V g r A** Multi cursor line end
 
+## Origami folding
+
+- **z o** Open node
+- **z c** Close node
+- **z O** Open node recursively
+- **z C** Close node recursively
+- **z p** Previous fold
+- **z n** Next fold
+- **z r** Open all nodes
+- **z m** Close all nodes
+- **z s** Show only node
+- **z a** Forward toggle node
+- **z TAB** Recursively toggle-node
+
 ## Go
 
 - **C-c C-j** Jump to definition
