@@ -20,15 +20,21 @@
   - **d** To flag buffer for deletion
   - **x** To remove flagged buffers
 - **C-x b** Opens buffer list on helm
-  - **Ctrl+C D** Deletes buffer
-  - **Ctrl+C a** Opens hidden buffers configured with helm-boring-buffer-regexp-list
-  - **Ctrl+SPC** Flag buffer for deletion
-  - **Alt+Shift+D** Delete flagged buffers
+  - **Ctrl C D** Deletes buffer
+  - **Ctrl C a** Opens hidden buffers configured with helm-boring-buffer-regexp-list
+  - **Ctrl SPC** Flag buffer for deletion
+  - **Alt Shift D** Delete flagged buffers
 
 ## Dired
 
 - **C-j** Enter file dir
 - **C-h** Go up a level back a dir
+
+## [Neotree](https://github.com/jaypei/emacs-neotree)
+
+- **neotree** command
+- **<SPC> f t** Toggle neotree
+- **Shift+R**
 
 ## Important
 
@@ -56,10 +62,6 @@
 - **n** Navigate to next occurrence of the word
 - **C-V g r I** Multi cursor line begin
 - **Cl-V g r A** Multi cursor line end
-
-## Neotree
-
-- **SPC f t** Toggle Neotree
 
 ## Go
 
@@ -108,7 +110,7 @@
 - **C-/** Undo
 - **C-g C-/** Redo
 - **C-x z** Repeat last command, hit z to keep repeating
-- **C-<spc> C-w** Selects text and deletes selection
+- **C-<SPCZ> C-w** Selects text and deletes selection
 - **C-a C-k C-y** Move to the begin of line kill line and yank
 - **C-x C-f** Find file
 - **C-x s** Save buffer
